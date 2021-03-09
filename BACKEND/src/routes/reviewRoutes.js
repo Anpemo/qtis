@@ -8,7 +8,6 @@ function reviewRouter() {
     .route('/')
     .get(controller.loadReview)
     .post(controller.createReview)
-    .put(controller.updateReview)
     .delete(controller.deleteReview);
 
   return router;

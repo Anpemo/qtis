@@ -3,9 +3,14 @@ const Review = require('../models/reviewModels');
 
 function reviewControllers() {
   async function loadReview(req, res) {
-    const id = req.body._id;
+    let query;
+    if (req.body.userId) {
+      query = { userId: req.body.userId };
+    } else {
+      query = { productId: req.body.productId };
+    }
     try {
-      const review = await Review.findById(id).exec();
+      const review = await Review.find(query).exec();
       res.json(review);
     } catch {
       res.send('Review not found');
@@ -28,18 +33,6 @@ function reviewControllers() {
     });
   }
 
-  async function updateReview(req, res) {
-    const id = req.body._id;
-    const { body } = req;
-    try {
-      const modifiedReview = await Review.findByIdAndUpdate(id, body, { new: true }).exec();
-      res.json(modifiedReview);
-    } catch {
-      res.status(500);
-      res.send('Review not found');
-    }
-  }
-
   async function deleteReview(req, res) {
     const id = req.body._id;
     try {
@@ -54,7 +47,6 @@ function reviewControllers() {
   return {
     loadReview,
     createReview,
-    updateReview,
     deleteReview
   };
 }
