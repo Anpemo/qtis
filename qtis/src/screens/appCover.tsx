@@ -1,5 +1,7 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Image, StyleSheet } from 'react-native'
+
+const styles = StyleSheet.create
 
 export default function AppCover () {
   return (
