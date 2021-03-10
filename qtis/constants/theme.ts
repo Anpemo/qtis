@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+
 const { width, height } = Dimensions.get('window')
 
 export const COLORS = {
@@ -10,12 +11,16 @@ export const COLORS = {
 
   // colors
   black: '#141414',
-  white: '#FFFFFF'
+  white: '#FFFFFF',
+
+  // specific items
+  coverbutton: 'rgba(255, 255, 255, 0.7)'
 }
 
 export const SIZES = {
   // global sizes
   buttonheight: 38,
+  buttonwidth: 260,
   buttonRadius: 50,
   squareRadius: 8,
   squareImageRadius: 5,
@@ -35,7 +40,13 @@ export const SIZES = {
 }
 
 export const FONTS = {
-  buttons: { fontFamily: 'Montserrat-Regular', fontSize: SIZES.buttonText, lineHeight: 22, letterSpacing: 3 },
-  h2: { fontFamily: 'Montserrat-Regular', fontSize: SIZES.h2, lineHeight: 37, letterSpacing: 3 },
-  h3: { fontFamily: 'Montserrat-Regular', fontSize: SIZES.h3, lineHeight: 22, letterSpacing: 3 }
+  buttons: {
+    fontFamily: 'Montserrat-Regular', fontSize: SIZES.buttonText, lineHeight: 22, letterSpacing: 3
+  },
+  h2: {
+    fontFamily: 'Montserrat-Regular', fontSize: SIZES.h2, lineHeight: 37, letterSpacing: 3
+  },
+  h3: {
+    fontFamily: 'Montserrat-Regular', fontSize: SIZES.h3, lineHeight: 22, letterSpacing: 3
+  }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-export default function SignIn () {
+export default function Login () {
   return (
     <View >
-      <Text>Hello World! Im Sign In</Text>
+      <Text>Hello World! Im Login</Text>
     </View>
   )
 };
