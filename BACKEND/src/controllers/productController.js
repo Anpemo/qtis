@@ -3,9 +3,14 @@ const Product = require('../models/productModels');
 
 function productControllers() {
   async function loadProduct(req, res) {
-    const id = req.body._id;
+    let query;
+    if (req.body._id) {
+      query = { userId: req.body.userId };
+    } else {
+      query = {};
+    }
     try {
-      const product = await Product.findById(id).exec();
+      const product = await Product.find(query).exec();
       res.json(product);
     } catch {
       res.send('Product not found');
