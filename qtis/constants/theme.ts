@@ -15,7 +15,7 @@ export const COLORS = {
 
   // specific items
   coverbutton: 'rgba(255, 255, 255, 0.7)',
-  categoryTextBackground: 'rgba(255, 255, 255, 0.6)'
+  categoryTextBackground: 'rgba(255, 255, 255, 0.75)'
 }
 
 export const SIZES = {
@@ -30,6 +30,7 @@ export const SIZES = {
   buttonText: 18,
   h2: 30,
   h3: 25,
+  p25: 25,
   p20: 20,
   p16: 16,
   p14: 14,
