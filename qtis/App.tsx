@@ -11,7 +11,8 @@ import {
 const Stack = createStackNavigator()
 function App () {
   const customFonts = {
-    Montserrat: require('./assets/fonts/Montserrat-Regular.ttf')
+    Montserrat: require('./assets/fonts/Montserrat-Regular.ttf'),
+    MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf')
   }
   const [isLoaded] = useFonts(customFonts)
   if (!isLoaded) {
@@ -23,7 +24,7 @@ function App () {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName="AppCover"
+        initialRouteName="Browser"
       >
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
