@@ -4,7 +4,6 @@ import {
   Image, StyleSheet, TouchableOpacity, View, Text
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { images, SIZES, COLORS } from '../../constants'
 
 const styles = StyleSheet.create({
