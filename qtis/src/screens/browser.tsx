@@ -3,7 +3,7 @@ import {
   Image, StyleSheet, TouchableOpacity, View, Text, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, categories, images } from '../../constants'
+import { COLORS, SIZES, SHADOW, categories } from '../../constants'
 
 const styles = StyleSheet.create({
   container: {

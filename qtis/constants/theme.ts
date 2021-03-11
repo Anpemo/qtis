@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get('window')
 
 export const COLORS = {
   // base colors
-  cream: '#DDA15E',
+  cream: 'rgba(221, 161, 94, 0.3)',
   brown: '#D4A373',
   backgroundGrey: '#C0BAB3',
   lettersGrey: '#000000',
@@ -20,7 +20,7 @@ export const COLORS = {
 
 export const SIZES = {
   // global sizes
-  buttonheight: 38,
+  buttonheight: 48,
   buttonwidth: 260,
   buttonRadius: 50,
   squareRadius: 8,
@@ -28,8 +28,9 @@ export const SIZES = {
 
   // font sizes
   buttonText: 18,
-  h2: 30,
+  h2: 40,
   h3: 25,
+  p30: 30,
   p25: 25,
   p20: 20,
   p16: 16,

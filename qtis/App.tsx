@@ -24,7 +24,7 @@ function App () {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName="Browser"
+        initialRouteName="AppCover"
       >
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
