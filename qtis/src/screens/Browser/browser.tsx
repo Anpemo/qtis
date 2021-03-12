@@ -3,7 +3,7 @@ import {
   Image, StyleSheet, TouchableOpacity, View, Text, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, categories } from '../../constants'
+import { COLORS, SIZES, SHADOW, categories } from '../../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.brown
   }
 })
-export default function Browser () {
+export default function Browser ({ navigation }: any) {
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox}>
+    <TouchableOpacity style={styles.categoryBox} onPress={() => navigation.navigate('CategoryBrowser', { categoryName: item.name })}>
         <View>
           <Image source={item.src} style={styles.categoryPicture} key={item.id} />
         </View>
