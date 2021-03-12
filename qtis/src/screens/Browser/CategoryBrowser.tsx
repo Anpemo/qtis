@@ -77,7 +77,10 @@ export default function CategoryBrowser ({ route }: any) {
   const renderItem = ({ item }: any) => (
     <TouchableOpacity style={styles.categoryBox}>
     <View style={styles.pictureBox}>
-      <Image source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }} style={styles.categoryPicture} key={1} />
+      <Image
+      source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
+      style={styles.categoryPicture} key={1}
+      />
     </View>
     <View style={styles.textContainer}>
       <Text style={styles.brandText}>LA ROCHE-POSAY
