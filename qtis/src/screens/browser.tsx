@@ -3,7 +3,7 @@ import {
   Image, StyleSheet, TouchableOpacity, View, Text, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, categories, images } from '../../constants'
+import { COLORS, SIZES, SHADOW, categories } from '../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   categoryBox: {
-    height: SIZES.height * 0.4,
+    height: SIZES.height * 0.35,
     width: SIZES.width * 0.43,
     borderRadius: SIZES.squareRadius,
     margin: 10,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
   },
   categoryPicture: {
-    height: SIZES.height * 0.4,
+    height: '100%',
     width: '100%',
     resizeMode: 'cover',
     borderRadius: SIZES.squareRadius
@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 10,
     fontFamily: 'MontserratBold'
+  },
+  background: {
+    backgroundColor: COLORS.brown
   }
 })
 export default function Browser () {
