@@ -69,21 +69,24 @@ function Login ({ navigation }: any) {
           onChangeText={(event) => setUserName(event)}
           placeholder={'Email'}
           style={styles.inputTop}
+          value={userName}
         />
         <TextInput
         placeholder={'Password'}
         onChangeText={(event) => setPassword(event)}
         style={styles.inputTop}
+        value={password}
         />
         <TextInput
         placeholder={'Confirm Pasword'}
         onChangeText={(event) => setConfirmPassword(event)}
         style={styles.inputBottom}
+        value={confirmPassword}
         />
 
       </View>
       <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText}>REGISTER</Text>
+          <Text style={styles.buttonText} onPress={() => { saveUser({ user: userName, password: password }) }}>REGISTER</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )

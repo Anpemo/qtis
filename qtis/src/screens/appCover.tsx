@@ -52,10 +52,10 @@ export default function AppCover ({ navigation }: any) {
       <Image source={images.coverGirl} style={styles.backgroundPicture} />
         <Image source={images.whiteLogo} style={styles.logo}/>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')} testID={'test-login'}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')} testID={'test-register'}>
           <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableOpacity>
       </View>
