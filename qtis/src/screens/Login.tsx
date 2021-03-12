@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 })
 
 function Login ({ navigation }: any) {
-  const [userName, setUserName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   return (
@@ -65,14 +65,16 @@ function Login ({ navigation }: any) {
       <Text style={styles.title}>Log into your account</Text>
       <View style={styles.formBox}>
       <TextInput
-          onChangeText={(event) => setUserName(event)}
+          onChangeText={(event) => setEmail(event)}
           placeholder={'Email'}
           style={styles.inputTop}
+          value={email}
         />
         <TextInput
         placeholder={'Password'}
         onChangeText={(event) => setPassword(event)}
         style={styles.inputBottom}
+        value={password}
         />
 
       </View>
