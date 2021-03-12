@@ -59,7 +59,10 @@ const styles = StyleSheet.create({
 })
 export default function Browser ({ navigation }: any) {
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox} onPress={() => navigation.navigate('CategoryBrowser', { categoryName: item.name })}>
+    <TouchableOpacity
+    testID={item.id}
+    style={styles.categoryBox}
+     onPress={() => navigation.navigate('CategoryBrowser', { categoryName: item.name })}>
         <View>
           <Image source={item.src} style={styles.categoryPicture} key={item.id} />
         </View>
@@ -79,6 +82,7 @@ export default function Browser ({ navigation }: any) {
       renderItem={renderItem}
       keyExtractor = {(item: any) => item.id}
       numColumns = {2}
+      testID={'flatlistTest'}
       />
       </View>
     </SafeAreaView>

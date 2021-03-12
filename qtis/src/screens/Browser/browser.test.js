@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, render } from '@testing-library/react-native'
+import { cleanup, render, fireEvent } from '@testing-library/react-native'
 import Browser from './Browser'
 
 describe('Given an Browser function', () => {
@@ -10,11 +10,18 @@ describe('Given an Browser function', () => {
       const text = getByText('CHOOSE A CATEGORY')
       expect(text).toBeTruthy()
     })
-    // test('navigates on button register', () => {
-    //   const navigate = jest.fn()
-    //   const { getByText } = render(<Browser navigation={{ navigate }} />)
-    //   fireEvent.press(getByText('REGISTER'))
-    //   expect(navigate).toHaveBeenCalledWith('Register')
-    // })
+    test('navigates on TouchableOpacity', () => {
+      const mockData = [
+        {
+          id: 1
+        }
+      ]
+      const navigate = jest.fn()
+      const { getByTestId } = render(<Browser navigation={{ navigate }} />)
+      const flatList = getByTestId('flatlistTest')
+      const item = flatList.renderProp('renderItem')
+      fireEvent.press(getByTestId(1))
+      expect(navigate).toHaveBeenCalledWith('CategoryBrowser')
+    })
   })
 })
