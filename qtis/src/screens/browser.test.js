@@ -5,7 +5,7 @@ import Browser from './Browser'
 describe('Given an Browser function', () => {
   afterEach(cleanup)
   describe('When calling it', () => {
-    test('Then it will return a <safeAreaView>', () => {
+    test('Then it will render a CHOOSE A CATEGORY string', () => {
       const { getByText } = render(<Browser />)
       const text = getByText('CHOOSE A CATEGORY')
       expect(text).toBeTruthy()
