@@ -26,7 +26,6 @@ function LocalStrategy() {
         })();
       }
     )
-
   );
 }
 
