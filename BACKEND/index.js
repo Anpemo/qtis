@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const debug = require('debug')('app');
 const { connect } = require('mongoose');
 require('dotenv').config();
+
 const userRouter = require('./src/routes/userRoutes');
 const productRouter = require('./src/routes/productRoutes');
 const reviewRouter = require('./src/routes/reviewRoutes');
@@ -16,6 +17,7 @@ connect(DDBB, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(session({ secret: '' }));
 
 app.use('/user', userRouter);
 app.use('/product', productRouter);
