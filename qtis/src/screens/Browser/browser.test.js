@@ -11,17 +11,10 @@ describe('Given an Browser function', () => {
       expect(text).toBeTruthy()
     })
     test('navigates on TouchableOpacity', () => {
-      const mockData = [
-        {
-          id: 1
-        }
-      ]
       const navigate = jest.fn()
-      const { getByTestId } = render(<Browser navigation={{ navigate }} />)
-      const flatList = getByTestId('flatlistTest')
-      const item = flatList.renderProp('renderItem')
-      fireEvent.press(getByTestId(1))
-      expect(navigate).toHaveBeenCalledWith('CategoryBrowser')
+      const { getByText } = render(<Browser navigation={{ navigate }} />)
+      fireEvent.press(getByText('CREAMS'))
+      expect(navigate).toHaveBeenCalledWith('CategoryBrowser', { categoryName: 'creams' })
     })
   })
 })
