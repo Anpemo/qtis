@@ -3,7 +3,7 @@ import {
   Image, StyleSheet, TouchableOpacity, View, Text, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, categories } from '../../constants'
+import { COLORS, SIZES, SHADOW, categories } from '../../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -57,9 +57,12 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.brown
   }
 })
-export default function Browser () {
+export default function Browser ({ navigation }: any) {
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox}>
+    <TouchableOpacity
+    testID={item.id}
+    style={styles.categoryBox}
+     onPress={() => navigation.navigate('CategoryBrowser', { categoryName: item.name })}>
         <View>
           <Image source={item.src} style={styles.categoryPicture} key={item.id} />
         </View>
@@ -79,6 +82,7 @@ export default function Browser () {
       renderItem={renderItem}
       keyExtractor = {(item: any) => item.id}
       numColumns = {2}
+      testID={'flatlistTest'}
       />
       </View>
     </SafeAreaView>

@@ -17,7 +17,6 @@ export const COLORS = {
   coverbutton: 'rgba(255, 255, 255, 0.7)',
   categoryTextBackground: 'rgba(255, 255, 255, 0.75)'
 }
-
 export const SIZES = {
   // global sizes
   buttonheight: 48,
@@ -33,6 +32,7 @@ export const SIZES = {
   p30: 30,
   p25: 25,
   p20: 20,
+  p18: 18,
   p16: 16,
   p14: 14,
   p13: 13,
