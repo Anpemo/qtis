@@ -14,6 +14,7 @@ const authRouter = require('./src/routes/authRouter');
 const app = express();
 const port = process.env.PORT;
 const DDBB = process.env.DDBB_URL;
+const { IP } = process.env;
 
 connect(DDBB, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -31,4 +32,4 @@ app.use('/product', productRouter);
 app.use('/review', reviewRouter);
 app.use('/auth', authRouter);
 
-app.listen(port, () => debug(`Esto parece que funciona en el puerto ${port} `));
+app.listen(port, () => debug(`Esto parece que funciona en el puerto ${IP}:${port} `));

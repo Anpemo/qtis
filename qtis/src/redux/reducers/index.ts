@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import productsReducers from './productsReducers'
-import reviewReducers from './reviewReducers'
+// import productsReducers from './productsReducers'
+// import reviewsReducers from './reviewReducers'
 import userReducers from './userReducers'
 
 const rootReducer = combineReducers({
-  productsReducers,
-  reviewReducers,
+  // productsReducers,
+  // reviewsReducers,
   userReducers
 })
 

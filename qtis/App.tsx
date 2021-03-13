@@ -7,6 +7,8 @@ import AppLoading from 'expo-app-loading'
 import {
   AppCover, Login, Register, Browser, Profile, CategoryBrowser
 } from './src/screens'
+import { Provider } from 'react-redux'
+import store from './src/redux/stores/configureStore'
 
 const Stack = createStackNavigator()
 function App () {
@@ -19,12 +21,13 @@ function App () {
     return <AppLoading />
   }
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName="Browser"
+        initialRouteName="AppCover"
       >
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
@@ -34,6 +37,7 @@ function App () {
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   )
 }
 export default App

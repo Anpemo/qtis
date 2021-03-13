@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import {
   StyleSheet, TouchableOpacity, View, Text
 } from 'react-native'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
+import userRegister from '../../src/redux/actions/qtisActionCreators'
 
 const styles = StyleSheet.create({
   container: {
@@ -56,8 +59,8 @@ const styles = StyleSheet.create({
   }
 })
 
-function Login ({ navigation }: any) {
-  const [userName, setUserName] = useState('')
+function Register ({ navigation, actions }: any) {
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -66,10 +69,10 @@ function Login ({ navigation }: any) {
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
       <TextInput
-          onChangeText={(event) => setUserName(event)}
+          onChangeText={(event) => setEmail(event)}
           placeholder={'Email'}
           style={styles.inputTop}
-          value={userName}
+          value={email}
         />
         <TextInput
         placeholder={'Password'}
@@ -85,11 +88,19 @@ function Login ({ navigation }: any) {
         />
 
       </View>
-      <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText} onPress={() => { saveUser({ user: userName, password: password }) }}>REGISTER</Text>
+      <TouchableOpacity style={styles.button} onPress={() => { actions.userRegister({ user: email, password: password }) }} >
+          <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
 };
 
-export default Login
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      userRegister
+    }, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Register)

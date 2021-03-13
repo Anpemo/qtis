@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 
 function register(req, res) {
   const { email, password } = req.body;
+  console.log(req.body);
   const user = new User({
     email,
     password: md5(password)
@@ -10,10 +11,9 @@ function register(req, res) {
 
   try {
     user.save();
-
-    req.login(user, () => {
-      res.redirect('/api/users');
-    });
+    // req.login(user, () => {
+    //   res.redirect('/api/users');
+    // });
   } catch (error) {
     res.status(500);
     res.send(error);
