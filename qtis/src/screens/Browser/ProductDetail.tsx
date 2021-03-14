@@ -11,76 +11,63 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
     backgroundColor: COLORS.white
   },
   header: {
-    flex: 1,
+    flex: 0.3,
     resizeMode: 'cover',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: 200
+    justifyContent: 'center',
+    width: '100%'
   },
   pictureBox: {
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     height: 175,
     width: 175,
-    marginLeft: 10,
     borderRadius: 100,
-    backgroundColor: COLORS.pictureBoxBackground,
-    marginTop: 10
+    backgroundColor: COLORS.pictureBoxBackground
   },
   productPicture: {
+    resizeMode: 'contain',
     height: 125,
     width: 125,
-    alignSelf: 'center',
-    resizeMode: 'contain',
     borderRadius: 100,
     backgroundColor: COLORS.white
   },
   body: {
-    flex: 1,
-    width: '95%',
-    alignItems: 'center'
+    flex: 0.7,
+    alignItems: 'center',
+    width: '95%'
   },
   productInformation: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    height: '10%',
-    width: '95%',
-    marginBottom: 15,
-    marginTop: -90,
-    borderRadius: SIZES.squareRadius,
-    ...SHADOW
+    alignItems: 'center',
+    width: '100%'
   },
   productNameText: {
     fontSize: SIZES.p20,
     color: COLORS.black,
-    alignSelf: 'center',
     fontFamily: 'MontserratBold'
   },
   productDetailsText: {
     fontSize: SIZES.p20,
     color: COLORS.black,
-    alignSelf: 'center',
     fontFamily: 'Montserrat',
     marginTop: 5
   },
   filterContainer: {
     width: '100%',
-    height: '30%'
+    height: '20%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 3
   },
   filterTitle: {
     fontSize: SIZES.p18,
     color: COLORS.black,
-    alignSelf: 'center',
-    fontFamily: 'Montserrat',
-    marginTop: '5%'
+    fontFamily: 'Montserrat'
   },
   filtersBox: {
-    flex: 1,
     flexDirection: 'row',
     width: '100%'
   },
@@ -91,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.buttonRadius,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 5
+    margin: 3
   },
   filterText: {
     fontFamily: 'Montserrat',
@@ -99,16 +86,19 @@ const styles = StyleSheet.create({
   },
   reviewsContainer: {
     width: '100%',
-    alignItems: 'center'
-  },
-  valorationContainer: {
-    width: '95%',
-    height: '10%',
     alignItems: 'center',
     justifyContent: 'center'
   },
+  valorationContainer: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 3
+  },
   punctuation: {
-    fontSize: SIZES.p20
+    fontSize: SIZES.p20,
+    fontFamily: 'MontserratBold',
+    color: COLORS.black
   },
   reviewsFlatList: {
     width: '95%'
@@ -116,15 +106,15 @@ const styles = StyleSheet.create({
   reviewBox: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-    width: '100%',
-    marginBottom: 15,
+    marginBottom: 10,
     borderRadius: SIZES.squareRadius,
-    ...SHADOW
+    backgroundColor: COLORS.backgroundGrey
 
   },
   userPictureBox: {
+    height: 105,
+    width: 105,
+    alignSelf: 'flex-end',
     justifyContent: 'center',
     alignContent: 'center'
   },
@@ -146,14 +136,14 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: SIZES.p20,
     color: COLORS.brown,
-    fontFamily: 'MontserratBold'
+    fontFamily: 'MontserratBold',
+    margin: 3
   },
   reviewText: {
     fontSize: SIZES.p20,
     color: COLORS.brown,
     fontFamily: 'Montserrat',
-    marginTop: '5%',
-    paddingRight: 5
+    backgroundColor: COLORS.white
   }
 })
 
@@ -208,6 +198,7 @@ export default function ProductDetail () {
         renderItem={renderSkinTypes}
         keyExtractor = {(item: any) => item}
         horizontal={true}
+        showHorizontalScrollIndicator={false}
         />
         </View>
         <View style={styles.reviewsContainer}>
