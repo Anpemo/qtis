@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Image, StyleSheet, TouchableOpacity, View, Text, ImageBackground, FlatList
+  Image, StyleSheet, View, Text, ImageBackground, TouchableOpacity
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import skinTypes from '../../../constants/skinTypes'
 
 const styles = StyleSheet.create({
@@ -58,10 +59,53 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: 'Montserrat',
     marginTop: 5
+  },
+  accordionsBox: {
+    width: '100%'
+  },
+  sectionContainer: {
+    flexGrow: 1,
+    width: '95%',
+    justifyContent: 'center',
+    margin: 5
+  },
+  section: {
+    flexGrow: 1
+  },
+  sectionName: {
+    fontFamily: 'MontserratBold',
+    fontSize: SIZES.p18,
+    lineHeight: 40,
+    paddingLeft: 10,
+    backgroundColor: COLORS.cream,
+    marginBottom: 3
+  },
+  sectionContentBox: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    ...BORDER
+  },
+  skinTypesButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '45%',
+    marginLeft: 15,
+    marginBottom: 3,
+    borderRadius: SIZES.buttonRadius,
+    ...BORDER
+  },
+  skinType: {
+    fontSize: SIZES.p18,
+    fontFamily: 'Montserrat'
   }
 })
 
 export default function Profile () {
+  const [openSkinType, setOpenSkinType] = useState(false)
+  const [openReviews, setOpenReviews] = useState(false)
+  const [openSettings, setOpenSettings] = useState(false)
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.profileHeader} style={styles.header} >
@@ -81,6 +125,78 @@ export default function Profile () {
           <Text style={styles.userData}>Barcelona
           </Text>
         </View>
+      <View style={styles.accordionsBox}>
+        <TouchableOpacity
+        onPress={() => {
+          setOpenSkinType(!openSkinType)
+        }}
+        style={styles.sectionContainer}
+        activeOpacity={0.5}
+        >
+            <View style={styles.section}>
+              <Text style={styles.sectionName}>SKIN TYPE</Text>
+              <View style={styles.sectionContentBox}>
+                {openSkinType && skinTypes.map((skinType) => (
+                  <TouchableOpacity
+                  key={skinType}
+                  activeOpacity={0.5}
+                  style={styles.skinTypesButton}
+                  >
+                    <Text style={styles.skinType}>{skinType}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={() => {
+          setOpenReviews(!openReviews)
+        }}
+        style={styles.sectionContainer}
+        activeOpacity={0.5}
+        >
+            <View style={styles.section}>
+              <Text style={styles.sectionName}>YOUR REVIEWS</Text>
+              <View style={styles.sectionContentBox}>
+                {openReviews && skinTypes.map((skinType) => (
+                  <TouchableOpacity
+                  key={skinType}
+                  activeOpacity={0.8}
+                  >
+                    <Text>{skinType}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={() => {
+          setOpenSettings(!openSettings)
+        }}
+        style={styles.sectionContainer}
+        activeOpacity={0.5}
+        >
+            <View style={styles.section}>
+              <Text style={styles.sectionName}>ACCOUNT SETTINGS</Text>
+              <View >
+                {openSettings && skinTypes.map((skinType) => (
+                  <TouchableOpacity
+                  key={skinType}
+                  activeOpacity={0.8}
+
+                  >
+                    <Text>{skinType}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+        </TouchableOpacity>
+      </View>
       </View>
     </SafeAreaView>
   )
