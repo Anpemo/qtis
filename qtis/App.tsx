@@ -27,7 +27,7 @@ function App () {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName="ProductDetail"
+        initialRouteName="Profile"
       >
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
