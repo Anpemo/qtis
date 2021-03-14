@@ -66,7 +66,7 @@ export default function Welcome ({ navigation }: any) {
       <Image source={images.oldLady} style={styles.backgroundPicture} />
       <Text style={styles.titleText}>Welcome, Ángela</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')} testID={'test-login'}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile')} testID={'test-login'}>
           <Text style={styles.buttonText}>GO TO YOUR PROFILE</Text>
         </TouchableOpacity>
           <Text style={styles.bodyText}>AND START SHARING</Text>

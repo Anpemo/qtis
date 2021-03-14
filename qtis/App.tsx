@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import AppLoading from 'expo-app-loading'
 import {
-  AppCover, Login, Register, Browser, Profile, CategoryBrowser, Welcome
+  AppCover, Login, Register, Browser, Profile, CategoryBrowser, Welcome, ProductDetail
 } from './src/screens'
 import { Provider } from 'react-redux'
 import store from './src/redux/stores/configureStore'
@@ -27,7 +27,7 @@ function App () {
         screenOptions={{
           headerShown: false
         }}
-        initialRouteName="Welcome"
+        initialRouteName="ProductDetail"
       >
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
@@ -35,6 +35,7 @@ function App () {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Browser" component={Browser} />
         <Stack.Screen name="CategoryBrowser" component={CategoryBrowser} />
+        <Stack.Screen name="ProductDetail" component={ProductDetail} />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
