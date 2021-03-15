@@ -5,7 +5,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW } from '../../../constants'
 import categories from '../../../constants/categories'
-import TabNavigator from '../../navigation/TabNavigator'
 
 const styles = StyleSheet.create({
   container: {

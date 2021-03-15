@@ -8,6 +8,7 @@ import ProductDetail from './Browser/ProductDetail'
 import Profile from './Profile/profile'
 import TabBar from './Navigation/TabBar'
 import Tab from './Navigation/Tab'
+import Scanner from './Scanner/Scanner'
 
 export {
   AppCover,
@@ -19,5 +20,6 @@ export {
   CategoryBrowser,
   ProductDetail,
   TabBar,
-  Tab
+  Tab,
+  Scanner
 }
