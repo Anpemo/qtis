@@ -4,7 +4,6 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import skinTypes from '../../../constants/skinTypes'
 
 const styles = StyleSheet.create({

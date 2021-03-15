@@ -4,7 +4,8 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW } from '../../../constants'
-import { categories } from '../../../constants/categories'
+import categories from '../../../constants/categories'
+import TabNavigator from '../../navigation/TabNavigation'
 
 const styles = StyleSheet.create({
   container: {
@@ -75,6 +76,7 @@ export default function Browser ({ navigation }: any) {
   )
 
   return (
+
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>CHOOSE A CATEGORY</Text>
       <View style={styles.categoriesBox}>
@@ -86,6 +88,7 @@ export default function Browser ({ navigation }: any) {
       testID={'flatlistTest'}
       />
       </View>
+      <TabNavigator />
     </SafeAreaView>
   )
 }

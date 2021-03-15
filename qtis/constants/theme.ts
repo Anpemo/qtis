@@ -56,6 +56,5 @@ export const SHADOW = {
 
 export const BORDER = {
   borderColor: 'rgba(192,186,179,1)',
-  borderStyle: 'solid',
   borderWidth: 2
 }

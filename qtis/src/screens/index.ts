@@ -6,6 +6,8 @@ import Browser from './Browser/browser'
 import CategoryBrowser from './Browser/CategoryBrowser'
 import ProductDetail from './Browser/ProductDetail'
 import Profile from './Profile/profile'
+import TabBar from './Navigation/TabBar'
+import Tab from './Navigation/Tab'
 
 export {
   AppCover,
@@ -15,5 +17,7 @@ export {
   Profile,
   Browser,
   CategoryBrowser,
-  ProductDetail
+  ProductDetail,
+  TabBar,
+  Tab
 }

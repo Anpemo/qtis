@@ -78,7 +78,7 @@ function Login ({ navigation }: any) {
         />
 
       </View>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('tabNavigation')} >
           <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
     </SafeAreaView>
