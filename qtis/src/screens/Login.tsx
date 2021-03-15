@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text
+  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
@@ -62,6 +62,8 @@ function Login ({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior={'position'}>
+
       <Text style={styles.title}>Log into your account</Text>
       <View style={styles.formBox}>
       <TextInput
@@ -81,6 +83,7 @@ function Login ({ navigation }: any) {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('tabNavigator')} >
           <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text
+  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -66,6 +66,8 @@ function Register ({ navigation, actions }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior={'position'}>
+
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
       <TextInput
@@ -91,6 +93,7 @@ function Register ({ navigation, actions }: any) {
       <TouchableOpacity style={styles.button} onPress={() => { actions.userRegister({ user: email, password: password }) }} >
           <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };
