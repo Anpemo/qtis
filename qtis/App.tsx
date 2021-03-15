@@ -8,7 +8,7 @@ import store from './src/redux/stores/configureStore'
 import {
   AppCover, Login, Register, CategoryBrowser, Welcome, ProductDetail
 } from './src/screens'
-import tabNavigation from './src/navigation/TabNavigation'
+import tabNavigator from './src/navigation/TabNavigator'
 import { NavigationContainer } from '@react-navigation/native'
 
 const Stack = createStackNavigator()
@@ -34,11 +34,12 @@ function App () {
         }}
         initialRouteName="AppCover"
       >
+        {}
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="tabNavigation" component={tabNavigation} />
+        <Stack.Screen name="tabNavigator" component={tabNavigator} />
         <Stack.Screen name="CategoryBrowser" component={CategoryBrowser} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
