@@ -20,4 +20,12 @@ describe('Given a login component', () => {
       expect(passwordInput.props.value).toBe(newValue)
     })
   })
+  describe('When clicking on login', () => {
+    test('Then it should navigate', () => {
+      const navigate = jest.fn()
+      const { getByText } = render(<Login navigation={{ navigate }}/>)
+      fireEvent.press(getByText('LOGIN'))
+      expect(navigate).toHaveBeenCalledWith('tabNavigator')
+    })
+  })
 })
