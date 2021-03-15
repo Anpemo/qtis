@@ -74,9 +74,9 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function CategoryBrowser ({ route }: any) {
+export default function CategoryBrowser ({ route, navigation }: any) {
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox}>
+    <TouchableOpacity style={styles.categoryBox} onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}>
     <View style={styles.pictureBox}>
       <Image
       source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
