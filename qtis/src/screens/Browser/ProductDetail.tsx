@@ -7,6 +7,7 @@ import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
 import skinTypes from '../../../constants/skinTypes'
 import categories from '../../../constants/categories'
 import { AntDesign } from '@expo/vector-icons'
+import { Rating } from 'react-native-ratings'
 
 const styles = StyleSheet.create({
   container: {
@@ -215,6 +216,15 @@ export default function ProductDetail ({ navigation }: any) {
         <View style={styles.reviewsContainer}>
           <View style={styles.valorationContainer}>
             <Text style={styles.punctuation}>4,5</Text>
+            <Rating
+            type='star'
+            ratingCount={5}
+            readonly={true}
+            fractions={4}
+            imageSize={30}
+            startingValue={4.5}
+            ratingBackgroundColor={'black'}
+            />
           </View>
           <FlatList
               data = {categories}
@@ -222,6 +232,7 @@ export default function ProductDetail ({ navigation }: any) {
               keyExtractor = {(item: any) => item.id}
               horizontal={false}
               style={styles.reviewsFlatList}
+
               />
           </View>
       </View>
