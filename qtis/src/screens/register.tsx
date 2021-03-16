@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
 } from 'react-native'
@@ -59,10 +59,43 @@ const styles = StyleSheet.create({
   }
 })
 
-function Register ({ navigation, actions }: any) {
+function Register (this: any, { navigation, actions }: any) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+  let emailValidated = false
+  let passwordValidated = false
+  let confirmPasswordValidated = false
+  let formValidated = false
+
+  useEffect(() => {
+    if (emailRegEx.test(email)) {
+      emailValidated = true
+    }
+  }, [email])
+
+  useEffect(() => {
+    if (passwordRegEx.test(password)) {
+      passwordValidated = true
+    }
+  }, [password])
+
+  useEffect(() => {
+    if (confirmPassword === password) {
+      confirmPasswordValidated = true
+    }
+  }, [password, confirmPassword])
+
+  useEffect(() => {
+    if (emailValidated && passwordValidated && confirmPasswordValidated) {
+      formValidated = true
+      console.log(formValidated)
+    } else {
+      formValidated = false
+    }
+  }, [emailValidated, confirmPasswordValidated])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,26 +104,32 @@ function Register ({ navigation, actions }: any) {
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
       <TextInput
-          onChangeText={(event) => setEmail(event)}
+          onChangeText={(text) => setEmail(text)}
           placeholder={'Email'}
           style={styles.inputTop}
           value={email}
         />
         <TextInput
         placeholder={'Password'}
-        onChangeText={(event) => setPassword(event)}
+        onChangeText={(text) => setPassword(text)}
         style={styles.inputTop}
         value={password}
+        // secureTextEntry={true}
         />
         <TextInput
         placeholder={'Confirm Pasword'}
-        onChangeText={(event) => setConfirmPassword(event)}
+        onChangeText={(text) => setConfirmPassword(text)}
         style={styles.inputBottom}
         value={confirmPassword}
+        // secureTextEntry={true}
         />
 
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => { actions.userRegister({ user: email, password: password }) }} >
+      <TouchableOpacity
+      disabled ={formValidated}
+      activeOpacity={0.4}
+      style={styles.button}
+      onPress={() => { actions.userRegister({ user: email, password }) }} >
           <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
