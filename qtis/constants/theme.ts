@@ -16,7 +16,8 @@ export const COLORS = {
   // specific items
   coverbutton: 'rgba(255, 255, 255, 0.7)',
   categoryTextBackground: 'rgba(255, 255, 255, 0.75)',
-  pictureBoxBackground: 'rgba(0, 0, 0, 0.25);'
+  pictureBoxBackground: 'rgba(0, 0, 0, 0.25)',
+  error: 'rgba(244, 80, 80, 0.50)'
 }
 export const SIZES = {
   // global sizes

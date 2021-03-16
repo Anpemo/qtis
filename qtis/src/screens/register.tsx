@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   formBox: {
-    height: '45%',
+    height: '60%',
     backgroundColor: COLORS.cream,
     borderRadius: SIZES.squareRadius
   },
   inputTop: {
-    height: '33.33%',
+    height: '24%',
     width: '90%',
     alignSelf: 'center',
     fontFamily: 'Montserrat',
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.black,
     borderBottomWidth: 1
   },
-  inputBottom: {
-    height: '33.33%',
+  errorMessage: {
+    color: COLORS.error,
     width: '90%',
-    alignSelf: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: SIZES.p20
+    marginLeft: 15,
+    marginTop: 3
+
   },
   button: {
     justifyContent: 'center',
@@ -59,43 +59,59 @@ const styles = StyleSheet.create({
   }
 })
 
-function Register (this: any, { navigation, actions }: any) {
+function Register (this: any, { navigation, actions, user }: any) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [emailValidated, setEmailValidated] = useState(false)
+  const [passwordValidated, setPasswordValidated] = useState(false)
+  const [confirmPasswordValidated, setConfirmPasswordValidated] = useState(false)
+  const [formValidated, setFormValidated] = useState(false)
   const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-  let emailValidated = false
-  let passwordValidated = false
-  let confirmPasswordValidated = false
-  let formValidated = false
 
   useEffect(() => {
     if (emailRegEx.test(email)) {
-      emailValidated = true
+      setEmailValidated(true)
+    } else {
+      setEmailValidated(false)
     }
   }, [email])
 
   useEffect(() => {
     if (passwordRegEx.test(password)) {
-      passwordValidated = true
+      setPasswordValidated(true)
+    } else {
+      setPasswordValidated(false)
     }
   }, [password])
 
   useEffect(() => {
     if (confirmPassword === password) {
-      confirmPasswordValidated = true
+      setConfirmPasswordValidated(true)
+    } else {
+      setConfirmPasswordValidated(false)
     }
   }, [password, confirmPassword])
 
   useEffect(() => {
     if (emailValidated && passwordValidated && confirmPasswordValidated) {
-      formValidated = true
-      console.log(formValidated)
+      setFormValidated(true)
     } else {
-      formValidated = false
+      setFormValidated(false)
     }
   }, [emailValidated, confirmPasswordValidated])
+
+  function submitUserData () {
+    actions.userRegister({ email, password })
+  }
+  useEffect(() => {
+    if (user.email) {
+      navigation.navigate('Welcome')
+    } else {
+      window.alert('User already exists')
+    }
+  }, [user])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -109,33 +125,50 @@ function Register (this: any, { navigation, actions }: any) {
           style={styles.inputTop}
           value={email}
         />
+        {!emailValidated && (
+          <Text style={styles.errorMessage}>Please enter a correct email</Text>
+        )
+        }
+
         <TextInput
         placeholder={'Password'}
         onChangeText={(text) => setPassword(text)}
         style={styles.inputTop}
         value={password}
-        // secureTextEntry={true}
+        secureTextEntry={true}
         />
+        {!passwordValidated &&
+            <Text style={styles.errorMessage}>Password should contain 8 character, a number and a letter</Text>
+        }
+
         <TextInput
         placeholder={'Confirm Pasword'}
         onChangeText={(text) => setConfirmPassword(text)}
-        style={styles.inputBottom}
+        style={styles.inputTop}
         value={confirmPassword}
-        // secureTextEntry={true}
+        secureTextEntry={true}
         />
-
+        {!confirmPasswordValidated &&
+        <Text style={styles.errorMessage}>Please make sure to write the same password</Text>
+        }
       </View>
       <TouchableOpacity
-      disabled ={formValidated}
+      disabled ={!formValidated}
       activeOpacity={0.4}
       style={styles.button}
-      onPress={() => { actions.userRegister({ user: email, password }) }} >
+      onPress={() => submitUserData()} >
           <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };
+
+function mapStateToProps ({ userReducer }: any) {
+  return {
+    user: userReducer.user
+  }
+}
 
 function mapDispatchToProps (dispatch: any) {
   return {
@@ -145,4 +178,4 @@ function mapDispatchToProps (dispatch: any) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
