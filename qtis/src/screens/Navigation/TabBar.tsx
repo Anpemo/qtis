@@ -8,14 +8,14 @@ const { width } = Dimensions.get('screen')
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    bottom: 50,
+    bottom: 20,
     width,
     alignItems: 'center',
     justifyContent: 'center'
   },
   container: {
     flexDirection: 'row',
-    backgroundColor: COLORS.brown,
+    backgroundColor: COLORS.white,
     width: '100%',
     justifyContent: 'space-between',
     ...SHADOW
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 function TabBar ({ state, navigation }: any) {
   const [selected, setSelected] = useState('Browser')
   const { routes } = state
-  const renderColor = (currentTab: any) => currentTab === selected ? 'white' : 'black'
+  const renderColor = (currentTab: any) => currentTab === selected ? COLORS.brown : 'black'
 
   function handlePress (activeTab: any, index: any) {
     setSelected(activeTab)

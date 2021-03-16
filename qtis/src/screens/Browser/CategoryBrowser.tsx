@@ -5,23 +5,33 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW } from '../../../constants'
 import categories from '../../../constants/categories'
+import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    marginLeft: 10,
+    marginRight: 10
+  },
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5,
+    marginLeft: 10,
+    position: 'absolute',
+    top: 10
   },
   title: {
     color: COLORS.black,
     fontSize: SIZES.h3,
-    margin: 10,
+    marginTop: 30,
     padding: 5,
     alignSelf: 'center'
   },
   categoriesBox: {
     flex: 1,
     width: '95%',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   flatList: {
     width: '100%',
@@ -96,6 +106,9 @@ export default function CategoryBrowser ({ route, navigation }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+        <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+      </TouchableOpacity>
       <Text style={styles.title}>{route.params.categoryName.toUpperCase()}</Text>
       <View style={styles.categoriesBox}>
       <FlatList

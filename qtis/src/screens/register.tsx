@@ -8,14 +8,18 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
 import userRegister from '../../src/redux/actions/qtisActionCreators'
+import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    margin: 30
+    margin: 20
   },
-
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5
+  },
   title: {
     fontSize: SIZES.h2,
     color: COLORS.black,
@@ -23,9 +27,10 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   formBox: {
-    height: '70%',
+    height: '65%',
     backgroundColor: COLORS.cream,
-    borderRadius: SIZES.squareRadius
+    borderRadius: SIZES.squareRadius,
+    justifyContent: 'center'
   },
   inputTop: {
     height: '18%',
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
     height: SIZES.buttonheight,
     width: '100%',
     borderRadius: SIZES.buttonRadius,
-    marginTop: 30
+    marginTop: 20
   },
   buttonText: {
     color: COLORS.white,
@@ -120,20 +125,23 @@ function Register (this: any, { navigation, actions, user }: any) {
     if (user.email) {
       navigation.navigate('Welcome')
     } else {
-      window.alert('User already exists')
+      // window.alert('User already exists')
     }
   }, [user.email])
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={'position'}>
+      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+      <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+        </TouchableOpacity>
 
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
 
       <TextInput
           onChangeText={(text) => setUserName(text)}
-          placeholder={'What\s your name?'}
+          placeholder={'What\'s your name?'}
           style={styles.inputTop}
           value={userName}
         />

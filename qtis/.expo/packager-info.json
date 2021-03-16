@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://mp-frv.anonymous.qtis.exp.direct",
+  "packagerNgrokUrl": "https://packager.mp-frv.anonymous.qtis.exp.direct",
+  "ngrokPid": 11520,
   "packagerPid": null,
   "webpackServerPort": null
 }

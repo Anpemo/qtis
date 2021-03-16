@@ -29,7 +29,7 @@ export const SIZES = {
 
   // font sizes
   buttonText: 18,
-  h2: 40,
+  h2: 30,
   h3: 25,
   p30: 30,
   p25: 25,

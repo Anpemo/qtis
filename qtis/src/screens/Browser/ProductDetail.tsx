@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
 import skinTypes from '../../../constants/skinTypes'
 import categories from '../../../constants/categories'
+import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,16 +14,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.white
   },
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5,
+    marginLeft: 10,
+    position: 'absolute',
+    top: 10
+  },
   header: {
     flex: 0.3,
     resizeMode: 'cover',
-    alignItems: 'center',
     justifyContent: 'center',
     width: '100%'
   },
   pictureBox: {
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     height: 175,
     width: 175,
     borderRadius: 100,
@@ -147,7 +155,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function ProductDetail () {
+export default function ProductDetail ({ navigation }: any) {
   const renderSkinTypes = ({ item }: any) => (
     <TouchableOpacity style={styles.filterButton}>
       <Text style={styles.filterText}>{item}</Text>
@@ -173,6 +181,9 @@ export default function ProductDetail () {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
+      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+        <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+      </TouchableOpacity>
          <View style={styles.pictureBox}>
             <Image
             source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
