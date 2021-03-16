@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   formBox: {
-    height: '60%',
+    height: '70%',
     backgroundColor: COLORS.cream,
     borderRadius: SIZES.squareRadius
   },
   inputTop: {
-    height: '24%',
+    height: '18%',
     width: '90%',
     alignSelf: 'center',
     fontFamily: 'Montserrat',
@@ -60,15 +60,25 @@ const styles = StyleSheet.create({
 })
 
 function Register (this: any, { navigation, actions, user }: any) {
+  const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [userNameValidated, setUserNameValidated] = useState(false)
   const [emailValidated, setEmailValidated] = useState(false)
   const [passwordValidated, setPasswordValidated] = useState(false)
   const [confirmPasswordValidated, setConfirmPasswordValidated] = useState(false)
   const [formValidated, setFormValidated] = useState(false)
   const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+  useEffect(() => {
+    if (userName.length > 0) {
+      setUserNameValidated(true)
+    } else {
+      setUserNameValidated(false)
+    }
+  }, [userName])
 
   useEffect(() => {
     if (emailRegEx.test(email)) {
@@ -103,15 +113,16 @@ function Register (this: any, { navigation, actions, user }: any) {
   }, [emailValidated, confirmPasswordValidated])
 
   function submitUserData () {
-    actions.userRegister({ email, password })
+    actions.userRegister({ email, password, userName })
   }
+
   useEffect(() => {
     if (user.email) {
       navigation.navigate('Welcome')
     } else {
       window.alert('User already exists')
     }
-  }, [user])
+  }, [user.email])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -119,6 +130,18 @@ function Register (this: any, { navigation, actions, user }: any) {
 
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
+
+      <TextInput
+          onChangeText={(text) => setUserName(text)}
+          placeholder={'What\s your name?'}
+          style={styles.inputTop}
+          value={userName}
+        />
+        {!userNameValidated && (
+          <Text style={styles.errorMessage}>Please write a name</Text>
+        )
+        }
+
       <TextInput
           onChangeText={(text) => setEmail(text)}
           placeholder={'Email'}
