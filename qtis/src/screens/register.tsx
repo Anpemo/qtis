@@ -117,10 +117,6 @@ function Register (this: any, { navigation, actions, user }: any) {
     }
   }, [emailValidated, confirmPasswordValidated])
 
-  function submitUserData () {
-    actions.userRegister({ email, password, userName })
-  }
-
   useEffect(() => {
     if (user.email) {
       navigation.navigate('Welcome')
@@ -132,7 +128,10 @@ function Register (this: any, { navigation, actions, user }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={'position'}>
-      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}
+      >
       <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
         </TouchableOpacity>
 
@@ -144,6 +143,7 @@ function Register (this: any, { navigation, actions, user }: any) {
           placeholder={'What\'s your name?'}
           style={styles.inputTop}
           value={userName}
+          testID={'userName'}
         />
         {!userNameValidated && (
           <Text style={styles.errorMessage}>Please write a name</Text>
@@ -187,7 +187,9 @@ function Register (this: any, { navigation, actions, user }: any) {
       disabled ={!formValidated}
       activeOpacity={0.4}
       style={styles.button}
-      onPress={() => submitUserData()} >
+      onPress={() => actions.userRegister({ email, password, userName })}
+      testID={'registerButton'}
+      >
           <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
