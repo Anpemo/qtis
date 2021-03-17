@@ -2,23 +2,23 @@ import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import Register from './register'
 import React from 'react'
 import { Provider } from 'react-redux'
-import configureStore from '../redux/stores/configureStore'
+import configureStore from 'redux-mock-store'
 import * as actions from '../redux/actions/qtisActionCreators'
 jest.mock('../redux/actions/qtisActionCreators')
 
 describe('Given a register component', () => {
+  let component
+  beforeEach(() => {
+    const mockStore = configureStore()
+    component = (
+          <Provider store={mockStore({ userReducer: { user: {} } })}><Register /></Provider>
+    )
+  })
   afterEach(() => {
     cleanup()
   })
 
   describe('When writing on inputs', () => {
-    let component
-    beforeEach(() => {
-      const store = configureStore
-      component = (
-          <Provider store={store}><Register /></Provider>
-      )
-    })
     test('Then userName will change', () => {
       const { getByPlaceholderText } = render(component)
 
@@ -45,7 +45,7 @@ describe('Given a register component', () => {
     })
     test('Then confirmpassword will change', () => {
       const { getByPlaceholderText } = render(component)
-      const confirmpasswordInput = getByPlaceholderText('Confirm Pasword')
+      const confirmpasswordInput = getByPlaceholderText('Confirm Password')
       const newValue = 'a1234567'
       fireEvent.changeText(confirmpasswordInput, newValue)
       expect(confirmpasswordInput.props.value).toBe(newValue)
@@ -53,10 +53,10 @@ describe('Given a register component', () => {
   })
   describe('When pressing on back button', () => {
     test('Then it will navigate', () => {
-      const store = configureStore
       const goBack = jest.fn()
-      const component = (
-          <Provider store={store}><Register navigation={{ goBack }}/></Provider>
+      const mockStore = configureStore()
+      component = (
+          <Provider store={mockStore({ userReducer: { user: {} } })}><Register navigation={{ goBack }}/></Provider>
       )
       const { getByTestId } = render(component)
       const backButton = getByTestId('backButton')
@@ -65,15 +65,22 @@ describe('Given a register component', () => {
     })
   })
   describe('When pressing the registe onPress', () => {
-    test('Then it will call userRegister with email', () => {
+    test('Then it userRegister will be called', () => {
       jest.spyOn(actions, 'userRegister').mockReturnValue({ type: '' })
-      const store = configureStore
-      const component = (
-          <Provider store={store}><Register /></Provider>
-      )
-      const { getByText } = render(component)
-      fireEvent.press(getByText('REGISTER'))
-      expect(actions.userRegister).toHaveBeenCalled()
+
+      const { getByTestId, getByPlaceholderText } = render(component)
+      const userName = 'Angela'
+      const email = 'ale@gmail.com'
+      const password = 'A1234567'
+      const confirmPassword = 'A1234567'
+      fireEvent.changeText(getByPlaceholderText('What\'s your name?'), userName)
+      fireEvent.changeText(getByPlaceholderText('Email'), email)
+      fireEvent.changeText(getByPlaceholderText('Password'), password)
+      fireEvent.changeText(getByPlaceholderText('Confirm Password'), confirmPassword)
+
+      const button = getByTestId('registerButton')
+      fireEvent.press(button)
+      expect(actions.userRegister).toHaveBeenCalledWith({ email, password, userName })
     })
   })
 })

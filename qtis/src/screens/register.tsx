@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
-import userRegister from '../../src/redux/actions/qtisActionCreators'
+import { userRegister } from '../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
@@ -173,7 +173,7 @@ function Register (this: any, { navigation, actions, user }: any) {
         }
 
         <TextInput
-        placeholder={'Confirm Pasword'}
+        placeholder={'Confirm Password'}
         onChangeText={(text) => setConfirmPassword(text)}
         style={styles.inputTop}
         value={confirmPassword}

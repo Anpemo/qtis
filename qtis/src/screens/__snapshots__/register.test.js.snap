@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Given a register component When pressing the registe onPress Then it will call userRegister with email 1`] = `[MockFunction]`;
