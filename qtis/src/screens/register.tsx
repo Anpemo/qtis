@@ -121,7 +121,7 @@ function Register (this: any, { navigation, actions, user }: any) {
     if (user.email) {
       navigation.navigate('Welcome')
     } else {
-      // window.alert('User already exists')
+      // alert('User already exists')
     }
   }, [user.email])
 

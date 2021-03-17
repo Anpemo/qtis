@@ -64,7 +64,7 @@ describe('Given a register component', () => {
       expect(goBack).toHaveBeenCalled()
     })
   })
-  describe('When pressing the registe onPress', () => {
+  describe('When pressing the register onPress', () => {
     test('Then it userRegister will be called', () => {
       jest.spyOn(actions, 'userRegister').mockReturnValue({ type: '' })
 
@@ -77,7 +77,6 @@ describe('Given a register component', () => {
       fireEvent.changeText(getByPlaceholderText('Email'), email)
       fireEvent.changeText(getByPlaceholderText('Password'), password)
       fireEvent.changeText(getByPlaceholderText('Confirm Password'), confirmPassword)
-
       const button = getByTestId('registerButton')
       fireEvent.press(button)
       expect(actions.userRegister).toHaveBeenCalledWith({ email, password, userName })

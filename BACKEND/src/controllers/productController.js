@@ -3,17 +3,20 @@ const Product = require('../models/productModels');
 
 function productControllers() {
   async function loadProduct(req, res) {
+    console.log(req.params);
+    const { category } = req.params;
+    const { _id } = req.body;
     let query;
-    if (req.body._id) {
-      query = { userId: req.body.userId };
+    if (_id) {
+      query = { userId: _id };
     } else {
-      query = {};
+      query = { productCategory: category };
     }
     try {
       const product = await Product.find(query).exec();
       res.json(product);
     } catch {
-      res.send('Product not found');
+      res.send('Product/s not found');
       res.status(500);
     }
   }
