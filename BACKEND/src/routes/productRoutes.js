@@ -6,7 +6,9 @@ function productRouter() {
 
   router
     .route('/:parameter')
-    .get(controller.loadProduct)
+    .get(controller.loadProduct);
+  router
+    .route('/')
     .post(controller.createProduct)
     .put(controller.updateProduct)
     .delete(controller.deleteProduct);

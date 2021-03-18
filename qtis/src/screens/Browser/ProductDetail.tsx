@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Image, TouchableOpacity, View, Text, ImageBackground, FlatList
 } from 'react-native'
@@ -9,10 +9,11 @@ import categories from '../../../constants/categories'
 import { AntDesign } from '@expo/vector-icons'
 import { Rating } from 'react-native-ratings'
 import styles from './productDetailStyles'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { fetchProduct } from '../../redux/actions/qtisActionCreators'
+import { bindActionCreators } from 'redux'
 
-function ProductDetail ({ navigation, product }: any) {
+function ProductDetail ({ navigation, product, actions, route }: any) {
   const renderSkinTypes = ({ item }: any) => (
     <TouchableOpacity style={styles.filterButton}>
       <Text style={styles.filterText}>{item}</Text>
@@ -35,6 +36,9 @@ function ProductDetail ({ navigation, product }: any) {
       </View>
     </View>
   )
+  useEffect(() => {
+    actions.fetchProducts(route.productBarCode)
+  })
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
@@ -102,11 +106,11 @@ function mapStateToProps ({ productsReducer }: any) {
   }
 }
 
-// function mapDispatchToProps (dispatch: any) {
-//   return {
-//     actions: bindActionCreators({
-//       fetchProduct
-//     }, dispatch)
-//   }
-// }
-export default connect(mapStateToProps)(ProductDetail)
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      fetchProduct
+    }, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail)

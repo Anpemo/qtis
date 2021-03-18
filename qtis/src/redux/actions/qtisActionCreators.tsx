@@ -44,3 +44,14 @@ export function fetchProduct (barCodeData: any) {
     }
   }
 }
+
+export function createProduct (productData: Object) {
+  return async function fetchInfo (dispatch: any) {
+    console.log(productData)
+    const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
+    dispatch({
+      type: qtisActionTypes.CREATE_PRODUCT,
+      data
+    })
+  }
+}

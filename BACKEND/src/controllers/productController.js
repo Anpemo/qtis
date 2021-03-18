@@ -23,7 +23,6 @@ function productControllers() {
     const newProduct = new Product({
       ...req.body
     });
-
     newProduct.save((error) => {
       if (error) {
         res.send('Product already exists');

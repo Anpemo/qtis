@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet, Button } from 'react-native'
+import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -28,13 +28,27 @@ function Scanner ({ actions, product, navigation }: any) {
     }
   }
   useEffect(() => {
-    console.log('entraproduct', product)
     if (scanned && product?.productBarCode) {
       navigation.navigate('ProductDetail', { productBarCode: product.productBarCode })
     } else if (scanned) {
-      alert('This product does not have reviews. Do you want to create it?')
+      Alert.alert(
+        'Product does not exist',
+        'Do you want to add it?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('AddProduct', { productBarCode: product.productBarCode })
+          }
+        ],
+        {
+          cancelable: true
+        }
+      )
     }
-    console.log('scanner', scanned)
   }, [product])
 
   if (hasPermission === null) {

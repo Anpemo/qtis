@@ -9,6 +9,7 @@ import Profile from './Profile/profile'
 import TabBar from './Navigation/TabBar'
 import Tab from './Navigation/Tab'
 import Scanner from './Scanner/Scanner'
+import AddProduct from './AddProduct/AddProduct'
 
 export {
   AppCover,
@@ -21,5 +22,6 @@ export {
   ProductDetail,
   TabBar,
   Tab,
-  Scanner
+  Scanner,
+  AddProduct
 }
