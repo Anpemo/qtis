@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema(
   {
-    productId: String,
+    productBarCode: String,
     productPicture: String,
     brandName: String,
     productName: String,

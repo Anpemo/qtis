@@ -8,7 +8,7 @@ const { width } = Dimensions.get('screen')
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 1,
     width,
     alignItems: 'center',
     justifyContent: 'center'

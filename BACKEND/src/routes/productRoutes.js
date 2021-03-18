@@ -5,7 +5,7 @@ function productRouter() {
   const router = Router();
 
   router
-    .route('/:category')
+    .route('/:parameter')
     .get(controller.loadProduct)
     .post(controller.createProduct)
     .put(controller.updateProduct)

@@ -3,15 +3,14 @@ const Product = require('../models/productModels');
 
 function productControllers() {
   async function loadProduct(req, res) {
-    console.log(req.params);
-    const { category } = req.params;
-    const { _id } = req.body;
+    const { parameter } = req.params;
     let query;
-    if (_id) {
-      query = { userId: _id };
+    if (Number.isNaN(parameter)) {
+      query = { productCategory: parameter };
     } else {
-      query = { productCategory: category };
+      query = { productBarCode: parameter };
     }
+    console.log(query);
     try {
       const product = await Product.find(query).exec();
       res.json(product);
