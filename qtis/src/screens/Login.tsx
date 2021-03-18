@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text
+  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
+import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    margin: 30
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: 'center'
   },
-
+  backContainer: {
+    top: -160
+  },
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5
+  },
   title: {
     fontSize: SIZES.h2,
     color: COLORS.black,
@@ -62,6 +70,11 @@ function Login ({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior={'position'}>
+      <TouchableOpacity onPress={() => { navigation.goBack() }} style={styles.backContainer}>
+        <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+      </TouchableOpacity>
+
       <Text style={styles.title}>Log into your account</Text>
       <View style={styles.formBox}>
       <TextInput
@@ -78,9 +91,10 @@ function Login ({ navigation }: any) {
         />
 
       </View>
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('tabNavigator')} >
           <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };

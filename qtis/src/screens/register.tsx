@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text
+  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
 } from 'react-native'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
+import { userRegister } from '../redux/actions/qtisActionCreators'
+import { AntDesign } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    margin: 30
+    margin: 20
   },
-
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5
+  },
   title: {
     fontSize: SIZES.h2,
     color: COLORS.black,
@@ -20,12 +27,13 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   formBox: {
-    height: '45%',
+    height: '65%',
     backgroundColor: COLORS.cream,
-    borderRadius: SIZES.squareRadius
+    borderRadius: SIZES.squareRadius,
+    justifyContent: 'center'
   },
   inputTop: {
-    height: '33.33%',
+    height: '18%',
     width: '90%',
     alignSelf: 'center',
     fontFamily: 'Montserrat',
@@ -33,12 +41,12 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.black,
     borderBottomWidth: 1
   },
-  inputBottom: {
-    height: '33.33%',
+  errorMessage: {
+    color: COLORS.error,
     width: '90%',
-    alignSelf: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: SIZES.p20
+    marginLeft: 15,
+    marginTop: 3
+
   },
   button: {
     justifyContent: 'center',
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
     height: SIZES.buttonheight,
     width: '100%',
     borderRadius: SIZES.buttonRadius,
-    marginTop: 30
+    marginTop: 20
   },
   buttonText: {
     color: COLORS.white,
@@ -56,40 +64,151 @@ const styles = StyleSheet.create({
   }
 })
 
-function Login ({ navigation }: any) {
+function Register (this: any, { navigation, actions, user }: any) {
   const [userName, setUserName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [userNameValidated, setUserNameValidated] = useState(false)
+  const [emailValidated, setEmailValidated] = useState(false)
+  const [passwordValidated, setPasswordValidated] = useState(false)
+  const [confirmPasswordValidated, setConfirmPasswordValidated] = useState(false)
+  const [formValidated, setFormValidated] = useState(false)
+  const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+  useEffect(() => {
+    if (userName.length > 0) {
+      setUserNameValidated(true)
+    } else {
+      setUserNameValidated(false)
+    }
+  }, [userName])
+
+  useEffect(() => {
+    if (emailRegEx.test(email)) {
+      setEmailValidated(true)
+    } else {
+      setEmailValidated(false)
+    }
+  }, [email])
+
+  useEffect(() => {
+    if (passwordRegEx.test(password)) {
+      setPasswordValidated(true)
+    } else {
+      setPasswordValidated(false)
+    }
+  }, [password])
+
+  useEffect(() => {
+    if (confirmPassword === password) {
+      setConfirmPasswordValidated(true)
+    } else {
+      setConfirmPasswordValidated(false)
+    }
+  }, [password, confirmPassword])
+
+  useEffect(() => {
+    if (emailValidated && passwordValidated && confirmPasswordValidated) {
+      setFormValidated(true)
+    } else {
+      setFormValidated(false)
+    }
+  }, [emailValidated, confirmPasswordValidated])
+
+  useEffect(() => {
+    if (user.email) {
+      navigation.navigate('Welcome')
+    } else {
+      // alert('User already exists')
+    }
+  }, [user.email])
 
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior={'position'}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}
+      >
+      <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+        </TouchableOpacity>
+
       <Text style={styles.title}>Create your new account</Text>
       <View style={styles.formBox}>
+
       <TextInput
-          onChangeText={(event) => setUserName(event)}
-          placeholder={'Email'}
+          onChangeText={(text) => setUserName(text)}
+          placeholder={'What\'s your name?'}
           style={styles.inputTop}
           value={userName}
+          testID={'userName'}
         />
+        {!userNameValidated && (
+          <Text style={styles.errorMessage}>Please write a name</Text>
+        )
+        }
+
+      <TextInput
+          onChangeText={(text) => setEmail(text)}
+          placeholder={'Email'}
+          style={styles.inputTop}
+          value={email}
+        />
+        {!emailValidated && (
+          <Text style={styles.errorMessage}>Please enter a correct email</Text>
+        )
+        }
+
         <TextInput
         placeholder={'Password'}
-        onChangeText={(event) => setPassword(event)}
+        onChangeText={(text) => setPassword(text)}
         style={styles.inputTop}
         value={password}
+        secureTextEntry={true}
         />
-        <TextInput
-        placeholder={'Confirm Pasword'}
-        onChangeText={(event) => setConfirmPassword(event)}
-        style={styles.inputBottom}
-        value={confirmPassword}
-        />
+        {!passwordValidated &&
+            <Text style={styles.errorMessage}>Password should contain 8 character, a number and a letter</Text>
+        }
 
+        <TextInput
+        placeholder={'Confirm Password'}
+        onChangeText={(text) => setConfirmPassword(text)}
+        style={styles.inputTop}
+        value={confirmPassword}
+        secureTextEntry={true}
+        />
+        {!confirmPasswordValidated &&
+        <Text style={styles.errorMessage}>Please make sure to write the same password</Text>
+        }
       </View>
-      <TouchableOpacity style={styles.button} >
-          <Text style={styles.buttonText} onPress={() => { saveUser({ user: userName, password: password }) }}>REGISTER</Text>
+      <TouchableOpacity
+      disabled ={!formValidated}
+      activeOpacity={0.4}
+      style={styles.button}
+      onPress={() => actions.userRegister({ email, password, userName })}
+      testID={'registerButton'}
+      >
+          <Text style={styles.buttonText} >REGISTER</Text>
       </TouchableOpacity>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };
 
-export default Login
+function mapStateToProps ({ userReducer }: any) {
+  return {
+    user: userReducer.user
+  }
+}
+
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      userRegister
+    }, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const User = require('../models/userModels');
+const User = require('../models/userModel');
 
 function userControllers() {
   async function loadUser(req, res) {

@@ -1,26 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Image, StyleSheet, TouchableOpacity, View, Text, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, categories } from '../../../constants'
+import { COLORS, SIZES, SHADOW } from '../../../constants'
+import { AntDesign } from '@expo/vector-icons'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../../redux/actions/qtisActionCreators'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    marginLeft: 10,
+    marginRight: 10
+  },
+  backIcon: {
+    color: COLORS.black,
+    marginBottom: 5,
+    marginLeft: 10,
+    position: 'absolute',
+    top: 10
   },
   title: {
     color: COLORS.black,
     fontSize: SIZES.h3,
-    margin: 10,
+    marginTop: 30,
     padding: 5,
     alignSelf: 'center'
   },
   categoriesBox: {
     flex: 1,
     width: '95%',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   flatList: {
     width: '100%',
@@ -73,9 +86,17 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function CategoryBrowser ({ route }: any) {
+function CategoryBrowser ({ route, navigation, actions, products }: any) {
+  useEffect(() => {
+    actions.fetchProducts(route.params.categoryName)
+  }, [])
+
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox}>
+    <TouchableOpacity
+    style={styles.categoryBox}
+    onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}
+    testID={'productLink'}
+    >
     <View style={styles.pictureBox}>
       <Image
       source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
@@ -83,11 +104,11 @@ export default function CategoryBrowser ({ route }: any) {
       />
     </View>
     <View style={styles.textContainer}>
-      <Text style={styles.brandText}>LA ROCHE-POSAY
+      <Text style={styles.brandText}>{item.productName}
     </Text>
-    <Text style={styles.productDetailsText}>EFFACLARE
+    <Text style={styles.productDetailsText}>{item.brandName}
     </Text>
-    <Text style={styles.productDetailsText}>19.99€
+    <Text style={styles.productDetailsText}>{`${item.price}€`}
     </Text>
     </View>
 </TouchableOpacity>
@@ -95,12 +116,18 @@ export default function CategoryBrowser ({ route }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}
+      >
+        <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
+      </TouchableOpacity>
       <Text style={styles.title}>{route.params.categoryName.toUpperCase()}</Text>
       <View style={styles.categoriesBox}>
       <FlatList
-      data = {categories}
+      data = {products}
       renderItem={renderItem}
-      keyExtractor = {(item: any) => item.id}
+      keyExtractor = {(item: any) => item.productName}
       horizontal={false}
       style={styles.flatList}
       />
@@ -108,3 +135,18 @@ export default function CategoryBrowser ({ route }: any) {
     </SafeAreaView>
   )
 }
+
+function mapStateToProps ({ productsReducer }: any) {
+  return {
+    products: productsReducer.products
+  }
+}
+
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      fetchProducts
+    }, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryBrowser)

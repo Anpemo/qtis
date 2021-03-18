@@ -15,7 +15,9 @@ export const COLORS = {
 
   // specific items
   coverbutton: 'rgba(255, 255, 255, 0.7)',
-  categoryTextBackground: 'rgba(255, 255, 255, 0.75)'
+  categoryTextBackground: 'rgba(255, 255, 255, 0.75)',
+  pictureBoxBackground: 'rgba(0, 0, 0, 0.25)',
+  error: 'rgba(244, 80, 80, 0.50)'
 }
 export const SIZES = {
   // global sizes
@@ -27,7 +29,7 @@ export const SIZES = {
 
   // font sizes
   buttonText: 18,
-  h2: 40,
+  h2: 30,
   h3: 25,
   p30: 30,
   p25: 25,
@@ -42,17 +44,6 @@ export const SIZES = {
   height
 }
 
-export const FONTS = {
-  buttons: {
-    fontFamily: 'Montserrat-Regular', fontSize: SIZES.buttonText, lineHeight: 22, letterSpacing: 3
-  },
-  h2: {
-    fontFamily: 'Montserrat-Regular', fontSize: SIZES.h2, lineHeight: 37, letterSpacing: 3
-  },
-  h3: {
-    fontFamily: 'Montserrat-Regular', fontSize: SIZES.h3, lineHeight: 22, letterSpacing: 3
-  }
-}
 export const SHADOW = {
   shadowColor: '#000',
   shadowOffset: {
@@ -62,4 +53,9 @@ export const SHADOW = {
   shadowOpacity: 0.23,
   shadowRadius: 2.62,
   elevation: 4
+}
+
+export const BORDER = {
+  borderColor: 'rgba(192,186,179,1)',
+  borderWidth: 2
 }

@@ -338,13 +338,7 @@ temp/
 
 # End of https://www.toptal.com/developers/gitignore/api/images
 
-auth-data.js
-
 # Firebase
 .firebase/
-
-# expo/
-
-/.expo
-.expo/
 Pods/
+auth-data.js
