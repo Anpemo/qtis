@@ -37,8 +37,8 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
     </View>
   )
   useEffect(() => {
-    actions.fetchProducts(route.productBarCode)
-  })
+    actions.fetchProduct(route.productBarCode)
+  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
