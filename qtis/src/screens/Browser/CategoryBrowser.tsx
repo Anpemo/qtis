@@ -92,7 +92,11 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
   }, [])
 
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.categoryBox} onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}>
+    <TouchableOpacity
+    style={styles.categoryBox}
+    onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}
+    testID={'productLink'}
+    >
     <View style={styles.pictureBox}>
       <Image
       source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
@@ -112,7 +116,10 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}
+      >
         <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
       </TouchableOpacity>
       <Text style={styles.title}>{route.params.categoryName.toUpperCase()}</Text>
