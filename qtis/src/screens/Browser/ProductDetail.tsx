@@ -1,162 +1,18 @@
 import React from 'react'
 import {
-  Image, StyleSheet, TouchableOpacity, View, Text, ImageBackground, FlatList
+  Image, TouchableOpacity, View, Text, ImageBackground, FlatList
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
+import { images } from '../../../constants'
 import skinTypes from '../../../constants/skinTypes'
 import categories from '../../../constants/categories'
 import { AntDesign } from '@expo/vector-icons'
 import { Rating } from 'react-native-ratings'
+import styles from './productDetailStyles'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: COLORS.white
-  },
-  backIcon: {
-    color: COLORS.black,
-    marginBottom: 5,
-    marginLeft: 10,
-    position: 'absolute',
-    top: 10
-  },
-  header: {
-    flex: 0.3,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-    width: '100%'
-  },
-  pictureBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: 175,
-    width: 175,
-    borderRadius: 100,
-    backgroundColor: COLORS.pictureBoxBackground
-  },
-  productPicture: {
-    resizeMode: 'contain',
-    height: 125,
-    width: 125,
-    borderRadius: 100,
-    backgroundColor: COLORS.white
-  },
-  body: {
-    flex: 0.7,
-    alignItems: 'center',
-    width: '95%'
-  },
-  productInformation: {
-    alignItems: 'center',
-    width: '100%'
-  },
-  productNameText: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    fontFamily: 'MontserratBold'
-  },
-  productDetailsText: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    fontFamily: 'Montserrat',
-    marginTop: 5
-  },
-  filterContainer: {
-    width: '100%',
-    height: '20%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 3
-  },
-  filterTitle: {
-    fontSize: SIZES.p18,
-    color: COLORS.black,
-    fontFamily: 'Montserrat'
-  },
-  filtersBox: {
-    flexDirection: 'row',
-    width: '100%'
-  },
-  filterButton: {
-    width: 120,
-    height: 25,
-    backgroundColor: COLORS.pictureBoxBackground,
-    borderRadius: SIZES.buttonRadius,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 3
-  },
-  filterText: {
-    fontFamily: 'Montserrat',
-    fontSize: SIZES.p18
-  },
-  reviewsContainer: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  valorationContainer: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 3
-  },
-  punctuation: {
-    fontSize: SIZES.p20,
-    fontFamily: 'MontserratBold',
-    color: COLORS.black
-  },
-  reviewsFlatList: {
-    width: '95%'
-  },
-  reviewBox: {
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 10,
-    borderRadius: SIZES.squareRadius,
-    backgroundColor: COLORS.backgroundGrey
-
-  },
-  userPictureBox: {
-    height: 105,
-    width: 105,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignContent: 'center'
-  },
-  userPicture: {
-    height: 105,
-    width: 105,
-    resizeMode: 'cover',
-    borderRadius: 100,
-    backgroundColor: COLORS.white
-  },
-  reviewContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80%',
-    padding: 20,
-    ...BORDER
-  },
-  userName: {
-    fontSize: SIZES.p20,
-    color: COLORS.brown,
-    fontFamily: 'MontserratBold',
-    margin: 3
-  },
-  reviewText: {
-    fontSize: SIZES.p20,
-    color: COLORS.brown,
-    fontFamily: 'Montserrat',
-    backgroundColor: COLORS.white
-  }
-})
-
-export default function ProductDetail ({ navigation }: any) {
+function ProductDetail ({ navigation, product }: any) {
   const renderSkinTypes = ({ item }: any) => (
     <TouchableOpacity style={styles.filterButton}>
       <Text style={styles.filterText}>{item}</Text>
@@ -192,15 +48,17 @@ export default function ProductDetail ({ navigation }: any) {
             />
          </View>
       </ImageBackground>
+
       <View style={styles.body}>
-        <View style={styles.productInformation}>
-        <Text style={styles.productNameText}>EFFACLARE
+      {product && (<View style={styles.productInformation}>
+        <Text style={styles.productNameText}>{product.productName}
           </Text>
-          <Text style={styles.productDetailsText}>LA ROCHE-POSAY
+          <Text style={styles.productDetailsText}>{product.brandName}
           </Text>
-          <Text style={styles.productDetailsText}>19.99€
+          <Text style={styles.productDetailsText}>{product.price}
           </Text>
-        </View>
+        </View>)
+    }
         <View style={styles.filterContainer}>
         <Text style={styles.filterTitle}>Choose your skin type to check all the reviews:
           </Text>
@@ -210,7 +68,6 @@ export default function ProductDetail ({ navigation }: any) {
         renderItem={renderSkinTypes}
         keyExtractor = {(item: any) => item}
         horizontal={true}
-        showHorizontalScrollIndicator={false}
         />
         </View>
         <View style={styles.reviewsContainer}>
@@ -239,3 +96,17 @@ export default function ProductDetail ({ navigation }: any) {
     </SafeAreaView>
   )
 }
+function mapStateToProps ({ productsReducer }: any) {
+  return {
+    product: productsReducer.product
+  }
+}
+
+// function mapDispatchToProps (dispatch: any) {
+//   return {
+//     actions: bindActionCreators({
+//       fetchProduct
+//     }, dispatch)
+//   }
+// }
+export default connect(mapStateToProps)(ProductDetail)

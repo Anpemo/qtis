@@ -31,7 +31,6 @@ export function fetchProducts (category: Object) {
 export function fetchProduct (barCodeData: any) {
   return async function fetchInfo (dispatch: any) {
     const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
-    console.log(headers)
     if (data[0]?.productBarCode) {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,

@@ -5,12 +5,11 @@ function productControllers() {
   async function loadProduct(req, res) {
     const { parameter } = req.params;
     let query;
-    if (Number.isNaN(parameter)) {
-      query = { productCategory: parameter };
-    } else {
+    if (Number(parameter)) {
       query = { productBarCode: parameter };
+    } else {
+      query = { productCategory: parameter };
     }
-    console.log(query);
     try {
       const product = await Product.find(query).exec();
       res.json(product);
