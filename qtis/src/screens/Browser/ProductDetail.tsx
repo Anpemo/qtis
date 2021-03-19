@@ -5,13 +5,12 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
 import skinTypes from '../../../constants/skinTypes'
-import categories from '../../../constants/categories'
 import { AntDesign } from '@expo/vector-icons'
-import { Rating } from 'react-native-ratings'
 import styles from './productDetailStyles'
 import { connect } from 'react-redux'
 import { fetchProduct } from '../../redux/actions/qtisActionCreators'
 import { bindActionCreators } from 'redux'
+import Reviews from '../../../src/screens/Reviews/Reviews'
 
 function ProductDetail ({ navigation, product, actions, route }: any) {
   const { productBarCode } = route.params
@@ -19,23 +18,6 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
     <TouchableOpacity style={styles.filterButton}>
       <Text style={styles.filterText}>{item}</Text>
     </TouchableOpacity>
-  )
-  const renderReviews = ({ item }: any) => (
-    <View style={styles.reviewBox}>
-      <View style={styles.userPictureBox}>
-        <Image
-        source={images.coverGirl}
-        style={styles.userPicture}
-        key={1}
-        />
-      </View>
-      <View style={styles.reviewContainer}>
-        <Text style={styles.userName}>Angela Pedrero
-        </Text>
-        <Text style={styles.reviewText}>I loved it. I used it for a while, and my skin is way better than before. I loved it.
-        </Text>
-      </View>
-    </View>
   )
   useEffect(() => {
     actions.fetchProduct(productBarCode)
@@ -75,30 +57,9 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
         horizontal={true}
         />
         </View>
-        <View style={styles.reviewsContainer}>
-          <View style={styles.valorationContainer}>
-            <Text style={styles.punctuation}>4,5</Text>
-            <Rating
-            type='star'
-            ratingCount={5}
-            readonly={true}
-            fractions={4}
-            imageSize={30}
-            startingValue={4.5}
-            ratingBackgroundColor={'black'}
-            />
-          </View>
-          <FlatList
-              data = {categories}
-              renderItem={renderReviews}
-              keyExtractor = {(item: any) => item.id}
-              horizontal={false}
-              style={styles.reviewsFlatList}
-
-              />
-          </View>
+        <Reviews parameter={productBarCode}/>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   )
 }
 function mapStateToProps ({ productsReducer }: any) {

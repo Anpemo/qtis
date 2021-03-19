@@ -3,17 +3,19 @@ const Review = require('../models/reviewModels');
 
 function reviewControllers() {
   async function loadReview(req, res) {
+    console.log('received in loadReview', req.params.parameter);
+    const { parameter } = req.params;
     let query;
-    if (req.body.userId) {
-      query = { userId: req.body.userId };
+    if (Number(parameter)) {
+      query = { productBarCode: parameter };
     } else {
-      query = { productId: req.body.productId };
+      query = { productCategory: parameter };
     }
     try {
-      const review = await Review.find(query).exec();
-      res.json(review);
+      const reviews = await Review.find(query).exec();
+      res.json(reviews);
     } catch {
-      res.send('Review not found');
+      res.send('Reviews not found');
       res.status(500);
     }
   }

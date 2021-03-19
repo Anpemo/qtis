@@ -30,7 +30,6 @@ export function fetchProducts (category: Object) {
 }
 
 export function fetchProduct (barCodeData: any) {
-  console.log('information sent by fetchProduct:', barCodeData)
   return async function fetchInfo (dispatch: any) {
     const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
     if (data[0]?.productBarCode) {
@@ -52,6 +51,16 @@ export function createProduct (productData: Object) {
     const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
     dispatch({
       type: qtisActionTypes.CREATE_PRODUCT,
+      data
+    })
+  }
+}
+export function fetchReviews (parameter: Object) {
+  console.log('information sent by fetchReview:', parameter)
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.get(`http://192.168.0.15:5000/review/${parameter}`)
+    dispatch({
+      type: qtisActionTypes.REVIEWS_LIST,
       data
     })
   }

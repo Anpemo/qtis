@@ -10,6 +10,7 @@ import TabBar from './Navigation/TabBar'
 import Tab from './Navigation/Tab'
 import Scanner from './Scanner/Scanner'
 import AddProduct from './AddProduct/AddProduct'
+import Reviews from './Reviews/Reviews'
 
 export {
   AppCover,
@@ -23,5 +24,6 @@ export {
   TabBar,
   Tab,
   Scanner,
-  AddProduct
+  AddProduct,
+  Reviews
 }
