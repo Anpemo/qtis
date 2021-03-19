@@ -40,9 +40,6 @@ function AddProduct ({ navigation, route, actions }: any) {
       quality: 1
     })
 
-    console.log('result', productPicture)
-    console.log('ImageUri', productPicture)
-
     if (!result.cancelled) {
       setProductPicture(result.uri)
     }

@@ -3,6 +3,7 @@ const Product = require('../models/productModels');
 
 function productControllers() {
   async function loadProduct(req, res) {
+    console.log('received in loadProduct', req.params.parameter);
     const { parameter } = req.params;
     let query;
     if (Number(parameter)) {
@@ -20,7 +21,6 @@ function productControllers() {
   }
 
   function createProduct(req, res) {
-    console.log('recibed at create product', req.body);
     const newProduct = new Product({
       ...req.body
     });

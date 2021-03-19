@@ -5,6 +5,7 @@ export function userRegister (userData: any) {
   return async function fetchInfo (dispatch: any) {
     // const route = process.env.BACKEND_REGISTER
     const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
+
     if (data === 'User already exists') {
       dispatch({
         type: qtisActionTypes.USER_REGISTER
@@ -29,9 +30,9 @@ export function fetchProducts (category: Object) {
 }
 
 export function fetchProduct (barCodeData: any) {
-  const barCodeDataString = barCodeData.toString()
+  console.log('information sent by fetchProduct:', barCodeData)
   return async function fetchInfo (dispatch: any) {
-    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeDataString}`)
+    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
     if (data[0]?.productBarCode) {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,

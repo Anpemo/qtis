@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
 function Scanner ({ actions, product, navigation }: any) {
   const [hasPermission, setHasPermission] = useState < boolean | null >(null)
   const [scanned, setScanned] = useState(false)
-  const [productBarCode, setProductBarCode] = useState('')
+  const [productBarCode, setProductBarCode] = useState(null)
+
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync()
@@ -24,18 +25,20 @@ function Scanner ({ actions, product, navigation }: any) {
 
   const handleBarCodeScanned = ({ data }: any) => {
     setScanned(true)
-    setProductBarCode(data)
     if (data) {
-      actions.fetchProduct(data)
+      actions.fetchProduct(data.toString())
     }
+    setProductBarCode(data)
   }
   function navigateToAddProduct () {
     setScanned(false)
     navigation.navigate('AddProduct', productBarCode)
+    setProductBarCode(null)
   }
   useEffect(() => {
     if (scanned && product?.productBarCode) {
       navigation.navigate('ProductDetail', { productBarCode: product.productBarCode })
+      setProductBarCode(null)
     } else if (scanned) {
       Alert.alert(
         'Product does not exist',
@@ -55,7 +58,7 @@ function Scanner ({ actions, product, navigation }: any) {
         }
       )
     }
-  }, [product && scanned])
+  }, [product.productBarCode])
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>

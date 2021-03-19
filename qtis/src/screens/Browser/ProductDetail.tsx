@@ -40,7 +40,6 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
   useEffect(() => {
     actions.fetchProduct(productBarCode)
   }, [])
-  console.log(product.productPicture)
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
