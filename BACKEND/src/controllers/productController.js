@@ -20,6 +20,7 @@ function productControllers() {
   }
 
   function createProduct(req, res) {
+    console.log('recibed at create product', req.body);
     const newProduct = new Product({
       ...req.body
     });

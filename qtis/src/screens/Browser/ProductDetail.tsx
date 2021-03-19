@@ -14,6 +14,7 @@ import { fetchProduct } from '../../redux/actions/qtisActionCreators'
 import { bindActionCreators } from 'redux'
 
 function ProductDetail ({ navigation, product, actions, route }: any) {
+  const { productBarCode } = route.params
   const renderSkinTypes = ({ item }: any) => (
     <TouchableOpacity style={styles.filterButton}>
       <Text style={styles.filterText}>{item}</Text>
@@ -37,8 +38,9 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
     </View>
   )
   useEffect(() => {
-    actions.fetchProduct(route.productBarCode)
+    actions.fetchProduct(productBarCode)
   }, [])
+  console.log(product.productPicture)
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
@@ -47,7 +49,7 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
       </TouchableOpacity>
          <View style={styles.pictureBox}>
             <Image
-            source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
+            source={{ uri: product.productPicture }}
             style={styles.productPicture} key={1}
             />
          </View>

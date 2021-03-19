@@ -90,16 +90,15 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
   useEffect(() => {
     actions.fetchProducts(route.params.categoryName)
   }, [])
-
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
     style={styles.categoryBox}
-    onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}
+    onPress={() => navigation.navigate('ProductDetail', { productBarCode: item.productBarCode })}
     testID={'productLink'}
     >
     <View style={styles.pictureBox}>
       <Image
-      source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
+      source={{ uri: item.productPicture }}
       style={styles.categoryPicture} key={1}
       />
     </View>

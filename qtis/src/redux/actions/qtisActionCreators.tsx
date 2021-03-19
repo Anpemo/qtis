@@ -29,8 +29,9 @@ export function fetchProducts (category: Object) {
 }
 
 export function fetchProduct (barCodeData: any) {
+  const barCodeDataString = barCodeData.toString()
   return async function fetchInfo (dispatch: any) {
-    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
+    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeDataString}`)
     if (data[0]?.productBarCode) {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
@@ -47,7 +48,6 @@ export function fetchProduct (barCodeData: any) {
 
 export function createProduct (productData: Object) {
   return async function fetchInfo (dispatch: any) {
-    console.log(productData)
     const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
     dispatch({
       type: qtisActionTypes.CREATE_PRODUCT,

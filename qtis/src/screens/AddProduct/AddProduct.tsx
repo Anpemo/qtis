@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  Image, TouchableOpacity, View, Text, ImageBackground, KeyboardAvoidingView
+  Image, TouchableOpacity, View, Text, ImageBackground, KeyboardAvoidingView, Button, Platform
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
@@ -11,24 +11,50 @@ import { createProduct } from '../../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 import categories from '../../../constants/categories'
+import * as ImagePicker from 'expo-image-picker'
 
-function ProductDetail ({ navigation, route, actions }: any) {
+function AddProduct ({ navigation, route, actions }: any) {
   const [productName, setProductName] = useState('')
   const [brandName, setBrandName] = useState('')
   const [price, setPrice] = useState('')
-  const [category, setCategory] = useState('')
+  const [productPicture, setProductPicture] = useState(null)
+  const [productCategory, setProductCategory] = useState('')
   const [openCategories, setOpenCategories] = useState(false)
-  const { productBarCode } = route.params
+  const productBarCode = route.params?.toString()
 
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!')
+        }
+      }
+    })()
+  }, [])
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    })
+
+    console.log('result', productPicture)
+    console.log('ImageUri', productPicture)
+
+    if (!result.cancelled) {
+      setProductPicture(result.uri)
+    }
+  }
   function selectCategory (category : any) {
-    setCategory(category)
+    setProductCategory(category)
     setOpenCategories(false)
   }
   function shareProduct () {
-    actions.createProduct({ productBarCode, productName, brandName, price, category })
+    actions.createProduct({ productBarCode: productBarCode, productName, brandName, price, productCategory, productPicture })
     navigation.navigate('ProductDetail', { productBarCode })
   }
-
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.backgroundReview} style={styles.backgroundImage}>
@@ -37,10 +63,12 @@ function ProductDetail ({ navigation, route, actions }: any) {
         <AntDesign name="doubleleft" size={22}/>
       </TouchableOpacity>
       <View style={styles.pictureBox}>
-            <Image
+        <Button title="Pick an image from camera roll" onPress={pickImage} />
+        {productPicture && <Image source={{ uri: productPicture }} style={styles.productPicture} />}
+            {/* <Image
             source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
             style={styles.productPicture} key={1}
-            />
+            /> */}
       </View>
       <View style={styles.inputsContainer}>
       <TextInput
@@ -70,7 +98,7 @@ function ProductDetail ({ navigation, route, actions }: any) {
         activeOpacity={0.5}
         >
             <View>
-              <Text style={styles.categoriesTitle}>{category.toUpperCase() || 'CHOOSE A CATEGORY'}</Text>
+              <Text style={styles.categoriesTitle}>{productCategory.toUpperCase() || 'CHOOSE A CATEGORY'}</Text>
               <View style={styles.categoriesModule}>
                 {openCategories && categories.map((category) => (
                   <TouchableOpacity
@@ -121,4 +149,4 @@ function mapDispatchToProps (dispatch: any) {
     }, dispatch)
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)
