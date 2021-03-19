@@ -11,6 +11,7 @@ import Tab from './Navigation/Tab'
 import Scanner from './Scanner/Scanner'
 import AddProduct from './AddProduct/AddProduct'
 import Reviews from './Reviews/Reviews'
+import AddReview from './Reviews/AddReview'
 
 export {
   AppCover,
@@ -25,5 +26,6 @@ export {
   Tab,
   Scanner,
   AddProduct,
-  Reviews
+  Reviews,
+  AddReview
 }

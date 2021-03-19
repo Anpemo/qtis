@@ -3,14 +3,14 @@ const Review = require('../models/reviewModels');
 
 function reviewControllers() {
   async function loadReview(req, res) {
-    console.log('received in loadReview', req.params.parameter);
     const { parameter } = req.params;
     let query;
-    if (Number(parameter)) {
+    if (+parameter) {
       query = { productBarCode: parameter };
     } else {
       query = { productCategory: parameter };
     }
+    console.log('query', query);
     try {
       const reviews = await Review.find(query).exec();
       res.json(reviews);

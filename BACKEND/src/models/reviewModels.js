@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const reviewSchema = new mongoose.Schema(
   {
     userId: String,
-    productId: String,
     userName: String,
     userPicture: String,
     skinType: [String],
     hairType: [String],
+    productBarCode: String,
     productPicture: String,
     brandName: String,
     productName: String,

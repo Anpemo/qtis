@@ -1,67 +1,17 @@
 
-import { COLORS, SIZES, BORDER } from '../../../constants'
+import { COLORS, SIZES, REVIEWBORDER } from '../../../constants'
 import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: COLORS.white
-  },
-  backIcon: {
-    color: COLORS.black,
-    marginBottom: 5,
-    marginLeft: 10,
-    position: 'absolute',
-    top: 10
-  },
-  header: {
-    flex: 0.3,
-    resizeMode: 'cover',
-    justifyContent: 'center',
     width: '100%'
-  },
-  pictureBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: 175,
-    width: 175,
-    borderRadius: 100,
-    backgroundColor: COLORS.pictureBoxBackground
-  },
-  productPicture: {
-    resizeMode: 'contain',
-    height: 125,
-    width: 125,
-    borderRadius: 100,
-    backgroundColor: COLORS.white
-  },
-  body: {
-    flex: 0.7,
-    alignItems: 'center',
-    width: '95%'
-  },
-  productInformation: {
-    alignItems: 'center',
-    width: '100%'
-  },
-  productNameText: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    fontFamily: 'MontserratBold'
-  },
-  productDetailsText: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    fontFamily: 'Montserrat',
-    marginTop: 5
   },
   filterContainer: {
     width: '100%',
-    height: '20%',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    margin: 3
+    marginVertical: 10,
+    paddingLeft: 10
   },
   filterTitle: {
     fontSize: SIZES.p18,
@@ -73,9 +23,9 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   filterButton: {
-    width: 120,
-    height: 25,
-    backgroundColor: COLORS.pictureBoxBackground,
+    width: 130,
+    height: 30,
+    backgroundColor: COLORS.cream,
     borderRadius: SIZES.buttonRadius,
     alignItems: 'center',
     justifyContent: 'center',
@@ -83,7 +33,7 @@ const styles = StyleSheet.create({
   },
   filterText: {
     fontFamily: 'Montserrat',
-    fontSize: SIZES.p18
+    fontSize: SIZES.p16
   },
   reviewsContainer: {
     width: '100%',
@@ -91,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   valorationContainer: {
+    flexDirection: 'row',
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -98,50 +49,62 @@ const styles = StyleSheet.create({
   },
   punctuation: {
     fontSize: SIZES.p20,
-    fontFamily: 'MontserratBold',
-    color: COLORS.black
+    fontFamily: 'Montserrat',
+    color: COLORS.black,
+    marginRight: 3,
+    lineHeight: 20
+  },
+  reviewTitleContainer: {
+    width: '95%',
+    paddingTop: 15,
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  reviewsTitle: {
+    fontSize: SIZES.p20,
+    fontFamily: 'MontserratBold'
   },
   reviewsFlatList: {
-    width: '95%'
+    width: '100%',
+    marginBottom: 50,
+    marginTop: 10,
+    alignItems: 'center'
   },
   reviewBox: {
-    flex: 1,
+    width: '95%',
     flexDirection: 'row',
-    marginBottom: 10,
-    borderRadius: SIZES.squareRadius,
-    backgroundColor: COLORS.backgroundGrey
-
+    marginBottom: 10
   },
   userPictureBox: {
-    height: 105,
-    width: 105,
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    marginRight: 10
   },
   userPicture: {
-    height: 105,
-    width: 105,
+    height: 70,
+    width: 70,
     resizeMode: 'cover',
     borderRadius: 100,
-    backgroundColor: COLORS.white
+    backgroundColor: COLORS.cream
   },
   reviewContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80%',
-    padding: 20,
-    ...BORDER
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: 10,
+    borderRadius: SIZES.squareRadius,
+    ...REVIEWBORDER
   },
   userName: {
-    fontSize: SIZES.p20,
+    fontSize: SIZES.p18,
     color: COLORS.brown,
-    fontFamily: 'MontserratBold',
-    margin: 3
+    fontFamily: 'MontserratBold'
   },
   reviewText: {
-    fontSize: SIZES.p20,
+    fontSize: SIZES.p18,
     color: COLORS.brown,
     fontFamily: 'Montserrat',
     backgroundColor: COLORS.white

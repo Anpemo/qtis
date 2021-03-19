@@ -65,17 +65,19 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'center',
     height: '100%',
-    width: '50%',
+    width: '45%',
     borderRadius: SIZES.squareRadius
   },
   brandText: {
     fontSize: SIZES.p20,
     color: COLORS.white,
     alignSelf: 'center',
-    fontFamily: 'MontserratBold'
+    fontFamily: 'MontserratBold',
+    width: '90%',
+    textAlign: 'center'
   },
   productDetailsText: {
     fontSize: SIZES.p20,
@@ -103,7 +105,7 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
       />
     </View>
     <View style={styles.textContainer}>
-      <Text style={styles.brandText}>{item.productName}
+      <Text style={styles.brandText}>{item.productName.toUpperCase()}
     </Text>
     <Text style={styles.productDetailsText}>{item.brandName}
     </Text>

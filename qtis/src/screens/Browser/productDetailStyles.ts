@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     top: 10
   },
   header: {
-    flex: 0.3,
     resizeMode: 'cover',
     justifyContent: 'center',
     width: '100%'
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white
   },
   body: {
-    flex: 0.7,
+    flex: 1,
     alignItems: 'center',
     width: '95%'
   },

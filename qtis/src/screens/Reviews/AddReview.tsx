@@ -4,52 +4,26 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
-import styles from './AddProductStyles'
+import styles from './AddReviewStyles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { createProduct } from '../../redux/actions/qtisActionCreators'
+import { createReview } from '../../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 import categories from '../../../constants/categories'
 import * as ImagePicker from 'expo-image-picker'
 
-function AddProduct ({ navigation, route, actions }: any) {
-  const [productName, setProductName] = useState('')
-  const [brandName, setBrandName] = useState('')
-  const [price, setPrice] = useState('')
-  const [productPicture, setProductPicture] = useState(null)
-  const [productCategory, setProductCategory] = useState('')
-  const [openCategories, setOpenCategories] = useState(false)
-  const productBarCode = route.params?.toString()
+function AddReview ({ navigation, route, actions }: any) {
+  const productBarCode = route.params
+  const [rating, setRating] = useState('')
+  const [reviewText, setReviewText] = useState('')
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!')
-        }
-      }
-    })()
-  }, [])
-  const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
-    })
-
-    if (!result.cancelled) {
-      setProductPicture(result.uri)
-    }
-  }
   function selectCategory (category : any) {
     setProductCategory(category)
     setOpenCategories(false)
   }
-  function shareProduct () {
-    actions.createProduct({ productBarCode: productBarCode, productName, brandName, price, productCategory, productPicture })
+  function shareReview () {
+    actions.createReview({ productBarCode: productBarCode, productName, brandName, price, productCategory, productPicture })
     navigation.navigate('ProductDetail', { productBarCode })
   }
   return (
@@ -111,7 +85,7 @@ function AddProduct ({ navigation, route, actions }: any) {
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-        onPress={() => shareProduct()}
+        onPress={() => shareReview()}
         style={styles.button}
         >
             <Text style={styles.buttonText}>SHARE</Text>
@@ -138,8 +112,8 @@ function mapStateToProps ({ productsReducer }: any) {
 function mapDispatchToProps (dispatch: any) {
   return {
     actions: bindActionCreators({
-      createProduct
+      createReview
     }, dispatch)
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview)

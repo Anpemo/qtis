@@ -5,8 +5,10 @@ function reviewRouter() {
   const router = Router();
 
   router
+    .route('/:parameter')
+    .get(controller.loadReview);
+  router
     .route('/')
-    .get(controller.loadReview)
     .post(controller.createReview)
     .delete(controller.deleteReview);
 

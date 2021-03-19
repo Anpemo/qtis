@@ -56,9 +56,9 @@ export function createProduct (productData: Object) {
   }
 }
 export function fetchReviews (parameter: Object) {
-  console.log('information sent by fetchReview:', parameter)
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.get(`http://192.168.0.15:5000/review/${parameter}`)
+
     dispatch({
       type: qtisActionTypes.REVIEWS_LIST,
       data
