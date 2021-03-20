@@ -27,7 +27,7 @@ export function userLogin (userData: any) {
       const { data } = await axios.post('http://192.168.0.15:5000/auth/login', userData)
       dispatch({
         type: qtisActionTypes.USER_LOGIN,
-        data: { data }
+        data
       })
     } catch {
       dispatch({

@@ -13,10 +13,11 @@ import { TextInput } from 'react-native-gesture-handler'
 
 function AddReview ({ navigation, route, actions, user }: any) {
   const { productBarCode } = route.params
+  const { userName, userPicture, _id } = user
   const [rating, setRating] = useState('')
   const [reviewText, setReviewText] = useState('')
   function shareReview () {
-    actions.createReview({ rating, reviewText, productBarCode })
+    actions.createReview({ rating, reviewText, productBarCode, userId: _id, userName, userPicture })
     navigation.navigate('ProductDetail', productBarCode)
   }
   return (
