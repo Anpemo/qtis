@@ -1,68 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView, Alert
+  TouchableOpacity, View, Text, KeyboardAvoidingView, Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { SIZES, COLORS } from '../../constants'
 import { TextInput } from 'react-native-gesture-handler'
 import { userRegister } from '../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    margin: 20
-  },
-  backIcon: {
-    color: COLORS.black,
-    marginBottom: 5
-  },
-  title: {
-    fontSize: SIZES.h2,
-    color: COLORS.black,
-    fontFamily: 'Montserrat',
-    marginBottom: 10
-  },
-  formBox: {
-    height: '65%',
-    backgroundColor: COLORS.cream,
-    borderRadius: SIZES.squareRadius,
-    justifyContent: 'center'
-  },
-  inputTop: {
-    height: '18%',
-    width: '90%',
-    alignSelf: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: SIZES.p20,
-    borderBottomColor: COLORS.black,
-    borderBottomWidth: 1
-  },
-  errorMessage: {
-    color: COLORS.error,
-    width: '90%',
-    marginLeft: 15,
-    marginTop: 3
-
-  },
-  button: {
-    justifyContent: 'center',
-    backgroundColor: COLORS.black,
-    height: SIZES.buttonheight,
-    width: '100%',
-    borderRadius: SIZES.buttonRadius,
-    marginTop: 20
-  },
-  buttonText: {
-    color: COLORS.white,
-    alignSelf: 'center',
-    fontSize: SIZES.p20,
-    fontFamily: 'Montserrat'
-  }
-})
+import styles from './registerStyles'
 
 function Register (this: any, { navigation, actions, user }: any) {
   const [userName, setUserName] = useState('')

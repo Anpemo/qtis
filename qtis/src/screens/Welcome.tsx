@@ -4,6 +4,7 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images, SIZES, COLORS } from '../../constants'
+import { useNavigation } from '@react-navigation/native'
 
 const styles = StyleSheet.create({
   container: {
@@ -60,11 +61,13 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function Welcome ({ navigation }: any) {
+export default function Welcome ({ route }: any) {
+  const navigation = useNavigation()
+  const { userName } = route.params
   return (
     <SafeAreaView style={styles.container}>
       <Image source={images.oldLady} style={styles.backgroundPicture} />
-      <Text style={styles.titleText}>Welcome, Ángela</Text>
+      <Text style={styles.titleText}>{`Welcome, ${userName}`}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile')} testID={'test-login'}>
           <Text style={styles.buttonText}>GO TO YOUR PROFILE</Text>

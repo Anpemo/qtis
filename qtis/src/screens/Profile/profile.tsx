@@ -64,8 +64,10 @@ function Profile ({ user, actions }: any) {
         <View style={styles.userInformation}>
           <Text style={styles.userName}>{user.userName}
           </Text>
-          <Text style={styles.userData}>{`${user.age} years old`}
-          </Text>
+          {user.age &&
+            <Text style={styles.userData}>{`${user.age} years old`}
+            </Text>
+          }
           <Text style={styles.userData}>{user.city}
           </Text>
         </View>
