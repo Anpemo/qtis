@@ -34,7 +34,6 @@ function App () {
         }}
         initialRouteName="AppCover"
       >
-        {}
         <Stack.Screen name="AppCover" component={AppCover} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />

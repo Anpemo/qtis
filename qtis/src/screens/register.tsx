@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView
+  StyleSheet, TouchableOpacity, View, Text, KeyboardAvoidingView, Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -121,7 +121,7 @@ function Register (this: any, { navigation, actions, user }: any) {
     if (user.email) {
       navigation.navigate('Welcome')
     } else {
-      // alert('User already exists')
+      Alert.alert('User already exists')
     }
   }, [user.email])
 

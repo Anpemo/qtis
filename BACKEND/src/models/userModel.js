@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const md5 = require('md5');
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,5 +15,7 @@ const userSchema = new mongoose.Schema(
     }]
   }
 );
-
+userSchema.methods.validPassword = function validPassword(pwd) {
+  return this.password === md5(pwd);
+};
 module.exports = mongoose.model('User', userSchema);
