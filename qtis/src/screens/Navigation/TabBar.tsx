@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 import { COLORS, SHADOW } from '../../../constants'
-import { Tab } from '../../screens'
+import Tab from '../Navigation/Tab'
 
 const { width } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 1,
     width,
     alignItems: 'center',
     justifyContent: 'center'

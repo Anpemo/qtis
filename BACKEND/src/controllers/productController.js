@@ -3,14 +3,12 @@ const Product = require('../models/productModels');
 
 function productControllers() {
   async function loadProduct(req, res) {
-    console.log(req.params);
-    const { category } = req.params;
-    const { _id } = req.body;
+    const { parameter } = req.params;
     let query;
-    if (_id) {
-      query = { userId: _id };
+    if (Number(parameter)) {
+      query = { productBarCode: parameter };
     } else {
-      query = { productCategory: category };
+      query = { productCategory: parameter };
     }
     try {
       const product = await Product.find(query).exec();
@@ -25,7 +23,6 @@ function productControllers() {
     const newProduct = new Product({
       ...req.body
     });
-
     newProduct.save((error) => {
       if (error) {
         res.send('Product already exists');

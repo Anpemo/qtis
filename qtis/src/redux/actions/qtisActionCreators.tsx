@@ -5,6 +5,7 @@ export function userRegister (userData: any) {
   return async function fetchInfo (dispatch: any) {
     // const route = process.env.BACKEND_REGISTER
     const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
+
     if (data === 'User already exists') {
       dispatch({
         type: qtisActionTypes.USER_REGISTER
@@ -19,12 +20,66 @@ export function userRegister (userData: any) {
 }
 
 export function fetchProducts (category: Object) {
-  console.log(category)
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.get(`http://192.168.0.15:5000/product/${category}`)
-    console.log(data)
     dispatch({
       type: qtisActionTypes.PRODUCTS_LIST,
+      data
+    })
+  }
+}
+
+export function fetchProduct (barCodeData: any) {
+  return async function fetchInfo (dispatch: any) {
+    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
+    if (data[0]?.productBarCode) {
+      dispatch({
+        type: qtisActionTypes.SINGLE_PRODUCT,
+        data: data[0]
+      })
+    } else {
+      dispatch({
+        type: qtisActionTypes.SINGLE_PRODUCT,
+        data: { data: 'Product does not exist', date: headers.date }
+      })
+    }
+  }
+}
+
+export function createProduct (productData: any) {
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
+    dispatch({
+      type: qtisActionTypes.CREATE_PRODUCT,
+      data
+    })
+  }
+}
+
+export function cleanProduct () {
+  return ({
+    type: qtisActionTypes.CLEAN_PRODUCT,
+    data: null
+  })
+}
+
+export function fetchReviews (parameter: Object) {
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.get(`http://192.168.0.15:5000/review/${parameter}`)
+
+    dispatch({
+      type: qtisActionTypes.REVIEWS_LIST,
+      data
+    })
+  }
+}
+
+export function createReview (reviewData: Object) {
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.post('http://192.168.0.15:5000/review', reviewData)
+    console.log('received at createReview rontend', data)
+    dispatch({
+      type: qtisActionTypes.CREATE_REVIEW,
       data
     })
   }

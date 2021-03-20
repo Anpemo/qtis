@@ -65,17 +65,19 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'center',
     height: '100%',
-    width: '50%',
+    width: '45%',
     borderRadius: SIZES.squareRadius
   },
   brandText: {
     fontSize: SIZES.p20,
     color: COLORS.white,
     alignSelf: 'center',
-    fontFamily: 'MontserratBold'
+    fontFamily: 'MontserratBold',
+    width: '90%',
+    textAlign: 'center'
   },
   productDetailsText: {
     fontSize: SIZES.p20,
@@ -90,21 +92,20 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
   useEffect(() => {
     actions.fetchProducts(route.params.categoryName)
   }, [])
-
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
     style={styles.categoryBox}
-    onPress={() => navigation.navigate('ProductDetail', { productName: item.name })}
+    onPress={() => navigation.navigate('ProductDetail', { productBarCode: item.productBarCode })}
     testID={'productLink'}
     >
     <View style={styles.pictureBox}>
       <Image
-      source={{ uri: 'https://www.laroche-posay.es/-/media/project/loreal/brand-sites/lrp/emea/es/products/effaclar/effaclar-cleansing-foaming-gel/la-roche-posay-face-cleanser-effaclar-cleansing-foaming-gel-200ml-3337872411083-front.png' }}
+      source={{ uri: item.productPicture }}
       style={styles.categoryPicture} key={1}
       />
     </View>
     <View style={styles.textContainer}>
-      <Text style={styles.brandText}>{item.productName}
+      <Text style={styles.brandText}>{item.productName.toUpperCase()}
     </Text>
     <Text style={styles.productDetailsText}>{item.brandName}
     </Text>

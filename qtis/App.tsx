@@ -6,7 +6,7 @@ import AppLoading from 'expo-app-loading'
 import { Provider } from 'react-redux'
 import store from './src/redux/stores/configureStore'
 import {
-  AppCover, Login, Register, CategoryBrowser, Welcome, ProductDetail
+  AppCover, Login, Register, CategoryBrowser, Welcome, ProductDetail, AddProduct, AddReview
 } from './src/screens'
 import tabNavigator from './src/navigation/TabNavigator'
 import { NavigationContainer } from '@react-navigation/native'
@@ -42,6 +42,9 @@ function App () {
         <Stack.Screen name="tabNavigator" component={tabNavigator} />
         <Stack.Screen name="CategoryBrowser" component={CategoryBrowser} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
+        <Stack.Screen name="AddProduct" component={AddProduct} />
+        <Stack.Screen name="AddReview" component={AddReview} />
+
     </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, StyleSheet, Button } from 'react-native'
+import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchProduct, cleanProduct } from '../../redux/actions/qtisActionCreators'
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
   }
 })
 
-function Scanner () {
+function Scanner ({ actions, product, navigation }: any) {
   const [hasPermission, setHasPermission] = useState < boolean | null >(null)
   const [scanned, setScanned] = useState(false)
+  const [productBarCode, setProductBarCode] = useState(null)
 
   useEffect(() => {
     (async () => {
@@ -18,10 +23,42 @@ function Scanner () {
     })()
   }, [])
 
-  const handleBarCodeScanned = ({ type, data }: any) => {
+  const handleBarCodeScanned = ({ data }: any) => {
     setScanned(true)
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`)
+    if (data) {
+      actions.fetchProduct(data.toString())
+    }
+    setProductBarCode(data)
   }
+  function navigateToAddProduct () {
+    setScanned(false)
+    navigation.navigate('AddProduct', productBarCode)
+    setProductBarCode(null)
+  }
+  useEffect(() => {
+    if (scanned && product?.productBarCode) {
+      navigation.navigate('ProductDetail', { productBarCode: product.productBarCode })
+      setProductBarCode(null)
+    } else if (scanned) {
+      Alert.alert(
+        'Product does not exist',
+        'Do you want to add it?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'OK',
+            onPress: () => navigateToAddProduct()
+          }
+        ],
+        {
+          cancelable: true
+        }
+      )
+    }
+  }, [product])
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>
@@ -29,16 +66,33 @@ function Scanner () {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>
   }
-
+  function resetScanner () {
+    setScanned(false)
+    actions.cleanProduct()
+  }
   return (
     <View style={styles.container}>
       <BarCodeScanner
-        // onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        // style={StyleSheet.absoluteFillObject}
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+
+      {scanned && <Button title={'Tap to Scan Again'} onPress={() => resetScanner()} />}
     </View>
   )
 }
+function mapStateToProps ({ productsReducer }: any) {
+  return {
+    product: productsReducer.product
+  }
+}
 
-export default Scanner
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      fetchProduct,
+      cleanProduct
+    }, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Scanner)

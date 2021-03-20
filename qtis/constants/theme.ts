@@ -59,3 +59,7 @@ export const BORDER = {
   borderColor: 'rgba(192,186,179,1)',
   borderWidth: 2
 }
+export const REVIEWBORDER = {
+  borderColor: '#D4A373',
+  borderWidth: 1
+}
