@@ -60,8 +60,10 @@ function AddProduct ({ navigation, route, actions }: any) {
         <AntDesign name="doubleleft" size={22}/>
       </TouchableOpacity>
       <View style={styles.pictureBox}>
-        <Button title="Pick an image from camera roll" onPress={pickImage} />
-        {productPicture && <Image source={{ uri: productPicture }} style={styles.productPicture} />}
+        {productPicture
+          ? <Image source={{ uri: productPicture }} style={styles.productPicture} />
+          : <Button title="Pick an image from camera roll" onPress={pickImage} />
+      }
       </View>
       <View style={styles.inputsContainer}>
       <TextInput

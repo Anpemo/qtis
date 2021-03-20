@@ -52,7 +52,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
           </View>
             : <View style={styles.valorationContainer}>
                 <Text style={styles.punctuation}>There are no reviews</Text>
-          </View>
+            </View>
            }
 
           <View style={styles.filterContainer}>
