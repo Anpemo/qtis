@@ -22,8 +22,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
       return accumulator + currentValue.rating
     }, 0)
     const amountReviews = reviews?.length
-    setRating((totalScore / amountReviews).toString())
-    ratingNumber = +rating
+    setRating(((totalScore / amountReviews).toFixed(2)).toString())
   }
 
   useEffect(() => {
