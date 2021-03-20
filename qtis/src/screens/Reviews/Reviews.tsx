@@ -15,9 +15,7 @@ import { useNavigation } from '@react-navigation/native'
 function Reviews ({ reviews, actions, parameter }: any) {
   const navigation = useNavigation()
   const [rating, setRating] = useState('')
-  useEffect(() => {
-    actions.fetchReviews(parameter)
-  }, [])
+  let ratingNumber
 
   function ratingCalculation () {
     const totalScore = reviews?.reduce((accumulator: Number, currentValue: any) => {
@@ -25,11 +23,13 @@ function Reviews ({ reviews, actions, parameter }: any) {
     }, 0)
     const amountReviews = reviews?.length
     setRating((totalScore / amountReviews).toString())
+    ratingNumber = +rating
   }
 
   useEffect(() => {
+    actions.fetchReviews(parameter)
     ratingCalculation()
-  }, [reviews.length])
+  }, [reviews?.length])
 
   const renderSkinTypes = ({ item }: any) => (
     <TouchableOpacity style={styles.filterButton}>
@@ -38,7 +38,8 @@ function Reviews ({ reviews, actions, parameter }: any) {
   )
   return (
         <SafeAreaView style={styles.container}>
-          <View style={styles.valorationContainer}>
+          {reviews?.length > 0
+            ? <View style={styles.valorationContainer}>
                 <Text style={styles.punctuation}>{rating}</Text>
                 <Rating
                 type='star'
@@ -46,10 +47,15 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 readonly={true}
                 fractions={4}
                 imageSize={30}
-                startingValue={3.5}
+                startingValue={ratingNumber}
                 ratingBackgroundColor={'black'}
                 />
           </View>
+            : <View style={styles.valorationContainer}>
+                <Text style={styles.punctuation}>There are no reviews</Text>
+          </View>
+           }
+
           <View style={styles.filterContainer}>
             <Text style={styles.filterTitle}>Filter by skin type:</Text>
             <FlatList
@@ -64,7 +70,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
 
               <View style={styles.reviewTitleContainer}>
                 <Text style={styles.reviewsTitle}>REVIEWS</Text>
-                <AntDesign name="pluscircleo" size={30} color="black" onPress={() => navigation.navigate('AddReview')}/>
+                <AntDesign name="pluscircleo" size={30} color="black" onPress={() => navigation.navigate('AddReview', { productBarCode: parameter })}/>
                </View>
               <View style={styles.reviewsFlatList}>
               {reviews && reviews.map((item: any) => {

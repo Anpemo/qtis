@@ -27,7 +27,7 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
       </TouchableOpacity>
          <View style={styles.pictureBox}>
             <Image
-            source={{ uri: product.productPicture }}
+            source={{ uri: product?.productPicture }}
             style={styles.productPicture} key={1}
             />
          </View>

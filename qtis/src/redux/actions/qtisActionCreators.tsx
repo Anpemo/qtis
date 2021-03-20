@@ -46,7 +46,7 @@ export function fetchProduct (barCodeData: any) {
   }
 }
 
-export function createProduct (productData: Object) {
+export function createProduct (productData: any) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
     dispatch({
@@ -69,6 +69,17 @@ export function fetchReviews (parameter: Object) {
 
     dispatch({
       type: qtisActionTypes.REVIEWS_LIST,
+      data
+    })
+  }
+}
+
+export function createReview (reviewData: Object) {
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.post('http://192.168.0.15:5000/review', reviewData)
+    console.log('received at createReview rontend', data)
+    dispatch({
+      type: qtisActionTypes.CREATE_REVIEW,
       data
     })
   }

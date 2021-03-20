@@ -10,7 +10,6 @@ function reviewControllers() {
     } else {
       query = { productCategory: parameter };
     }
-    console.log('query', query);
     try {
       const reviews = await Review.find(query).exec();
       res.json(reviews);
@@ -21,6 +20,7 @@ function reviewControllers() {
   }
 
   function createReview(req, res) {
+    console.log('received at createReview', req.body);
     const newReview = new Review({
       ...req.body
     });

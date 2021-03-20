@@ -49,7 +49,7 @@ function AddProduct ({ navigation, route, actions }: any) {
     setOpenCategories(false)
   }
   function shareProduct () {
-    actions.createProduct({ productBarCode: productBarCode, productName, brandName, price, productCategory, productPicture })
+    actions.createProduct({ productBarCode: productBarCode, productName, brandName, price: price.replace(/,/g, '.'), productCategory, productPicture })
     navigation.navigate('ProductDetail', { productBarCode })
   }
   return (
