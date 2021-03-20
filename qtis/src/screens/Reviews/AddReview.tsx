@@ -17,7 +17,7 @@ function AddReview ({ navigation, route, actions, user }: any) {
   const [rating, setRating] = useState('')
   const [reviewText, setReviewText] = useState('')
   function shareReview () {
-    actions.createReview({ rating, reviewText, productBarCode, userId: _id, userName, userPicture })
+    actions.createReview({ rating: rating.replace(/,/g, '.'), reviewText, productBarCode, userId: _id, userName, userPicture })
     navigation.navigate('ProductDetail', productBarCode)
   }
   return (
