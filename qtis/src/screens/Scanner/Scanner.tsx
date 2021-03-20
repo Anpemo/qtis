@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchProduct } from '../../redux/actions/qtisActionCreators'
+import { fetchProduct, cleanProduct } from '../../redux/actions/qtisActionCreators'
 
 const styles = StyleSheet.create({
   container: {
@@ -58,7 +58,7 @@ function Scanner ({ actions, product, navigation }: any) {
         }
       )
     }
-  }, [product.productBarCode])
+  }, [product])
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>
@@ -66,7 +66,10 @@ function Scanner ({ actions, product, navigation }: any) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>
   }
-
+  function resetScanner () {
+    setScanned(false)
+    actions.cleanProduct()
+  }
   return (
     <View style={styles.container}>
       <BarCodeScanner
@@ -74,7 +77,7 @@ function Scanner ({ actions, product, navigation }: any) {
         style={StyleSheet.absoluteFillObject}
       />
 
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      {scanned && <Button title={'Tap to Scan Again'} onPress={() => resetScanner()} />}
     </View>
   )
 }
@@ -87,7 +90,8 @@ function mapStateToProps ({ productsReducer }: any) {
 function mapDispatchToProps (dispatch: any) {
   return {
     actions: bindActionCreators({
-      fetchProduct
+      fetchProduct,
+      cleanProduct
     }, dispatch)
   }
 }

@@ -55,6 +55,14 @@ export function createProduct (productData: Object) {
     })
   }
 }
+
+export function cleanProduct () {
+  return ({
+    type: qtisActionTypes.CLEAN_PRODUCT,
+    data: null
+  })
+}
+
 export function fetchReviews (parameter: Object) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.get(`http://192.168.0.15:5000/review/${parameter}`)

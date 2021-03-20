@@ -11,6 +11,9 @@ export default function productsReducer (state = { product: {}, products: {} }, 
     case actionTypes.CREATE_PRODUCT:
       return state
 
+    case actionTypes.CLEAN_PRODUCT:
+      return { ...state, product: action.data }
+
     default:
       return state
   }
