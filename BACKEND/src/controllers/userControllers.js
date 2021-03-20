@@ -33,6 +33,7 @@ function userControllers() {
     const { body } = req;
     try {
       const modifiedUser = await User.findByIdAndUpdate(id, body, { new: true }).exec();
+      console.log('user returned at bnackend', modifiedUser);
       res.json(modifiedUser);
     } catch {
       res.status(500);

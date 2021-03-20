@@ -5,7 +5,6 @@ export function userRegister (userData: any) {
   return async function fetchInfo (dispatch: any) {
     // const route = process.env.BACKEND_REGISTER
     const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
-    console.log(data)
     if (data === 'User does not exist') {
       dispatch({
         type: qtisActionTypes.USER_REGISTER
@@ -23,7 +22,6 @@ export function userLogin (userData: any) {
     // const route = process.env.BACKEND_LOGIN
     try {
       const response = await axios.post('http://192.168.0.15:5000/auth/login', userData)
-      console.log(response)
       dispatch({
         type: qtisActionTypes.USER_LOGIN,
         data: response.data
@@ -95,9 +93,19 @@ export function fetchReviews (parameter: Object) {
 export function createReview (reviewData: Object) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.post('http://192.168.0.15:5000/review', reviewData)
-    console.log('received at createReview rontend', data)
     dispatch({
       type: qtisActionTypes.CREATE_REVIEW,
+      data
+    })
+  }
+}
+
+export function updateUser (userData: any) {
+  return async function fetchInfo (dispatch: any) {
+    const { data } = await axios.put('http://192.168.0.15:5000/user', userData)
+    console.log('received at updateUser frontend', data)
+    dispatch({
+      type: qtisActionTypes.UPDATE_USER,
       data
     })
   }
