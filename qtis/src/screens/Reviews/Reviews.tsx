@@ -10,8 +10,10 @@ import { bindActionCreators } from 'redux'
 import styles from './ReviewsStyle'
 import skinTypes from '../../../constants/skinTypes'
 import { AntDesign } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
-function Reviews ({ navigation, reviews, actions, parameter }: any) {
+function Reviews ({ reviews, actions, parameter }: any) {
+  const navigation = useNavigation()
   const [rating, setRating] = useState('')
   useEffect(() => {
     actions.fetchReviews(parameter)
