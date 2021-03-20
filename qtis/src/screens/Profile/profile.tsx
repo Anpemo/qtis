@@ -47,6 +47,7 @@ function Profile ({ user, actions }: any) {
   }
 
   return (
+    <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingBottom: 50 }}>
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
       <ImageBackground source={images.profileHeader} style={styles.header} >
@@ -61,7 +62,7 @@ function Profile ({ user, actions }: any) {
       </ImageBackground>
       <View style={styles.body}>
         <View style={styles.userInformation}>
-        <Text style={styles.userName}>{user.userName}
+          <Text style={styles.userName}>{user.userName}
           </Text>
           <Text style={styles.userData}>{`${user.age} years old`}
           </Text>
@@ -121,8 +122,8 @@ function Profile ({ user, actions }: any) {
               <Text style={styles.sectionName}>ACCOUNT SETTINGS</Text>
               <View >
                 {openSettings &&
-          <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={88}>
                   <View>
+
                     <TextInput
                       onChangeText={(event) => setUserName(event)}
                       placeholder={'What\'s your name?'}
@@ -133,16 +134,16 @@ function Profile ({ user, actions }: any) {
                     onChangeText={(event) => setAge(event)}
                     style={styles.settingInputs}
                     />
-                    <TextInput
-                    placeholder={'Where are you from?'}
-                    onChangeText={(event) => setCity(event)}
-                    style={styles.settingInputs}
-                    />
+
+                      <TextInput
+                      placeholder={'Where are you from?'}
+                      onChangeText={(event) => setCity(event)}
+                      style={styles.settingInputs}
+                      />
                     <TouchableOpacity style={styles.updateButton}>
                       <Text style={styles.updateText} onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture })}>UPDATE YOUR DATA</Text>
                     </TouchableOpacity>
                   </View>
-                </KeyboardAvoidingView>
                 }
               </View>
             </View>
@@ -150,9 +151,9 @@ function Profile ({ user, actions }: any) {
         </TouchableOpacity>
       </View>
       </View>
-
     </ScrollView>
     </SafeAreaView>
+  </KeyboardAvoidingView>
   )
 }
 function mapStateToProps ({ userReducer }: any) {

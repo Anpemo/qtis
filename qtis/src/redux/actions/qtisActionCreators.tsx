@@ -103,7 +103,6 @@ export function createReview (reviewData: Object) {
 export function updateUser (userData: any) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.put('http://192.168.0.15:5000/user', userData)
-    console.log('received at updateUser frontend', data)
     dispatch({
       type: qtisActionTypes.UPDATE_USER,
       data
