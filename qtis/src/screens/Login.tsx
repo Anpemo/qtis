@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { userLogin } from '../redux/actions/qtisActionCreators'
+import styles from './LoginStyles'
 
 function Login ({ navigation, actions, user }: any) {
   const [email, setEmail] = useState('')

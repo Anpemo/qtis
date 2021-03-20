@@ -4,27 +4,30 @@ import axios from 'axios'
 export function userRegister (userData: any) {
   return async function fetchInfo (dispatch: any) {
     // const route = process.env.BACKEND_REGISTER
-    const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
-    if (data === 'User does not exist') {
-      dispatch({
-        type: qtisActionTypes.USER_REGISTER
-      })
-    } else {
+    try {
+      const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
+
       dispatch({
         type: qtisActionTypes.USER_REGISTER,
-        data
+        data: data
+      })
+    } catch {
+      dispatch({
+        type: qtisActionTypes.USER_REGISTER,
+        data: 401
       })
     }
   }
 }
+
 export function userLogin (userData: any) {
   return async function fetchInfo (dispatch: any) {
     // const route = process.env.BACKEND_LOGIN
     try {
-      const response = await axios.post('http://192.168.0.15:5000/auth/login', userData)
+      const { data } = await axios.post('http://192.168.0.15:5000/auth/login', userData)
       dispatch({
         type: qtisActionTypes.USER_LOGIN,
-        data: response.data
+        data: { data }
       })
     } catch {
       dispatch({

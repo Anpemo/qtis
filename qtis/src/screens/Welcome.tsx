@@ -62,8 +62,9 @@ const styles = StyleSheet.create({
 })
 
 export default function Welcome ({ route }: any) {
+  console.log(route)
   const navigation = useNavigation()
-  const { userName } = route.params
+  const userName = route.params
   return (
     <SafeAreaView style={styles.container}>
       <Image source={images.oldLady} style={styles.backgroundPicture} />

@@ -64,12 +64,12 @@ function Register (this: any, { navigation, actions, user }: any) {
   }, [emailValidated, confirmPasswordValidated])
 
   useEffect(() => {
-    if (user.email) {
-      navigation.navigate('Welcome')
-    } else {
+    if (user?.email) {
+      navigation.navigate('Welcome', userName)
+    } else if (user === 401) {
       Alert.alert('User already exists')
     }
-  }, [user.email])
+  }, [user])
 
   return (
     <SafeAreaView style={styles.container}>
