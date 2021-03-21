@@ -69,7 +69,15 @@ function Reviews ({ reviews, actions, parameter }: any) {
 
               <View style={styles.reviewTitleContainer}>
                 <Text style={styles.reviewsTitle}>REVIEWS</Text>
-                <AntDesign name="pluscircleo" size={30} color="black" onPress={() => navigation.navigate('AddReview', { productBarCode: parameter })}/>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('AddReview', { productBarCode: parameter })}
+                testID={'navigateAddReview'}>
+                <AntDesign
+                name="pluscircleo"
+                size={30}
+                color="black"
+                />
+                </TouchableOpacity>
                </View>
               <View style={styles.reviewsFlatList}>
               {reviews && reviews.map((item: any) => {
