@@ -25,7 +25,11 @@ function Login ({ navigation, actions, user }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={'position'}>
-      <TouchableOpacity onPress={() => { navigation.goBack() }} style={styles.backContainer}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      style={styles.backContainer}
+      testID={'backButton'}
+      >
         <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
       </TouchableOpacity>
 
@@ -46,7 +50,11 @@ function Login ({ navigation, actions, user }: any) {
         />
 
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => actions.userLogin({ email, password })} >
+      <TouchableOpacity
+      style={styles.button}
+      onPress={() => actions.userLogin({ email, password })}
+      testID={'loginButton'}
+      >
           <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>
