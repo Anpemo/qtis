@@ -7,24 +7,23 @@ import * as actions from '../../redux/actions/qtisActionCreators'
 
 jest.mock('../../redux/actions/qtisActionCreators')
 
+const mockedGoBack = jest.fn()
 const mockedNavigate = jest.fn()
+
 jest.mock('@react-navigation/native', () => {
   return {
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({
+      goBack: mockedGoBack,
       navigate: mockedNavigate
     })
   }
 })
 describe('Given an ProductDetail function', () => {
   let component
-  let goBack
   let params
-  let navigate
   beforeEach(() => {
     const mockStore = configureStore()
-    goBack = jest.fn()
-    navigate = jest.fn()
     params = { productBarCode: 123123123 }
     component = (
       <Provider store={mockStore({
@@ -60,6 +59,7 @@ describe('Given an ProductDetail function', () => {
         <ProductDetail route={{ params }} />
         </Provider>
     )
+    jest.spyOn(actions, 'fetchReviews').mockReturnValue({ type: '' })
     jest.spyOn(actions, 'fetchProduct').mockReturnValue({ type: '' })
   })
   afterEach(cleanup)
@@ -69,7 +69,7 @@ describe('Given an ProductDetail function', () => {
       const { getByTestId } = render(component)
       const backButton = getByTestId('backButton')
       fireEvent.press(backButton)
-      expect(goBack).toHaveBeenCalled()
+      expect(mockedGoBack).toHaveBeenCalled()
     })
   })
 })

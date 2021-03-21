@@ -11,10 +11,11 @@ import { fetchProduct } from '../../redux/actions/qtisActionCreators'
 import { bindActionCreators } from 'redux'
 import Reviews from '../../../src/screens/Reviews/Reviews'
 import { ScrollView } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
-function ProductDetail ({ navigation, product, actions, route }: any) {
+function ProductDetail ({ product, actions, route }: any) {
   const { productBarCode } = route.params
-
+  const navigation = useNavigation()
   useEffect(() => {
     actions.fetchProduct(productBarCode)
   }, [])
