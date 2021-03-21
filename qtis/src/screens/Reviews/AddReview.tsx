@@ -29,10 +29,12 @@ function AddReview ({ navigation, route, actions, user }: any) {
       </TouchableOpacity>
       <View style={styles.inputsContainer}>
       <TextInput
-          onChangeText={(number) => setRating(number)}
+          onChangeText={(number) => setRating(number.toString())}
           placeholder={'Rate from 1 to 5'}
           style={styles.input}
           value={rating}
+          keyboardType={'number-pad'}
+
         />
         <TextInput
           onChangeText={(text) => setReviewText(text)}
