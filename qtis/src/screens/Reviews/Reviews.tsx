@@ -15,6 +15,8 @@ import { useNavigation } from '@react-navigation/native'
 function Reviews ({ reviews, actions, parameter }: any) {
   const navigation = useNavigation()
   const [rating, setRating] = useState('')
+  const [reviewsFiltered, setReviewsFiltered] = useState([])
+  const [filtered, setFiltered] = useState(false)
   let ratingNumber
 
   function ratingCalculation () {
@@ -30,8 +32,22 @@ function Reviews ({ reviews, actions, parameter }: any) {
     ratingCalculation()
   }, [reviews?.length])
 
+  function filterReviews (filter: String) {
+    console.log(filter)
+    if (filter === 'None') {
+      setFiltered(false)
+    } else {
+      const reviewsFilter = reviews.filter((review: any) => review.skinType === filter)
+      setReviewsFiltered(reviewsFilter)
+      setFiltered(true)
+    }
+  }
+
   const renderSkinTypes = ({ item }: any) => (
-    <TouchableOpacity style={styles.filterButton}>
+    <TouchableOpacity
+    style={styles.filterButton}
+    onPress={() => filterReviews(item)}
+    >
       <Text style={styles.filterText}>{item}</Text>
     </TouchableOpacity>
   )
@@ -80,8 +96,9 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 </TouchableOpacity>
                </View>
               <View style={styles.reviewsFlatList}>
-              {reviews && reviews.map((item: any) => {
-                return (
+              { filtered === true
+                ? reviewsFiltered.map((item: any) => {
+                  return (
                   <View style={styles.reviewBox} key={item._id}>
                     <View style={styles.userPictureBox}>
                       <Image
@@ -97,8 +114,28 @@ function Reviews ({ reviews, actions, parameter }: any) {
                       </Text>
                     </View>
                   </View>
-                )
-              })}
+                  )
+                })
+                : reviews.map((item: any) => {
+                  return (
+                <View style={styles.reviewBox} key={item._id}>
+                  <View style={styles.userPictureBox}>
+                    <Image
+                    source={reviews.userPicture}
+                    style={styles.userPicture}
+                    key={1}
+                    />
+                  </View>
+                  <View style={styles.reviewContainer}>
+                    <Text style={styles.userName}>{item.userName}
+                    </Text>
+                    <Text style={styles.reviewText}>{item.reviewText}
+                    </Text>
+                  </View>
+                </View>
+                  )
+                })
+            }
               </View>
               </View>
         </SafeAreaView>

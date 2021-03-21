@@ -1,3 +1,3 @@
 export default [
-  'Normal', 'Combination', 'Oily', 'Dry', 'Sensitive'
+  'None', 'Normal', 'Combination', 'Oily', 'Dry', 'Sensitive'
 ]
