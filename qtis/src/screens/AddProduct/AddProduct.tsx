@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Image, TouchableOpacity, View, Text, ImageBackground, KeyboardAvoidingView, Button, Platform
+  Image, TouchableOpacity, View, Text, ImageBackground, Alert, KeyboardAvoidingView, Button, Platform
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
@@ -27,7 +27,7 @@ function AddProduct ({ navigation, route, actions }: any) {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!')
+          Alert.alert('Sorry, we need camera roll permissions to make this work!')
         }
       }
     })()
@@ -56,7 +56,9 @@ function AddProduct ({ navigation, route, actions }: any) {
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.backgroundReview} style={styles.backgroundImage}>
         <KeyboardAvoidingView behavior={'height'}>
-      <TouchableOpacity onPress={() => { navigation.goBack() }} >
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}>
         <AntDesign name="doubleleft" size={22}/>
       </TouchableOpacity>
       <View style={styles.pictureBox}>
@@ -91,6 +93,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         }}
         style={styles.categoriesInput}
         activeOpacity={0.5}
+        testID={'openCategoryButton'}
         >
             <View>
               <Text style={styles.categoriesTitle}>{productCategory.toUpperCase() || 'CHOOSE A CATEGORY'}</Text>
@@ -101,6 +104,7 @@ function AddProduct ({ navigation, route, actions }: any) {
                   activeOpacity={0.5}
                   style={styles.categoryButton}
                   onPress={() => selectCategory(category.name)}
+                  testID={'categoryButton'}
                   >
                     <Text style={styles.categoryText}>{category.name.toUpperCase()}</Text>
                   </TouchableOpacity>
@@ -115,6 +119,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         <TouchableOpacity
         onPress={() => shareProduct()}
         style={styles.button}
+        testID={'shareButton'}
         >
             <Text style={styles.buttonText}>SHARE</Text>
         </TouchableOpacity>
@@ -122,6 +127,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         <TouchableOpacity
         onPress={() => { navigation.navigate('tabNavigator', { Screen: 'Browser' }) }}
         style={styles.button}
+        testID={'navigatorButton'}
         >
             <Text style={styles.buttonText}>GO TO BROWSER</Text>
         </TouchableOpacity>
@@ -131,11 +137,6 @@ function AddProduct ({ navigation, route, actions }: any) {
     </SafeAreaView>
   )
 }
-function mapStateToProps ({ productsReducer }: any) {
-  return {
-    product: productsReducer.product
-  }
-}
 
 function mapDispatchToProps (dispatch: any) {
   return {
@@ -144,4 +145,4 @@ function mapDispatchToProps (dispatch: any) {
     }, dispatch)
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)
+export default connect(null, mapDispatchToProps)(AddProduct)
