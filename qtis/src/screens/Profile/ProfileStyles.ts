@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   sectionContainer: {
-    flexGrow: 1,
     width: '100%',
     justifyContent: 'center',
-    marginVertical: 5
+    marginVertical: 5,
+    backgroundColor: COLORS.white
   },
   section: {
-    flexGrow: 1
+    // flexGrow: 1
   },
   sectionName: {
     fontFamily: 'MontserratBold',
@@ -113,21 +113,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.cream,
     marginBottom: 3
   },
+
   sectionContentBox: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    width: '100%',
     backgroundColor: COLORS.white,
-    borderRadius: 10,
-    ...BORDER
+    borderRadius: 10
   },
   skinTypesButton: {
+    ...BORDER,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '45%',
-    marginLeft: 15,
-    marginBottom: 3,
-    borderRadius: SIZES.buttonRadius,
-    ...BORDER
+    width: '90%',
+    alignSelf: 'center'
   },
   skinType: {
     fontSize: SIZES.p18,

@@ -26,7 +26,7 @@ describe('Given a Profile component', () => {
     cleanup()
   })
 
-  describe('When writing on inputs', () => {
+  describe('When pressing on openSkinType', () => {
     test('Then productName will change', () => {
       const { getByPlaceholderText } = render(component)
       const productNameInput = getByPlaceholderText('Product Name')
@@ -35,15 +35,4 @@ describe('Given a Profile component', () => {
       expect(productNameInput.props.value).toBe(newValue)
     })
   })
-  //   describe('When rendering the component and mocking status with empty string ', () => {
-  //     test('Then alert will be called', async () => {
-  //       render(component)
-  //       const mockImagePicker = { launchCameraAsync: { requestMediaLibraryPermisionsAsync: jest.fn() } }
-  //       const { status } = ImagePicker.launchCameraAsync({ requestMediaLibraryPermisionsAsync: jest.fn() })
-
-//       jest.spyOn(Alert, 'alert')
-//       expect(Alert.alert).toBeTruthy()
-//       expect(status).toBe('granted')
-//     })
-//   })
 })

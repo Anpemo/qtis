@@ -10,11 +10,7 @@ const userSchema = new mongoose.Schema(
     password: String,
     userPicture: String,
     city: String,
-    skinType: [String],
-    hairType: [String],
-    favourites: [{
-      productId: String
-    }]
+    skinType: String
   }
 );
 userSchema.methods.validPassword = function validPassword(pwd) {

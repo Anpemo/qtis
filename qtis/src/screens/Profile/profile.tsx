@@ -17,7 +17,8 @@ function Profile ({ user, actions }: any) {
   const [openSkinType, setOpenSkinType] = useState(false)
   const [openReviews, setOpenReviews] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
-  const [userPicture, setUserPicture] = useState(null)
+  const [userPicture, setUserPicture] = useState(user.userPicture)
+  const [skinType, setSkinType] = useState(user.skinType)
   const [userName, setUserName] = useState(user.userName)
   const [age, setAge] = useState(user.age)
   const [city, setCity] = useState(user.city)
@@ -45,15 +46,18 @@ function Profile ({ user, actions }: any) {
       setUserPicture(result.uri)
     }
   }
-
+  function selectSkinType (category : any) {
+    setSkinType(category)
+    setOpenSkinType(false)
+  }
   return (
     <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingBottom: 50 }}>
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
       <ImageBackground source={images.profileHeader} style={styles.header} >
           <View style={styles.pictureBox}>
-            {user.userPicture
-              ? <Image source={{ uri: user.userPicture }} style={styles.userPicture} />
+            { userPicture
+              ? <Image source={{ uri: userPicture }} style={styles.userPicture} />
               : <Text style={styles.userPictureText}>ADD A PICTURE</Text>}
             <View style={styles.cameraButtonContainer} >
               <Ionicons name="camera-outline" size={35} color="grey" onPress={pickImage}/>
@@ -80,15 +84,16 @@ function Profile ({ user, actions }: any) {
         activeOpacity={0.5}
         >
             <View style={styles.section}>
-              <Text style={styles.sectionName}>SKIN TYPE</Text>
+              <Text style={styles.sectionName}>SKIN TYPE: {skinType.toUpperCase()}</Text>
               <View style={styles.sectionContentBox}>
                 {openSkinType && skinTypes.map((skinType) => (
                   <TouchableOpacity
                   key={skinType}
                   activeOpacity={0.5}
                   style={styles.skinTypesButton}
+                  onPress={() => selectSkinType(skinType)}
                   >
-                    <Text style={styles.skinType}>{skinType}</Text>
+                    <Text style={styles.skinType}>{skinType.toUpperCase()}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -143,7 +148,7 @@ function Profile ({ user, actions }: any) {
                       style={styles.settingInputs}
                       />
                     <TouchableOpacity style={styles.updateButton}>
-                      <Text style={styles.updateText} onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture })}>UPDATE YOUR DATA</Text>
+                      <Text style={styles.updateText} onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture, skinType })}>UPDATE YOUR DATA</Text>
                     </TouchableOpacity>
                   </View>
                 }
