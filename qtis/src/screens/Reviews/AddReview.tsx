@@ -33,7 +33,7 @@ function AddReview ({ navigation, route, actions, user }: any) {
           placeholder={'Rate from 1 to 5'}
           style={styles.input}
           value={rating}
-          keyboardType={'number-pad'}
+          keyboardType={'decimal-pad'}
 
         />
         <TextInput

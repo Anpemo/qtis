@@ -140,7 +140,7 @@ function Profile ({ user, actions }: any) {
                     placeholder={'How old are you?'}
                     onChangeText={(event) => setAge(event.toString())}
                     style={styles.settingInputs}
-                    keyboardType={'number-pad'}
+                    keyboardType={'decimal-pad'}
                     />
 
                       <TextInput
