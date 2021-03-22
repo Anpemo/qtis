@@ -60,7 +60,7 @@ describe('Given an Reviews function', () => {
       expect(navigate).toHaveBeenCalled()
     })
   })
-  describe('when reviews hasn no length', () => {
+  describe('when reviews has no length', () => {
     test('Then it will render there are no reviews', () => {
       const mockStore = configureStore()
 

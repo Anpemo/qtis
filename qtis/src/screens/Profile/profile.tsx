@@ -14,7 +14,7 @@ import Reviews from '../../../src/screens/Reviews/Reviews'
 import { updateUser } from '../../redux/actions/qtisActionCreators'
 
 function Profile ({ user, actions }: any) {
-  const [openSkinType, setOpenSkinType] = useState(false)
+  const [openSkinType, setOpenSkinType] = React.useState(false)
   const [openReviews, setOpenReviews] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
   const [userPicture, setUserPicture] = useState(user.userPicture)
@@ -82,15 +82,17 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openSkinType'}
         >
             <View style={styles.section}>
-              <Text style={styles.sectionName}>SKIN TYPE: {skinType.toUpperCase()}</Text>
+              <Text style={styles.sectionName}>SKIN TYPE: {skinType?.toUpperCase()}</Text>
               <View style={styles.sectionContentBox}>
                 {openSkinType && skinTypes.map((skinType) => (
                   <TouchableOpacity
                   key={skinType}
                   activeOpacity={0.5}
                   style={styles.skinTypesButton}
+                  testID={'skinTypesMap'}
                   onPress={() => selectSkinType(skinType)}
                   >
                     <Text style={styles.skinType}>{skinType.toUpperCase()}</Text>
@@ -107,6 +109,7 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openReviews'}
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>YOUR REVIEWS</Text>
@@ -124,6 +127,8 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openSettings'}
+
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>ACCOUNT SETTINGS</Text>
@@ -148,8 +153,12 @@ function Profile ({ user, actions }: any) {
                       onChangeText={(event) => setCity(event)}
                       style={styles.settingInputs}
                       />
-                    <TouchableOpacity style={styles.updateButton}>
-                      <Text style={styles.updateText} onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture, skinType })}>UPDATE YOUR DATA</Text>
+                    <TouchableOpacity
+                    style={styles.updateButton}
+                    testID={'updateUserButton'}
+                    onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture, skinType })}>
+
+                      <Text style={styles.updateText} >UPDATE YOUR DATA</Text>
                     </TouchableOpacity>
                   </View>
                 }

@@ -9,7 +9,7 @@ export function userRegister (userData: any) {
 
       dispatch({
         type: qtisActionTypes.USER_REGISTER,
-        data: data
+        data
       })
     } catch {
       dispatch({
@@ -51,12 +51,12 @@ export function fetchProducts (category: Object) {
 export function fetchProduct (barCodeData: any) {
   return async function fetchInfo (dispatch: any) {
     const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
-    if (data[0]?.productBarCode) {
+    try {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
         data: data[0]
       })
-    } else {
+    } catch {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
         data: { data: 'Product does not exist', date: headers.date }
