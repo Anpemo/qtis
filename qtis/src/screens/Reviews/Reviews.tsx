@@ -17,16 +17,15 @@ function Reviews ({ reviews, actions, parameter }: any) {
   const [rating, setRating] = useState('')
   const [reviewsFiltered, setReviewsFiltered] = useState([])
   const [filtered, setFiltered] = useState(false)
-  let ratingNumber
   let actualView
   +parameter ? (actualView = 'product') : (actualView = 'user')
-  console.log('review', reviews)
+
   function ratingCalculation () {
     const totalScore = reviews?.reduce((accumulator: Number, currentValue: any) => {
       return accumulator + currentValue.rating
     }, 0)
     const amountReviews = reviews?.length
-    ratingNumber = (totalScore / amountReviews).toFixed(2)
+    const ratingNumber = (totalScore / amountReviews).toFixed(2)
     setRating((ratingNumber).toString())
   }
 
@@ -66,7 +65,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 readonly={true}
                 fractions={4}
                 imageSize={30}
-                startingValue={ratingNumber}
+                startingValue={rating}
                 ratingBackgroundColor={'black'}
                 />
           </View>
