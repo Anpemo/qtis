@@ -11,14 +11,15 @@ import { createReview } from '../../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 
-function AddReview ({ navigation, route, actions, user }: any) {
+function AddReview ({ navigation, route, actions, user, product }: any) {
   const { productBarCode } = route.params
+  const { productName } = product
   const { userName, userPicture, _id } = user
   const { skinType } = user
   const [rating, setRating] = useState('')
   const [reviewText, setReviewText] = useState('')
   function shareReview () {
-    actions.createReview({ rating: rating.replace(/,/g, '.'), reviewText, productBarCode, userId: _id, userName, userPicture, skinType })
+    actions.createReview({ rating: rating.replace(/,/g, '.'), reviewText, productName, productBarCode, userId: _id, userName, userPicture, skinType })
     navigation.navigate('ProductDetail', productBarCode)
   }
   return (

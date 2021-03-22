@@ -9,7 +9,7 @@ import { fetchReviews } from '../../redux/actions/qtisActionCreators'
 import { bindActionCreators } from 'redux'
 import styles from './ReviewsStyle'
 import skinTypes from '../../../constants/skinTypes'
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign, EvilIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
 function Reviews ({ reviews, actions, parameter }: any) {
@@ -18,13 +18,16 @@ function Reviews ({ reviews, actions, parameter }: any) {
   const [reviewsFiltered, setReviewsFiltered] = useState([])
   const [filtered, setFiltered] = useState(false)
   let ratingNumber
-
+  let actualView
+  +parameter ? (actualView = 'product') : (actualView = 'user')
+  console.log('review', reviews)
   function ratingCalculation () {
     const totalScore = reviews?.reduce((accumulator: Number, currentValue: any) => {
       return accumulator + currentValue.rating
     }, 0)
     const amountReviews = reviews?.length
-    setRating(((totalScore / amountReviews).toFixed(2)).toString())
+    ratingNumber = (totalScore / amountReviews).toFixed(2)
+    setRating((ratingNumber).toString())
   }
 
   useEffect(() => {
@@ -53,8 +56,9 @@ function Reviews ({ reviews, actions, parameter }: any) {
   )
   return (
         <SafeAreaView style={styles.container}>
-          {reviews?.length > 0
-            ? <View style={styles.valorationContainer}>
+          {actualView === 'product' && (
+            reviews?.length > 0
+              ? <View style={styles.valorationContainer}>
                 <Text style={styles.punctuation}>{rating}</Text>
                 <Rating
                 type='star'
@@ -66,11 +70,13 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 ratingBackgroundColor={'black'}
                 />
           </View>
-            : <View style={styles.valorationContainer}>
+              : <View style={styles.valorationContainer}>
                 <Text style={styles.punctuation}>There are no reviews</Text>
             </View>
+          )
            }
 
+          { actualView === 'product' &&
           <View style={styles.filterContainer}>
             <Text style={styles.filterTitle}>Filter by skin type:</Text>
             <FlatList
@@ -80,11 +86,12 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 keyExtractor = {(item: any) => item}
                 horizontal={true}
             />
-            </View>
+            </View>}
             <View style={styles.reviewsContainer}>
 
               <View style={styles.reviewTitleContainer}>
                 <Text style={styles.reviewsTitle}>REVIEWS</Text>
+                { actualView === 'product' &&
                 <TouchableOpacity
                 onPress={() => navigation.navigate('AddReview', { productBarCode: parameter })}
                 testID={'navigateAddReview'}>
@@ -94,6 +101,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 color="black"
                 />
                 </TouchableOpacity>
+                  }
                </View>
               <View style={styles.reviewsFlatList}>
               { filtered === true
@@ -102,13 +110,19 @@ function Reviews ({ reviews, actions, parameter }: any) {
                   <View style={styles.reviewBox} key={item._id}>
                     <View style={styles.userPictureBox}>
                       <Image
-                      source={reviews.userPicture}
+                      source={{ uri: item.userPicture }}
                       style={styles.userPicture}
                       key={1}
                       />
                     </View>
                     <View style={styles.reviewContainer}>
-                      <Text style={styles.userName}>{item.userName}
+                    { actualView === 'product'
+                      ? <Text style={styles.userName}>{item.userName}
+                      </Text>
+                      : <Text style={styles.userName}>{item.productName}
+                      </Text>
+                  }
+                      <Text style={styles.userName}>{item.rating}<EvilIcons name="star" size={20} color="grey" />
                       </Text>
                       <Text style={styles.reviewText}>{item.reviewText}
                       </Text>
@@ -116,18 +130,24 @@ function Reviews ({ reviews, actions, parameter }: any) {
                   </View>
                   )
                 })
-                : reviews.map((item: any) => {
+                : reviews?.map((item: any) => {
                   return (
                 <View style={styles.reviewBox} key={item._id}>
                   <View style={styles.userPictureBox}>
                     <Image
-                    source={reviews.userPicture}
+                    source={{ uri: item.userPicture }}
                     style={styles.userPicture}
                     key={1}
                     />
                   </View>
                   <View style={styles.reviewContainer}>
-                    <Text style={styles.userName}>{item.userName}
+                  { actualView === 'product'
+                    ? <Text style={styles.userName}>{item.userName}
+                      </Text>
+                    : <Text style={styles.userName}>{item.productName}
+                      </Text>
+                  }
+                    <Text style={styles.userName}>{item.rating}<EvilIcons name="star" size={20} color="grey" />
                     </Text>
                     <Text style={styles.reviewText}>{item.reviewText}
                     </Text>
@@ -141,7 +161,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
         </SafeAreaView>
   )
 }
-function mapStateToProps ({ reviewsReducer }: any) {
+function mapStateToProps ({ reviewsReducer, userReducer }: any) {
   return {
     reviews: reviewsReducer.reviews
   }
