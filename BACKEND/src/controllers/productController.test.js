@@ -17,21 +17,20 @@ describe('Given a productControllers function', () => {
   });
 
   describe('When calling loadProduct function', () => {
-    test('Then it will call res.json with an _id', async () => {
+    test('Then it will call res.json with a number', async () => {
       req = {
-        body: {
-          _id: 12
+        params: {
+          parameter: 12
         }
       };
       Product.find.mockReturnValueOnce({ exec: jest.fn() });
       await loadProduct(req, res);
       expect(res.json).toHaveBeenCalled();
     });
-
-    test('Then it will call res.json without an _id', async () => {
+    test('Then it will call res.json with a string', async () => {
       req = {
-        body: {
-          _id: null
+        params: {
+          parameter: 'aa'
         }
       };
       Product.find.mockReturnValueOnce({ exec: jest.fn() });
@@ -41,12 +40,12 @@ describe('Given a productControllers function', () => {
 
     test('Then it will call res.send when does not find an equal', async () => {
       req = {
-        body: {
-          _id: null
+        params: {
+          parameter: null
         }
       };
       Product.find.mockImplementationOnce(() => {
-        throw new Error('Error fetching user');
+        throw new Error('Error fetching product');
       });
       await loadProduct(req, res);
       expect(res.send).toHaveBeenCalled();

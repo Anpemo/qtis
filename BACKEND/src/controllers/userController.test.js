@@ -1,9 +1,9 @@
 const {
   loadUser, createUser, updateUser, deleteUser
 } = require('./userControllers');
-const User = require('../models/userModels');
+const User = require('../models/userModel');
 
-jest.mock('../models/userModels');
+jest.mock('../models/userModel');
 
 describe('Given a userControllers function', () => {
   let req;

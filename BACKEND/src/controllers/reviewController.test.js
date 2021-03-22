@@ -19,8 +19,8 @@ describe('Given a reviewControllers function', () => {
   describe('When calling loadReview function', () => {
     test('Then it will call res.json with an _id', async () => {
       req = {
-        body: {
-          userId: 12
+        params: {
+          parameter: 12
         }
       };
       Review.find.mockReturnValueOnce({ exec: jest.fn() });
@@ -29,8 +29,8 @@ describe('Given a reviewControllers function', () => {
     });
     test('Then it will call res.json without an _id', async () => {
       req = {
-        body: {
-          productId: 12
+        params: {
+          parameter: 'aa'
         }
       };
       Review.find.mockReturnValueOnce({ exec: jest.fn() });
@@ -40,8 +40,8 @@ describe('Given a reviewControllers function', () => {
 
     test('Then it will call res.send when does not find an equal', async () => {
       req = {
-        body: {
-          _id: null
+        params: {
+          parameter: null
         }
       };
       Review.find.mockImplementationOnce(() => {
