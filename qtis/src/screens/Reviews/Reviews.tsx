@@ -35,7 +35,6 @@ function Reviews ({ reviews, actions, parameter }: any) {
   }, [reviews?.length])
 
   function filterReviews (filter: String) {
-    console.log(filter)
     if (filter === 'None') {
       setFiltered(false)
     } else {
@@ -49,6 +48,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
     <TouchableOpacity
     style={styles.filterButton}
     onPress={() => filterReviews(item)}
+    testID={'skinTypeButton'}
     >
       <Text style={styles.filterText}>{item}</Text>
     </TouchableOpacity>
@@ -65,11 +65,11 @@ function Reviews ({ reviews, actions, parameter }: any) {
                 readonly={true}
                 fractions={4}
                 imageSize={30}
-                startingValue={rating}
+                startingValue={+rating}
                 ratingBackgroundColor={'black'}
                 />
           </View>
-              : <View style={styles.valorationContainer}>
+              : <View style={styles.valorationContainer} testID={'valorationContainer'}>
                 <Text style={styles.punctuation}>There are no reviews</Text>
             </View>
           )
@@ -143,7 +143,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
                   { actualView === 'product'
                     ? <Text style={styles.userName}>{item.userName}
                       </Text>
-                    : <Text style={styles.userName}>{item.productName}
+                    : <Text style={styles.userName} testID={'profileProductName'}>{item.productName}
                       </Text>
                   }
                     <Text style={styles.userName}>{item.rating}<EvilIcons name="star" size={20} color="grey" />

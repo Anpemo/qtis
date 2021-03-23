@@ -15,15 +15,13 @@ jest.mock('@react-navigation/native', () => {
     })
   }
 })
-describe('Given an Reviews function', () => {
-  let component
-  let params
-  let navigate
+
+describe('Given an Reviews function rendered from productDetail', () => {
+  let componentFromProduct
+
   beforeEach(() => {
     const mockStore = configureStore()
-    navigate = jest.fn()
-    params = { productBarCode: 123123123 }
-    component = (
+    componentFromProduct = (
       <Provider store={mockStore({
         reviewsReducer: {
           reviews: [
@@ -46,37 +44,96 @@ describe('Given an Reviews function', () => {
 
         }
       })}>
-        <Reviews route={{ params }} />
+        <Reviews parameter = {123123} />
         </Provider>
     )
     jest.spyOn(actions, 'fetchReviews').mockReturnValue({ type: '' })
   })
+
   afterEach(cleanup)
-  describe('when pressing to plus icon', () => {
+
+  describe('When rendering it from product && pressing to plus icon', () => {
     test('Then it will navigate', () => {
-      const { getByTestId } = render(component)
-      const button = getByTestId('navigateAddReview')
-      fireEvent.press(button)
-      expect(navigate).toHaveBeenCalled()
+      const { getByTestId } = render(componentFromProduct)
+      const navigateButton = getByTestId('navigateAddReview')
+      fireEvent.press(navigateButton)
+      expect(mockedNavigate).toHaveBeenCalled()
     })
   })
-  describe('when reviews has no length', () => {
+  describe('When rendering it from product && skinTypeButton', () => {
+    test('Then it will setFiltered to false', () => {
+      const renderedComponent = render(componentFromProduct)
+      const skinTypeButton = renderedComponent.getAllByTestId('skinTypeButton')[0]
+      fireEvent.press(skinTypeButton)
+      expect(renderedComponent).toMatchSnapshot()
+    })
+    test('Then it will setFiltered to true', () => {
+      const renderedComponent = render(componentFromProduct)
+      const skinTypeButton = renderedComponent.getAllByTestId('skinTypeButton')[1]
+      fireEvent.press(skinTypeButton)
+      expect(renderedComponent).toMatchSnapshot()
+    })
+  })
+  describe('When rendering it from product && reviews has no length', () => {
     test('Then it will render there are no reviews', () => {
       const mockStore = configureStore()
 
-      component = (
-            <Provider store={mockStore({
-              reviewsReducer: {
-                reviews: []
-
-              }
-            })}>
-              <Reviews route={{ params }} />
-              </Provider>
+      componentFromProduct = (
+        <Provider store={mockStore({
+          reviewsReducer: {
+            reviews: []
+          }
+        })}>
+          <Reviews parameter = {123123} />
+          </Provider>
       )
-      const { getByText } = render(component)
-      const text = getByText('There are no reviews')
-      expect(text).toBeTruthy()
+
+      const { getByTestId } = render(componentFromProduct)
+      const container = getByTestId('valorationContainer')
+      expect(container).toBeTruthy()
+    })
+  })
+})
+describe('Given an Reviews function rendered from profile', () => {
+  let componentFromProfile
+  beforeEach(() => {
+    const mockStore = configureStore()
+
+    componentFromProfile = (
+    <Provider store={mockStore({
+      reviewsReducer: {
+        reviews: [
+          {
+            brandName: 'Ives',
+            userPicture: 'Crema facial',
+            rating: 19,
+            productCategory: 'creams',
+            _id: 1
+          },
+          {
+            brandName: 'Ives',
+            userPicture: 'Crema facial',
+            rating: 19,
+            productCategory: 'creams',
+            _id: 2
+
+          }
+        ]
+
+      }
+    })}>
+      <Reviews parameter = {'aaa'} />
+      </Provider>
+    )
+    jest.spyOn(actions, 'fetchReviews').mockReturnValue({ type: '' })
+  })
+  afterEach(cleanup)
+
+  describe('When rendering it', () => {
+    test('Then profileProductName will be true', () => {
+      const { getAllByTestId } = render(componentFromProfile)
+      const productName = getAllByTestId('profileProductName')[0]
+      expect(productName).toBeTruthy()
     })
   })
 })

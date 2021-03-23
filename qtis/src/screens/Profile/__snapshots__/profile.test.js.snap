@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Profile component When opening reviews Then it will match the snapshot 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginVertical": 10,
+          "paddingTop": 15,
+          "width": "95%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "MontserratBold",
+            "fontSize": 20,
+          }
+        }
+      >
+        REVIEWS
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginBottom": 50,
+          "marginTop": 10,
+          "width": "100%",
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaView>
+`;

@@ -18,6 +18,7 @@ function AddReview ({ navigation, route, actions, user, product }: any) {
   const { skinType } = user
   const [rating, setRating] = useState('')
   const [reviewText, setReviewText] = useState('')
+
   function shareReview () {
     actions.createReview({ rating: rating.replace(/,/g, '.'), reviewText, productName, productBarCode, userId: _id, userName, userPicture, skinType })
     navigation.navigate('ProductDetail', productBarCode)
@@ -28,7 +29,8 @@ function AddReview ({ navigation, route, actions, user, product }: any) {
       <View style={styles.secondContainer}>
       <TouchableOpacity
       onPress={() => { navigation.goBack() }}
-      style={styles.backIcon} >
+      style={styles.backIcon}
+      testID={'backButton'}>
         <AntDesign name="doubleleft" size={22}/>
       </TouchableOpacity>
         <KeyboardAvoidingView behavior={'padding'}>
@@ -39,7 +41,6 @@ function AddReview ({ navigation, route, actions, user, product }: any) {
           style={styles.rateInput}
           value={rating}
           keyboardType={'decimal-pad'}
-
         />
         <TextInput
           onChangeText={(text) => setReviewText(text)}
@@ -53,6 +54,7 @@ function AddReview ({ navigation, route, actions, user, product }: any) {
         <TouchableOpacity
         onPress={() => shareReview()}
         style={styles.button}
+        testID={'shareButton'}
         >
             <Text style={styles.buttonText}>SHARE</Text>
         </TouchableOpacity>

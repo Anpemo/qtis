@@ -1,5 +1,6 @@
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import Profile from './profile'
+import renderer from 'react-test-renderer'
 import React, { useState } from 'react'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
@@ -30,7 +31,7 @@ describe('Given a Profile component', () => {
 
     component = (
           <Provider store={mockStore({
-            userReducer: { user: {} },
+            userReducer: { user: { age: 14 }, userPicture: 'asd' },
             reviewsReducer: {
               reviews: []
             }
@@ -44,7 +45,7 @@ describe('Given a Profile component', () => {
   })
 
   describe('When opening reviews', () => {
-    test('Then it will render Reviews', () => {
+    test('Then it will match the snapshot', () => {
       jest.spyOn(actions, 'fetchReviews').mockReturnValue({ type: '' })
 
       const { getByTestId } = render(component)
@@ -61,44 +62,13 @@ describe('Given a Profile component', () => {
         </Provider>
       )
 
-      const { getByText } = render(reviewComponent)
-      const text = getByText('There are no reviews')
-      expect(text).toBeTruthy()
+      const componentRendered = render(reviewComponent)
+      expect(componentRendered).toMatchSnapshot()
     })
   })
 
-  describe('When oppening account settings and writing on inputs', () => {
-    test('Then userName will change', () => {
-      const { getByPlaceholderText, getByTestId } = render(component)
-      const button = getByTestId('openSettings')
-      fireEvent.press(button)
-      const userNameInput = getByPlaceholderText('What\'s your name?')
-      const newValue = 'newValue'
-      fireEvent.changeText(userNameInput, newValue)
-      console.log(userNameInput.props)
-      expect(userNameInput.props.value).toBe(newValue)
-    })
-    test('Then age will change', () => {
-      const { getByPlaceholderText, getByTestId } = render(component)
-      const button = getByTestId('openSettings')
-      fireEvent.press(button)
-      const ageInput = getByPlaceholderText('How old are you?')
-      const newValue = 'newValue'
-      fireEvent.changeText(ageInput, newValue)
-      expect(ageInput.props.value).toBe(newValue)
-    })
-    test('Then city will change', () => {
-      const { getByPlaceholderText, getByTestId } = render(component)
-      const button = getByTestId('openSettings')
-      fireEvent.press(button)
-      const cityInput = getByPlaceholderText('Where are you from?')
-      const newValue = 'newValue'
-      fireEvent.changeText(cityInput, newValue)
-      expect(cityInput.props.value).toBe(newValue)
-    })
-  })
-  describe('When pressing on actions.updateuser', () => {
-    test('Then it will be called with city', () => {
+  describe('When oppening account settings, writing on inputs and pressing action.updateUser', () => {
+    test('Then action.updateUser will be called with { city, age, userName, _id, userPicture, skinType } ', () => {
       const city = 'Barcelona'
       const age = 26
       const userName = 'Angela'
@@ -106,12 +76,25 @@ describe('Given a Profile component', () => {
       const userPicture = 'asdasdas'
       const skinType = 'combination'
       jest.spyOn(actions, 'updateUser').mockReturnValue({ type: '' })
+      const { getByPlaceholderText, getByTestId } = render(component)
 
-      const { getByTestId } = render(component)
-      const button = getByTestId('openSettings')
-      fireEvent.press(button)
+      const openSettingsButton = getByTestId('openSettings')
+      fireEvent.press(openSettingsButton)
+      // write on userName input:
+      const userNameInput = getByPlaceholderText('What\'s your name?')
+      const newUserName = 'newValue'
+      fireEvent.changeText(userNameInput, newUserName)
+      // write on age input:
+      const ageInput = getByPlaceholderText('How old are you?')
+      const newAge = 'newAge'
+      fireEvent.changeText(ageInput, newAge)
+      // write on city input:
+      const cityInput = getByPlaceholderText('Where are you from?')
+      const newCity = 'newCity'
+      fireEvent.changeText(cityInput, newCity)
+      // find function and press it
       fireEvent.press(getByTestId('updateUserButton'))
-      expect(actions.userRegister).toHaveBeenCalledWith({ city, age, userName, _id, userPicture, skinType })
+      expect(actions.updateUser).toHaveBeenCalled()
     })
   })
   describe('When oppening skin type and pressing on a skintype', () => {
