@@ -2,6 +2,7 @@ import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import Register from './register'
 import React from 'react'
 import { Provider } from 'react-redux'
+import { Alert } from 'react-native'
 import configureStore from 'redux-mock-store'
 import * as actions from '../redux/actions/qtisActionCreators'
 jest.mock('../redux/actions/qtisActionCreators')
@@ -64,7 +65,7 @@ describe('Given a register component', () => {
       expect(goBack).toHaveBeenCalled()
     })
   })
-  describe('When pressing the register onPress', () => {
+  describe('When pressing the register onPress with all inputs', () => {
     test('Then it userRegister will be called', () => {
       jest.spyOn(actions, 'userRegister').mockReturnValue({ type: '' })
 
@@ -80,6 +81,30 @@ describe('Given a register component', () => {
       const button = getByTestId('registerButton')
       fireEvent.press(button)
       expect(actions.userRegister).toHaveBeenCalledWith({ email, password, userName })
+    })
+  })
+  describe('When mocking the store', () => {
+    test('Then it will navigate, if the store has a use with an email', () => {
+      const navigate = jest.fn()
+      const mockStore = configureStore()
+      component = (
+        <Provider store={mockStore({ userReducer: { user: { email: 'angela@gmail.com' } } })}><Register navigation={{ navigate }} /></Provider>
+      )
+      const { getByTestId } = render(component)
+      const button = getByTestId('registerButton')
+      fireEvent.press(button)
+      expect(navigate).toHaveBeenCalled()
+    })
+    test('Then it will Alarm, if the store has a 401', () => {
+      const mockStore = configureStore()
+      component = (
+        <Provider store={mockStore({ userReducer: { user: 401 } })}><Register /></Provider>
+      )
+      const { getByTestId } = render(component)
+      const button = getByTestId('registerButton')
+      fireEvent.press(button)
+      jest.spyOn(Alert, 'alert')
+      expect(Alert.alert).toBeTruthy()
     })
   })
 })

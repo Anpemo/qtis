@@ -43,8 +43,8 @@ describe('Given an CategoryBrowser function', () => {
       expect(goBack).toHaveBeenCalled()
     })
   })
-  describe('pressing on going back button', () => {
-    test('Then it will navigate', () => {
+  describe('when rendering it with an array', () => {
+    test('Then create a productLink', () => {
       const { getByTestId } = render(component)
       const productLink = getByTestId('productLink')
       fireEvent.press(productLink)

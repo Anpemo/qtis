@@ -44,6 +44,7 @@ function TabBar ({ state, navigation }: any) {
                     onPress={() => handlePress(route.name, index)}
                     color={renderColor(route.name)}
                     key={route.key}
+                    testID={'tabID'}
                 />)
             }
         </View>

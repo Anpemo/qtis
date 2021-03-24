@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Scanner component When rendering it Then scannerView will match the snapshot 1`] = `
+<Text
+  testID="requesting"
+>
+  Requesting for camera permission
+</Text>
+`;

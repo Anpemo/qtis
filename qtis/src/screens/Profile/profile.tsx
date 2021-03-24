@@ -1,127 +1,78 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Image, StyleSheet, View, Text, ImageBackground, TouchableOpacity
+  Image, View, Text, ImageBackground, KeyboardAvoidingView, TouchableOpacity, ScrollView, Platform, TextInput
 } from 'react-native'
+import { images } from '../../../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS, SIZES, SHADOW, images, BORDER } from '../../../constants'
 import skinTypes from '../../../constants/skinTypes'
+import styles from './styles'
+import * as ImagePicker from 'expo-image-picker'
+import { Ionicons } from '@expo/vector-icons'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import Reviews from '../../../src/screens/Reviews/Reviews'
+import { updateUser } from '../../redux/actions/qtisActionCreators'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: COLORS.white
-  },
-  header: {
-    flex: 0.4,
-    resizeMode: 'cover',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: '100%'
-  },
-  pictureBox: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    borderRadius: 100,
-    marginBottom: -50
-  },
-  productPicture: {
-    height: 125,
-    width: 125,
-    resizeMode: 'cover',
-    borderRadius: 100,
-    backgroundColor: COLORS.white
-  },
-  body: {
-    flex: 1,
-    width: '95%',
-    alignItems: 'center',
-    marginTop: 50
-  },
-  productInformation: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    width: '95%',
-    marginTop: 10,
-    borderRadius: SIZES.squareRadius,
-    ...SHADOW
-  },
-  userName: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    alignSelf: 'center',
-    fontFamily: 'MontserratBold'
-  },
-  userData: {
-    fontSize: SIZES.p20,
-    color: COLORS.black,
-    alignSelf: 'center',
-    fontFamily: 'Montserrat',
-    marginTop: 5
-  },
-  accordionsBox: {
-    width: '100%'
-  },
-  sectionContainer: {
-    flexGrow: 1,
-    width: '95%',
-    justifyContent: 'center',
-    margin: 5
-  },
-  section: {
-    flexGrow: 1
-  },
-  sectionName: {
-    fontFamily: 'MontserratBold',
-    fontSize: SIZES.p18,
-    lineHeight: 40,
-    paddingLeft: 10,
-    backgroundColor: COLORS.cream,
-    marginBottom: 3
-  },
-  sectionContentBox: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    backgroundColor: COLORS.white,
-    borderRadius: 10,
-    ...BORDER
-  },
-  skinTypesButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '45%',
-    marginLeft: 15,
-    marginBottom: 3,
-    borderRadius: SIZES.buttonRadius,
-    ...BORDER
-  },
-  skinType: {
-    fontSize: SIZES.p18,
-    fontFamily: 'Montserrat'
-  }
-})
-
-export default function Profile () {
+function Profile ({ user, actions }: any) {
   const [openSkinType, setOpenSkinType] = useState(false)
   const [openReviews, setOpenReviews] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
+  const [userPicture, setUserPicture] = useState(user.userPicture)
+  const [skinType, setSkinType] = useState(user.skinType)
+  const [userName, setUserName] = useState(user.userName)
+  const [age, setAge] = useState(user.age)
+  const [city, setCity] = useState(user.city)
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!')
+        }
+      }
+    })()
+  }, [])
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    })
+
+    if (!result.cancelled) {
+      setUserPicture(result.uri)
+    }
+  }
+  function selectSkinType (category : any) {
+    setSkinType(category)
+    setOpenSkinType(false)
+  }
   return (
+    <KeyboardAvoidingView behavior='padding' style={{ flex: 1, paddingBottom: 50 }}>
     <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scroll}>
       <ImageBackground source={images.profileHeader} style={styles.header} >
-         <View style={styles.pictureBox}>
-            <Image
-            source={images.coverGirl}
-            style={styles.productPicture} key={1}
-            />
-         </View>
+          <View style={styles.pictureBox}>
+            { userPicture
+              ? <Image source={{ uri: userPicture }} style={styles.userPicture} />
+              : <Text style={styles.userPictureText}>ADD A PICTURE</Text>}
+            <TouchableOpacity style={styles.cameraButtonContainer} onPress={pickImage} testID={'imagePicker'}>
+              <Ionicons name="camera-outline" size={35} color="grey" />
+            </TouchableOpacity>
+          </View>
       </ImageBackground>
       <View style={styles.body}>
-        <View style={styles.productInformation}>
-        <Text style={styles.userName}>Angela Pedrero
+        <View style={styles.userInformation}>
+          <Text style={styles.userName}>{user.userName}
           </Text>
-          <Text style={styles.userData}>26 years old
-          </Text>
-          <Text style={styles.userData}>Barcelona
+          {user.age &&
+            <Text style={styles.userData}>{`${user.age} years old`}
+            </Text>
+          }
+          <Text style={styles.userData}>{user.city}
           </Text>
         </View>
       <View style={styles.accordionsBox}>
@@ -131,17 +82,20 @@ export default function Profile () {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openSkinType'}
         >
             <View style={styles.section}>
-              <Text style={styles.sectionName}>SKIN TYPE</Text>
+              <Text style={styles.sectionName}>SKIN TYPE: {skinType?.toUpperCase()}</Text>
               <View style={styles.sectionContentBox}>
                 {openSkinType && skinTypes.map((skinType) => (
                   <TouchableOpacity
                   key={skinType}
                   activeOpacity={0.5}
                   style={styles.skinTypesButton}
+                  testID={'skinTypesMap'}
+                  onPress={() => selectSkinType(skinType)}
                   >
-                    <Text style={styles.skinType}>{skinType}</Text>
+                    <Text style={styles.skinType}>{skinType.toUpperCase()}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -155,18 +109,13 @@ export default function Profile () {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openReviews'}
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>YOUR REVIEWS</Text>
               <View style={styles.sectionContentBox}>
-                {openReviews && skinTypes.map((skinType) => (
-                  <TouchableOpacity
-                  key={skinType}
-                  activeOpacity={0.8}
-                  >
-                    <Text>{skinType}</Text>
-                  </TouchableOpacity>
-                ))}
+                {openReviews &&
+                  <Reviews parameter={user._id}/> }
               </View>
             </View>
 
@@ -178,25 +127,63 @@ export default function Profile () {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
+        testID={'openSettings'}
+
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>ACCOUNT SETTINGS</Text>
               <View >
-                {openSettings && skinTypes.map((skinType) => (
-                  <TouchableOpacity
-                  key={skinType}
-                  activeOpacity={0.8}
+                {openSettings &&
+                  <View>
 
-                  >
-                    <Text>{skinType}</Text>
-                  </TouchableOpacity>
-                ))}
+                    <TextInput
+                      onChangeText={(event) => setUserName(event)}
+                      placeholder={'What\'s your name?'}
+                      style={styles.settingInputs}
+                      />
+                    <TextInput
+                    placeholder={'How old are you?'}
+                    onChangeText={(event) => setAge(event.toString())}
+                    style={styles.settingInputs}
+                    keyboardType={'decimal-pad'}
+                    />
+
+                      <TextInput
+                      placeholder={'Where are you from?'}
+                      onChangeText={(event) => setCity(event)}
+                      style={styles.settingInputs}
+                      />
+                    <TouchableOpacity
+                    style={styles.updateButton}
+                    testID={'updateUserButton'}
+                    onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture, skinType })}>
+
+                      <Text style={styles.updateText} >UPDATE YOUR DATA</Text>
+                    </TouchableOpacity>
+                  </View>
+                }
               </View>
             </View>
 
         </TouchableOpacity>
       </View>
       </View>
+    </ScrollView>
     </SafeAreaView>
+  </KeyboardAvoidingView>
   )
 }
+function mapStateToProps ({ userReducer }: any) {
+  return {
+    user: userReducer.user
+  }
+}
+
+function mapDispatchToProps (dispatch: any) {
+  return {
+    actions: bindActionCreators({
+      updateUser
+    }, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

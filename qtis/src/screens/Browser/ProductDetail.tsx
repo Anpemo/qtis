@@ -11,10 +11,11 @@ import { fetchProduct } from '../../redux/actions/qtisActionCreators'
 import { bindActionCreators } from 'redux'
 import Reviews from '../../../src/screens/Reviews/Reviews'
 import { ScrollView } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
-function ProductDetail ({ navigation, product, actions, route }: any) {
+function ProductDetail ({ product, actions, route }: any) {
   const { productBarCode } = route.params
-
+  const navigation = useNavigation()
   useEffect(() => {
     actions.fetchProduct(productBarCode)
   }, [])
@@ -22,7 +23,9 @@ function ProductDetail ({ navigation, product, actions, route }: any) {
     <ScrollView bounces={false}>
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.detailBackground} style={styles.header} >
-      <TouchableOpacity onPress={() => { navigation.goBack() }}>
+      <TouchableOpacity
+      onPress={() => { navigation.goBack() }}
+      testID={'backButton'}>
         <AntDesign name="doubleleft" style={styles.backIcon} size={22}/>
       </TouchableOpacity>
          <View style={styles.pictureBox}>

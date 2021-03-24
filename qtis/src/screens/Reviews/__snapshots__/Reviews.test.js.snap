@@ -1,0 +1,1337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given an Reviews function rendered from productDetail When rendering it from product && skinTypeButton Then it will setFiltered to false 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 3,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#141414",
+          "fontFamily": "Montserrat",
+          "fontSize": 20,
+          "lineHeight": 20,
+          "marginRight": 3,
+        }
+      }
+    >
+      19.00
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "justifyContent": "center",
+        "marginVertical": 10,
+        "paddingLeft": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#141414",
+          "fontFamily": "Montserrat",
+          "fontSize": 18,
+        }
+      }
+    >
+      Filter by skin type:
+    </Text>
+    <RCTScrollView
+      data={
+        Array [
+          "None",
+          "Normal",
+          "Combination",
+          "Oily",
+          "Dry",
+          "Sensitive",
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={true}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "flexDirection": "row",
+          "width": "100%",
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              None
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Normal
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Combination
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Oily
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Dry
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Sensitive
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginVertical": 10,
+          "paddingTop": 15,
+          "width": "95%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "MontserratBold",
+            "fontSize": 20,
+          }
+        }
+      >
+        REVIEWS
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="navigateAddReview"
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "black",
+                "fontSize": 30,
+              },
+              undefined,
+              Object {
+                "fontFamily": "anticon",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginBottom": 50,
+          "marginTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginBottom": 10,
+            "width": "95%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "flex-start",
+              "justifyContent": "center",
+              "marginRight": 10,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "Crema facial",
+              }
+            }
+            style={
+              Object {
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 100,
+                "height": 70,
+                "resizeMode": "cover",
+                "width": 70,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderColor": "#D4A373",
+              "borderRadius": 8,
+              "borderWidth": 1,
+              "flex": 1,
+              "justifyContent": "flex-start",
+              "padding": 10,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          >
+            19
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "grey",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "evilicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+          </Text>
+          <Text
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "color": "#D4A373",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginBottom": 10,
+            "width": "95%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "flex-start",
+              "justifyContent": "center",
+              "marginRight": 10,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "Crema facial",
+              }
+            }
+            style={
+              Object {
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 100,
+                "height": 70,
+                "resizeMode": "cover",
+                "width": 70,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderColor": "#D4A373",
+              "borderRadius": 8,
+              "borderWidth": 1,
+              "flex": 1,
+              "justifyContent": "flex-start",
+              "padding": 10,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          >
+            19
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "grey",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "evilicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+          </Text>
+          <Text
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "color": "#D4A373",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaView>
+`;
+
+exports[`Given an Reviews function rendered from productDetail When rendering it from product && skinTypeButton Then it will setFiltered to true 1`] = `
+<RNCSafeAreaView
+  style={
+    Object {
+      "flex": 1,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 3,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#141414",
+          "fontFamily": "Montserrat",
+          "fontSize": 20,
+          "lineHeight": 20,
+          "marginRight": 3,
+        }
+      }
+    >
+      19.00
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "justifyContent": "center",
+        "marginVertical": 10,
+        "paddingLeft": 10,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#141414",
+          "fontFamily": "Montserrat",
+          "fontSize": 18,
+        }
+      }
+    >
+      Filter by skin type:
+    </Text>
+    <RCTScrollView
+      data={
+        Array [
+          "None",
+          "Normal",
+          "Combination",
+          "Oily",
+          "Dry",
+          "Sensitive",
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={true}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "flexDirection": "row",
+          "width": "100%",
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              None
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Normal
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Combination
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Oily
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Dry
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              null,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 50,
+                "height": 30,
+                "justifyContent": "center",
+                "margin": 3,
+                "opacity": 1,
+                "width": 130,
+              }
+            }
+            testID="skinTypeButton"
+          >
+            <Text
+              style={
+                Object {
+                  "fontFamily": "Montserrat",
+                  "fontSize": 16,
+                }
+              }
+            >
+              Sensitive
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginVertical": 10,
+          "paddingTop": 15,
+          "width": "95%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontFamily": "MontserratBold",
+            "fontSize": 20,
+          }
+        }
+      >
+        REVIEWS
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="navigateAddReview"
+      >
+        <Text
+          allowFontScaling={false}
+          style={
+            Array [
+              Object {
+                "color": "black",
+                "fontSize": 30,
+              },
+              undefined,
+              Object {
+                "fontFamily": "anticon",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {},
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "marginBottom": 50,
+          "marginTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginBottom": 10,
+            "width": "95%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "flex-start",
+              "justifyContent": "center",
+              "marginRight": 10,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "Crema facial",
+              }
+            }
+            style={
+              Object {
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 100,
+                "height": 70,
+                "resizeMode": "cover",
+                "width": 70,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderColor": "#D4A373",
+              "borderRadius": 8,
+              "borderWidth": 1,
+              "flex": 1,
+              "justifyContent": "flex-start",
+              "padding": 10,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          >
+            19
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "grey",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "evilicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+          </Text>
+          <Text
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "color": "#D4A373",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginBottom": 10,
+            "width": "95%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "flex-start",
+              "justifyContent": "center",
+              "marginRight": 10,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "Crema facial",
+              }
+            }
+            style={
+              Object {
+                "backgroundColor": "rgba(221, 161, 94, 0.3)",
+                "borderRadius": 100,
+                "height": 70,
+                "resizeMode": "cover",
+                "width": 70,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "borderColor": "#D4A373",
+              "borderRadius": 8,
+              "borderWidth": 1,
+              "flex": 1,
+              "justifyContent": "flex-start",
+              "padding": 10,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "color": "#D4A373",
+                "fontFamily": "MontserratBold",
+                "fontSize": 18,
+              }
+            }
+          >
+            19
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "grey",
+                    "fontSize": 20,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "evilicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+          </Text>
+          <Text
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "color": "#D4A373",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaView>
+`;

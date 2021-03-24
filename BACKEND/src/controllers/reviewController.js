@@ -8,7 +8,7 @@ function reviewControllers() {
     if (+parameter) {
       query = { productBarCode: parameter };
     } else {
-      query = { productCategory: parameter };
+      query = { userId: parameter };
     }
     try {
       const reviews = await Review.find(query).exec();

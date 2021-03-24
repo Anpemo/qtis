@@ -1,15 +1,31 @@
 import React from 'react'
-import { cleanup, fireEvent, render } from '@testing-library/react-native'
+import { cleanup, render, fireEvent } from '@testing-library/react-native'
 import Welcome from './Welcome'
 
+const mockedNavigate = jest.fn()
+jest.mock('@react-navigation/native', () => {
+  return {
+    ...jest.requireActual('@react-navigation/native'),
+    useNavigation: () => ({
+      navigate: mockedNavigate
+    })
+  }
+})
 describe('Given an Welcome function', () => {
-  afterEach(cleanup)
+  let component
+  const userName = 'Angela'
+  beforeEach(() => {
+    component = (<Welcome route={{ params: { userName } }} />)
+  })
+  afterEach(() => {
+    cleanup()
+  })
+
   describe('When pressing on GO TO YOUR PROFILE', () => {
     test('Then it should navigate', () => {
-      const navigate = jest.fn()
-      const { getByText } = render(<Welcome navigation={{ navigate }} />)
-      fireEvent.press(getByText('GO TO YOUR PROFILE'))
-      expect(navigate).toHaveBeenCalledWith('Profile')
+      const { getByTestId } = render(component)
+      fireEvent.press(getByTestId('test-login'))
+      expect(mockedNavigate).toHaveBeenCalled()
     })
   })
 })

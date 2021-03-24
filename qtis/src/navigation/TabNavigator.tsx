@@ -6,7 +6,7 @@ const Tab = createBottomTabNavigator()
 
 function TabNavigator () {
   return (
-      <Tab.Navigator tabBar ={props => <TabBar {...props} />}>
+      <Tab.Navigator tabBar ={props => <TabBar {...props} initialRouteName={'Profile'}/>}>
           <Tab.Screen name='Browser' component={Browser} initialParams={{ icon: 'search1' }}/>
           <Tab.Screen name='Scanner' component={Scanner} initialParams={{ icon: 'barcode-scan' }}/>
           <Tab.Screen name='Profile' component={Profile} initialParams={{ icon: 'user' }}/>

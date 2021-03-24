@@ -8,6 +8,9 @@ export default function userReducer (state = { user: {} }, action: any) {
     case qtisActionTypes.USER_LOGIN:
       return { ...state, user: action.data }
 
+    case qtisActionTypes.UPDATE_USER:
+      return { ...state, user: action.data }
+
     default:
       return state
   }

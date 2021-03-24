@@ -8,11 +8,9 @@ const userSchema = new mongoose.Schema(
     picture: String,
     email: String,
     password: String,
-    skinType: [String],
-    hairType: [String],
-    favourites: [{
-      productId: String
-    }]
+    userPicture: String,
+    city: String,
+    skinType: String
   }
 );
 userSchema.methods.validPassword = function validPassword(pwd) {

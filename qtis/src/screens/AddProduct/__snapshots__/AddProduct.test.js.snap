@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a AddProduct component When pressing on categories box Then openCategories will be true 1`] = `[MockFunction]`;

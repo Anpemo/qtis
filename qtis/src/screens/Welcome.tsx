@@ -1,72 +1,23 @@
 import React from 'react'
 import {
-  Image, StyleSheet, TouchableOpacity, View, Text
+  Image, TouchableOpacity, View, Text
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { images, SIZES, COLORS } from '../../constants'
+import { images } from '../../constants'
+import { useNavigation } from '@react-navigation/native'
+import styles from './WelcomeStyles'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  backgroundPicture: {
-    flex: 1,
-    position: 'absolute',
-    height: SIZES.height,
-    resizeMode: 'contain'
-  },
-  titleText: {
-    fontSize: SIZES.h2 * 1.2,
-    fontFamily: 'Montserrat',
-    marginTop: 20
-  },
-  buttonContainer: {
-    flex: 0.5,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    margin: 40
-  },
-  button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: SIZES.buttonRadius,
-    height: SIZES.buttonheight,
-    width: SIZES.buttonwidth,
-    marginTop: 10,
-    backgroundColor: COLORS.black
-  },
-  buttonText: {
-    fontSize: SIZES.buttonText,
-    lineHeight: 22,
-    fontFamily: 'Montserrat',
-    fontWeight: '400',
-    letterSpacing: 3,
-    color: COLORS.white
-  },
-  bodyText: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: SIZES.buttonheight,
-    width: SIZES.buttonwidth,
-    marginTop: 10,
-    marginLeft: 25,
-    fontSize: SIZES.buttonText,
-    lineHeight: 22,
-    fontFamily: 'MontserratBold',
-    fontWeight: '400',
-    letterSpacing: 3
-  }
-})
-
-export default function Welcome ({ navigation }: any) {
+export default function Welcome ({ route, navigation }: any) {
+  const userName = route.params
   return (
     <SafeAreaView style={styles.container}>
       <Image source={images.oldLady} style={styles.backgroundPicture} />
-      <Text style={styles.titleText}>Welcome, Ángela</Text>
+      <Text style={styles.titleText}>{`Welcome, ${userName}`}</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile')} testID={'test-login'}>
+        <TouchableOpacity
+        style={styles.button} onPress={() =>
+          navigation.navigate('tabNavigator', { Screen: 'Profile' })}
+        testID={'test-login'}>
           <Text style={styles.buttonText}>GO TO YOUR PROFILE</Text>
         </TouchableOpacity>
           <Text style={styles.bodyText}>AND START SHARING</Text>

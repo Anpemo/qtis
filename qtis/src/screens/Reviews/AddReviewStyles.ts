@@ -1,10 +1,9 @@
 
-import { COLORS, SIZES, BORDER } from '../../../constants'
+import { COLORS, SIZES } from '../../../constants'
 import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: COLORS.white
   },
   backgroundImage: {
@@ -12,43 +11,32 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: '100%'
   },
+  secondContainer: {
+    flex: 1,
+    alignItems: 'center',
+    width: SIZES.width,
+    justifyContent: 'center'
+  },
   backIcon: {
     color: COLORS.black,
     marginBottom: 5,
-    marginLeft: 10,
+    marginLeft: 0,
     position: 'absolute',
-    top: 10
-  },
-  pictureBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    backgroundColor: COLORS.pictureBoxBackground,
-    marginBottom: 10
-  },
-  productPicture: {
-    resizeMode: 'contain',
-    height: 160,
-    width: 160,
-    borderRadius: 100,
-    backgroundColor: COLORS.white
+    top: 40,
+    left: 40
   },
   inputsContainer: {
-    width: '85%',
-    height: '50%',
+    width: SIZES.width * 0.8,
+    height: '60%',
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: SIZES.squareRadius,
     backgroundColor: COLORS.categoryTextBackground
   },
-  input: {
-    flexGrow: 1,
+  rateInput: {
     width: '90%',
-    height: '18%',
+    height: '20%',
     margin: 5,
     justifyContent: 'center',
     backgroundColor: COLORS.cream,
@@ -57,10 +45,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     padding: 10
   },
-  categoriesInput: {
-    flexGrow: 1,
+  textInput: {
     width: '90%',
-    height: '25%',
+    height: '70%',
     margin: 5,
     justifyContent: 'center',
     backgroundColor: COLORS.cream,
@@ -68,37 +55,13 @@ const styles = StyleSheet.create({
     color: COLORS.lettersGrey,
     fontFamily: 'Montserrat',
     padding: 10
-  },
-
-  categoriesTitle: {
-    fontSize: SIZES.p18,
-    color: COLORS.lettersGrey,
-    fontFamily: 'Montserrat'
-  },
-  categoriesModule: {
-    backgroundColor: COLORS.white,
-    position: 'absolute',
-    width: '100%',
-    top: -250
-  },
-  categoryText: {
-    fontSize: SIZES.p18,
-    fontFamily: 'Montserrat'
-  },
-  categoryButton: {
-    ...BORDER,
-    height: 50
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center'
   },
   button: {
     alignSelf: 'center',
-    width: '40%',
+    width: SIZES.width * 0.8,
     justifyContent: 'center',
     backgroundColor: COLORS.black,
-    margin: 5,
+    marginTop: 15,
     height: SIZES.buttonheight,
     borderRadius: SIZES.buttonRadius
   },

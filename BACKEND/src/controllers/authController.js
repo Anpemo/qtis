@@ -26,7 +26,6 @@ async function register(req, res) {
 }
 
 async function login(req, res) {
-  console.log(req.body);
   const { email } = req.body;
   const user = await User.findOne({ email }).exec();
   res.status(200);
