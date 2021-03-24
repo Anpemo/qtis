@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import { connect } from 'react-redux'
@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
 })
 
 function Scanner ({ actions, product, navigation }: any) {
-  const [hasPermission, setHasPermission] = useState < boolean | null >(null)
-  const [scanned, setScanned] = useState(false)
-  const [productBarCode, setProductBarCode] = useState(null)
+  const [scanned, setScanned] = React.useState(false)
+  const [hasPermission, setHasPermission] = React.useState < boolean | null >(null)
+  const [productBarCode, setProductBarCode] = React.useState(null)
 
   useEffect(() => {
     (async () => {
@@ -61,20 +61,21 @@ function Scanner ({ actions, product, navigation }: any) {
   }, [product])
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>
+    return <Text testID={'requesting'}>Requesting for camera permission</Text>
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>
+    return <Text testID={'camera'}>No access to camera</Text>
   }
   function resetScanner () {
     setScanned(false)
     actions.cleanProduct()
   }
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
+        testID={'scanner'}
       />
 
       {scanned && <Button title={'Tap to Scan Again'} onPress={() => resetScanner()} />}

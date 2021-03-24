@@ -1,12 +1,12 @@
-import { cleanup, fireEvent, render } from '@testing-library/react-native'
+import { cleanup, fireEvent, render, act } from '@testing-library/react-native'
 import Profile from './profile'
-import renderer from 'react-test-renderer'
-import React, { useState } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
+import { Alert } from 'react-native'
 import configureStore from 'redux-mock-store'
 import * as actions from '../../redux/actions/qtisActionCreators'
 import Reviews from '../Reviews/Reviews'
-// import * as ImagePicker from '../ImagePicker'
+import * as ImagePicker from 'expo-image-picker'
 jest.mock('../../redux/actions/qtisActionCreators')
 const mockedGoBack = jest.fn()
 const mockedNavigate = jest.fn()
@@ -20,6 +20,7 @@ jest.mock('@react-navigation/native', () => {
     })
   }
 })
+
 describe('Given a Profile component', () => {
   let component
   const navigate = jest.fn()
@@ -36,7 +37,8 @@ describe('Given a Profile component', () => {
               reviews: []
             }
           }
-          )}><Profile navigation={{ navigate, goBack }} route={{ params }} /></Provider>
+          )}><Profile navigation={{ navigate, goBack }} route={{ params }} />
+          </Provider>
     )
   })
 
@@ -69,12 +71,6 @@ describe('Given a Profile component', () => {
 
   describe('When oppening account settings, writing on inputs and pressing action.updateUser', () => {
     test('Then action.updateUser will be called with { city, age, userName, _id, userPicture, skinType } ', () => {
-      const city = 'Barcelona'
-      const age = 26
-      const userName = 'Angela'
-      const _id = 'asd423af'
-      const userPicture = 'asdasdas'
-      const skinType = 'combination'
       jest.spyOn(actions, 'updateUser').mockReturnValue({ type: '' })
       const { getByPlaceholderText, getByTestId } = render(component)
 
@@ -105,6 +101,38 @@ describe('Given a Profile component', () => {
       const skinType = getAllByTestId('skinTypesMap')[0]
       fireEvent.press(skinType)
       expect(skinType).toHaveBeenCalled()
+    })
+  })
+
+  describe('When rendering the component and mocking picker image with cancelled: false ', () => {
+    test('Then ...', async () => {
+      const result = {
+        cancelled: false,
+        uri: 'asdas'
+      }
+      jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockReturnValueOnce(result)
+
+      const { getByTestId } = render(component)
+      const text = getByTestId('pickImage')
+      act(() => {
+        fireEvent.press(text)
+      })
+
+      expect(text).toMatchSnapshot()
+    })
+  })
+  describe('When rendering the component and mocking requestMediaLibraryPermissionsAsync ', () => {
+    test('Then alert will be called', async () => {
+      const result = {
+        status: 'notgranted'
+      }
+      jest.spyOn(ImagePicker, 'requestMediaLibraryPermissionsAsync').mockReturnValueOnce(result)
+      jest.spyOn(Alert, 'alert')
+
+      const { getByTestId } = render(component)
+
+      fireEvent.press(getByTestId('imagePicker'))
+      expect(Alert.alert).toBeTruthy()
     })
   })
 })

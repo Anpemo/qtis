@@ -1,7 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 import { AntDesign, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
-import { COLORS } from '../../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -12,17 +11,17 @@ const styles = StyleSheet.create({
     height: 50
   }
 })
-function Tab ({ color, tab, onPress, icon }: any) {
+function Tab ({ color, onPress, icon }: any) {
   return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={onPress} testID={'tabContainer'}>
             {icon && icon === 'search1' &&
-            <AntDesign name="search1" size={30} color={color} />
+            <AntDesign name="search1" size={30} color={color} testID={'search'} />
             }
             {icon && icon === 'barcode-scan' &&
-              <MaterialCommunityIcons name="barcode-scan" size={30} color={color} />
+              <MaterialCommunityIcons name="barcode-scan" size={30} color={color} testID={'barcodeScan'} />
             }
             {icon && icon === 'user' &&
-              <FontAwesome5 name="user" size={30} color={color} />
+              <FontAwesome5 name="user" size={30} color={color} testID={'user'}/>
             }
         </TouchableOpacity>
   )

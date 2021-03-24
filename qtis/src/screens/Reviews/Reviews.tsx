@@ -21,11 +21,11 @@ function Reviews ({ reviews, actions, parameter }: any) {
   +parameter ? (actualView = 'product') : (actualView = 'user')
 
   function ratingCalculation () {
-    const totalScore = reviews?.reduce((accumulator: Number, currentValue: any) => {
+    const totalScore = reviews?.reduce((accumulator: number, currentValue: any) => {
       return accumulator + currentValue.rating
     }, 0)
     const amountReviews = reviews?.length
-    const ratingNumber = (totalScore / amountReviews).toFixed(2)
+    const ratingNumber = (totalScore / amountReviews).toFixed(1)
     setRating((ratingNumber).toString())
   }
 
@@ -34,7 +34,7 @@ function Reviews ({ reviews, actions, parameter }: any) {
     ratingCalculation()
   }, [reviews?.length])
 
-  function filterReviews (filter: String) {
+  function filterReviews (filter: string) {
     if (filter === 'None') {
       setFiltered(false)
     } else {
@@ -115,12 +115,9 @@ function Reviews ({ reviews, actions, parameter }: any) {
                       />
                     </View>
                     <View style={styles.reviewContainer}>
-                    { actualView === 'product'
-                      ? <Text style={styles.userName}>{item.userName}
+                     <Text style={styles.userName}>{item.userName}
                       </Text>
-                      : <Text style={styles.userName}>{item.productName}
-                      </Text>
-                  }
+
                       <Text style={styles.userName}>{item.rating}<EvilIcons name="star" size={20} color="grey" />
                       </Text>
                       <Text style={styles.reviewText}>{item.reviewText}

@@ -7,8 +7,7 @@ import { images } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 import styles from './WelcomeStyles'
 
-export default function Welcome ({ route }: any) {
-  const navigation = useNavigation()
+export default function Welcome ({ route, navigation }: any) {
   const userName = route.params
   return (
     <SafeAreaView style={styles.container}>
@@ -17,7 +16,7 @@ export default function Welcome ({ route }: any) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
         style={styles.button} onPress={() =>
-          navigation.navigate('Profile')}
+          navigation.navigate('tabNavigator', { Screen: 'Profile' })}
         testID={'test-login'}>
           <Text style={styles.buttonText}>GO TO YOUR PROFILE</Text>
         </TouchableOpacity>

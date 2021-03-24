@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Tab component When calling it Then it will render a tabContainer 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": 50,
+      "justifyContent": "center",
+      "opacity": 1,
+      "padding": 5,
+    }
+  }
+  testID="tabContainer"
+/>
+`;

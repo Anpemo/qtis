@@ -69,11 +69,11 @@ function Register (this: any, { navigation, actions, user }: any) {
     } else if (user === 401) {
       Alert.alert('User already exists')
     }
-  }, [user])
+  }, [user?.email])
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView behavior={'position'}>
+      <KeyboardAvoidingView behavior={'padding'}>
       <TouchableOpacity
       onPress={() => { navigation.goBack() }}
       testID={'backButton'}
@@ -141,7 +141,7 @@ function Register (this: any, { navigation, actions, user }: any) {
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
-};
+}
 
 function mapStateToProps ({ userReducer }: any) {
   return {

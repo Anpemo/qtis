@@ -5,7 +5,7 @@ import {
 import { images } from '../../../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import skinTypes from '../../../constants/skinTypes'
-import styles from './ProfileStyles'
+import styles from './styles'
 import * as ImagePicker from 'expo-image-picker'
 import { Ionicons } from '@expo/vector-icons'
 import { bindActionCreators } from 'redux'
@@ -14,7 +14,7 @@ import Reviews from '../../../src/screens/Reviews/Reviews'
 import { updateUser } from '../../redux/actions/qtisActionCreators'
 
 function Profile ({ user, actions }: any) {
-  const [openSkinType, setOpenSkinType] = React.useState(false)
+  const [openSkinType, setOpenSkinType] = useState(false)
   const [openReviews, setOpenReviews] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
   const [userPicture, setUserPicture] = useState(user.userPicture)
@@ -59,9 +59,9 @@ function Profile ({ user, actions }: any) {
             { userPicture
               ? <Image source={{ uri: userPicture }} style={styles.userPicture} />
               : <Text style={styles.userPictureText}>ADD A PICTURE</Text>}
-            <View style={styles.cameraButtonContainer} >
-              <Ionicons name="camera-outline" size={35} color="grey" onPress={pickImage}/>
-            </View>
+            <TouchableOpacity style={styles.cameraButtonContainer} onPress={pickImage} testID={'imagePicker'}>
+              <Ionicons name="camera-outline" size={35} color="grey" />
+            </TouchableOpacity>
           </View>
       </ImageBackground>
       <View style={styles.body}>

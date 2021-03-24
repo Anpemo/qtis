@@ -30,6 +30,7 @@ describe('Given an Reviews function rendered from productDetail', () => {
               userPicture: 'Crema facial',
               rating: 19,
               productCategory: 'creams',
+              skinType: 'Normal',
               _id: 1
             },
             {
@@ -37,6 +38,7 @@ describe('Given an Reviews function rendered from productDetail', () => {
               userPicture: 'Crema facial',
               rating: 19,
               productCategory: 'creams',
+              skinType: 'Normal',
               _id: 2
 
             }
@@ -108,14 +110,16 @@ describe('Given an Reviews function rendered from profile', () => {
             userPicture: 'Crema facial',
             rating: 19,
             productCategory: 'creams',
-            _id: 1
+            _id: 1,
+            skinType: 'Normal'
           },
           {
             brandName: 'Ives',
             userPicture: 'Crema facial',
             rating: 19,
             productCategory: 'creams',
-            _id: 2
+            _id: 2,
+            skinType: 'Normal'
 
           }
         ]

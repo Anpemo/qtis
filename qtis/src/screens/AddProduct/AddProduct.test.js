@@ -1,12 +1,14 @@
-import { cleanup, fireEvent, render } from '@testing-library/react-native'
+import { cleanup, fireEvent, render, act } from '@testing-library/react-native'
 import AddProduct from './AddProduct'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Alert } from 'react-native'
 import configureStore from 'redux-mock-store'
 import * as actions from '../../redux/actions/qtisActionCreators'
-// import * as ImagePicker from '../ImagePicker'
+import * as ImagePicker from 'expo-image-picker'
+
 jest.mock('../../redux/actions/qtisActionCreators')
+jest.mock('expo-image-picker')
 
 describe('Given a AddProduct component', () => {
   let component
@@ -18,7 +20,12 @@ describe('Given a AddProduct component', () => {
     const mockStore = configureStore()
 
     component = (
-          <Provider store={mockStore({ productReducer: { product: {} } })}><AddProduct navigation={{ navigate, goBack }} route={{ params }} /></Provider>
+          <Provider store={mockStore({
+            productReducer: {
+              product: {}
+            }
+          })}><AddProduct navigation={{ navigate, goBack }} route={{ params }} />
+          </Provider>
     )
   })
 
@@ -85,18 +92,39 @@ describe('Given a AddProduct component', () => {
       const categoryButton = getAllByTestId('categoryButton')[0]
       fireEvent.press(categoryButton)
 
-      expect(selectCategory).toHaveBeenCalled()
+      expect(selectCategory).toMatchSnapshot()
     })
   })
-  //   describe('When rendering the component and mocking status with empty string ', () => {
-  //     test('Then alert will be called', async () => {
-  //       render(component)
-  //       const mockImagePicker = { launchCameraAsync: { requestMediaLibraryPermisionsAsync: jest.fn() } }
-  //       const { status } = ImagePicker.launchCameraAsync({ requestMediaLibraryPermisionsAsync: jest.fn() })
+  describe('When rendering the component and mocking picker image with cancelled: false ', () => {
+    test('Then the button will match the snapshot', async () => {
+      const result = {
+        cancelled: false,
+        uri: 'imageURI'
+      }
+      jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockReturnValueOnce(result)
 
-//       jest.spyOn(Alert, 'alert')
-//       expect(Alert.alert).toBeTruthy()
-//       expect(status).toBe('granted')
-//     })
-//   })
+      const { getByTestId } = render(component)
+      const button = getByTestId('pickImage')
+      act(() => {
+        fireEvent.press(button)
+      })
+
+      expect(button).toMatchSnapshot()
+    })
+  })
+  describe('When rendering the component and mocking requestMediaLibraryPermissionsAsync ', () => {
+    test('Then alert will be called', async () => {
+      const result = {
+        status: 'notgranted'
+      }
+      jest.spyOn(ImagePicker, 'requestMediaLibraryPermissionsAsync').mockReturnValueOnce(result)
+      jest.spyOn(Alert, 'alert')
+
+      const { getByText } = render(component)
+      act(() => {
+        fireEvent.press(getByText('Pick an image from camera roll'))
+      })
+      expect(Alert.alert).toBeTruthy()
+    })
+  })
 })

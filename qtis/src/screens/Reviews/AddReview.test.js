@@ -2,10 +2,8 @@ import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import AddReview from './AddReview'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Alert } from 'react-native'
 import configureStore from 'redux-mock-store'
 import * as actions from '../../redux/actions/qtisActionCreators'
-// import * as ImagePicker from '../ImagePicker'
 jest.mock('../../redux/actions/qtisActionCreators')
 
 describe('Given a AddReview component', () => {

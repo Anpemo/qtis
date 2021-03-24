@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
-import styles from './AddProductStyles'
+import styles from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { createProduct } from '../../redux/actions/qtisActionCreators'
@@ -64,7 +64,7 @@ function AddProduct ({ navigation, route, actions }: any) {
       <View style={styles.pictureBox}>
         {productPicture
           ? <Image source={{ uri: productPicture }} style={styles.productPicture} />
-          : <Button title="Pick an image from camera roll" onPress={pickImage} />
+          : <Button title="Pick an image from camera roll" onPress={pickImage} testID={'pickImage'}/>
       }
       </View>
       <View style={styles.inputsContainer}>

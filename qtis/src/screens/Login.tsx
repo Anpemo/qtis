@@ -60,7 +60,7 @@ function Login ({ navigation, actions, user }: any) {
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
-};
+}
 function mapStateToProps ({ userReducer }: any) {
   return {
     user: userReducer.user
