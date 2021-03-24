@@ -1,7 +1,7 @@
 
 import { COLORS, SIZES } from '../../../constants'
 import { StyleSheet } from 'react-native'
-const styles = StyleSheet.create({
+const AddReviewStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   backIcon: {
     color: COLORS.black,
     marginBottom: 5,
-    marginLeft: 0,
+    marginLeft: 10,
     position: 'absolute',
     top: 40,
     left: 40
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default styles
+export default AddReviewStyles

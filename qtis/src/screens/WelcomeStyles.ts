@@ -1,7 +1,7 @@
 import { SIZES, COLORS } from '../../constants'
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const WelcomeStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default styles
+export default WelcomeStyles

@@ -8,6 +8,7 @@ import * as actions from '../../redux/actions/qtisActionCreators'
 import Reviews from '../Reviews/Reviews'
 import * as ImagePicker from 'expo-image-picker'
 jest.mock('../../redux/actions/qtisActionCreators')
+
 const mockedGoBack = jest.fn()
 const mockedNavigate = jest.fn()
 
@@ -105,15 +106,15 @@ describe('Given a Profile component', () => {
   })
 
   describe('When rendering the component and mocking picker image with cancelled: false ', () => {
-    test('Then ...', async () => {
+    test('Then the text will match the snapshot', async () => {
       const result = {
         cancelled: false,
-        uri: 'asdas'
+        uri: 'imageURI'
       }
       jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockReturnValueOnce(result)
 
       const { getByTestId } = render(component)
-      const text = getByTestId('pickImage')
+      const text = getByTestId('imagePicker')
       act(() => {
         fireEvent.press(text)
       })

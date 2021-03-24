@@ -1,7 +1,7 @@
 import { SIZES, COLORS } from '../../constants'
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const LoginStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginLeft: 20,
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default styles
+export default LoginStyles

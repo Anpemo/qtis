@@ -1,7 +1,7 @@
 
 import { COLORS, SIZES, REVIEWBORDER } from '../../../constants'
 import { StyleSheet } from 'react-native'
-const styles = StyleSheet.create({
+const ReviewsStyle = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%'
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default styles
+export default ReviewsStyle

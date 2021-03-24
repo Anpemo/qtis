@@ -17,7 +17,7 @@ function AddProduct ({ navigation, route, actions }: any) {
   const [productName, setProductName] = useState('')
   const [brandName, setBrandName] = useState('')
   const [price, setPrice] = useState('')
-  const [productPicture, setProductPicture] = useState(null)
+  const [productPicture, setProductPicture] = useState<string | null>(null)
   const [productCategory, setProductCategory] = useState('')
   const [openCategories, setOpenCategories] = useState(false)
   const productBarCode = route.params?.toString()
