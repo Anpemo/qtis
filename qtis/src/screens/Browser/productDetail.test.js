@@ -19,7 +19,8 @@ jest.mock('@react-navigation/native', () => {
     })
   }
 })
-describe('Given an ProductDetail function', () => {
+
+describe('Given a ProductDetail function', () => {
   let component
   let params
   beforeEach(() => {

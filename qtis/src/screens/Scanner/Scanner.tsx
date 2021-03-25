@@ -83,7 +83,7 @@ function Scanner ({ actions, product, navigation }: { actions: AnyAction, produc
     </View>
   )
 }
-function mapStateToProps ({ productsReducer }: Object) {
+function mapStateToProps ({ productsReducer }: any) {
   return {
     product: productsReducer.product
   }
