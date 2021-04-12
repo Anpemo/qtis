@@ -31,7 +31,7 @@ exports[`Given an Reviews function rendered from productDetail When rendering it
         }
       }
     >
-      19.00
+      19.0
     </Text>
   </View>
   <View
@@ -699,7 +699,7 @@ exports[`Given an Reviews function rendered from productDetail When rendering it
         }
       }
     >
-      19.00
+      19.0
     </Text>
   </View>
   <View

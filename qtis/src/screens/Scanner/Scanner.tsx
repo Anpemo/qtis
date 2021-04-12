@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { AnyAction, bindActionCreators, Dispatch } from 'redux'
 import { fetchProduct, cleanProduct } from '../../redux/actions/qtisActionCreators'
+import ProductInterface from '../../Interfaces/productInterface'
 
 const styles = StyleSheet.create({
   container: {
@@ -11,10 +12,10 @@ const styles = StyleSheet.create({
   }
 })
 
-function Scanner ({ actions, product, navigation }: any) {
+function Scanner ({ actions, product, navigation }: { actions: AnyAction, product: ProductInterface, navigation: any }) {
   const [scanned, setScanned] = React.useState(false)
   const [hasPermission, setHasPermission] = React.useState < boolean | null >(null)
-  const [productBarCode, setProductBarCode] = React.useState(null)
+  const [productBarCode, setProductBarCode] = React.useState < number | null >(null)
 
   useEffect(() => {
     (async () => {
@@ -88,7 +89,7 @@ function mapStateToProps ({ productsReducer }: any) {
   }
 }
 
-function mapDispatchToProps (dispatch: any) {
+function mapDispatchToProps (dispatch: Dispatch) {
   return {
     actions: bindActionCreators({
       fetchProduct,

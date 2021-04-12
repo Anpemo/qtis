@@ -4,7 +4,6 @@ import {
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
-import { useNavigation } from '@react-navigation/native'
 import styles from './WelcomeStyles'
 
 export default function Welcome ({ route, navigation }: any) {

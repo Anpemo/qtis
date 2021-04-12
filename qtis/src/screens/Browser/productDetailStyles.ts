@@ -1,7 +1,7 @@
 
 import { COLORS, SIZES, BORDER } from '../../../constants'
 import { StyleSheet } from 'react-native'
-const styles = StyleSheet.create({
+const productDetailStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -147,4 +147,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default styles
+export default productDetailStyles

@@ -87,15 +87,15 @@ function Profile ({ user, actions }: any) {
             <View style={styles.section}>
               <Text style={styles.sectionName}>SKIN TYPE: {skinType?.toUpperCase()}</Text>
               <View style={styles.sectionContentBox}>
-                {openSkinType && skinTypes.map((skinType) => (
+                {openSkinType && skinTypes.map((skinTypeValue) => (
                   <TouchableOpacity
-                  key={skinType}
+                  key={skinTypeValue}
                   activeOpacity={0.5}
                   style={styles.skinTypesButton}
                   testID={'skinTypesMap'}
-                  onPress={() => selectSkinType(skinType)}
+                  onPress={() => selectSkinType(skinTypeValue)}
                   >
-                    <Text style={styles.skinType}>{skinType.toUpperCase()}</Text>
+                    <Text style={styles.skinType}>{skinTypeValue.toUpperCase()}</Text>
                   </TouchableOpacity>
                 ))}
               </View>

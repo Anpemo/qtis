@@ -1,7 +1,7 @@
 import { COLORS, SIZES, SHADOW } from '../../../constants'
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const browserStyles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 10
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.brown
   }
 })
-export default styles
+export default browserStyles
