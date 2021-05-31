@@ -1,4 +1,5 @@
-QTIS
+<h1>QTIS</h1>
+<br/>
 Welcome to QTIS, an app that allows the user to see reviews of cosmetic products simply by scanning its barcode. 
 
 
@@ -11,23 +12,22 @@ Welcome to QTIS, an app that allows the user to see reviews of cosmetic products
 
 STEP BY STEP 📋<br/>
 
-CLONE THE REPOSITORY:
+Clone the repository:<br/>
 git clone https://github.com/Anpemo/qtis.git
 
 🔧 Go to the file qtis and install:<br/>
 expo install
 
-🔧 Go to the BACKEND file and install:
+🔧 Go to the BACKEND file and install:<br/>
 npm install
 
-🚀 START
-
+🚀 START<br/>
 On both qtis and BACKEND execute the app. 
 - FRONTEND: expo start
 - BACKEND: npm start
 
 
-TEST ⚙️
+TEST ⚙️<br/>
 To test the application, as it is done with jest
 Explica como ejecutar las pruebas automatizadas para este sistema
 
