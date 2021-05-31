@@ -26,16 +26,18 @@ On both qtis and BACKEND execute the app.
 - FRONTEND: expo start
 - BACKEND: npm start
 <br/>
-There are different ways to run the app, the one I recommend:<br/>
+There are different ways to run the app, the one I recommend:
+
 - Install the app Expo Go on your phone. 
 - Scann the QR code that appears when you run expo start. 
 - Then the app will execute on your phone.
 <br/>
+<br/>   
 TEST ⚙️<br/>
 On both qtis and BACKEND execute the test: <br/>
 npm test
-
-
+<br/>
+<br/>
 📌 You can see an explained demo of the app in the following link:
 
 
