@@ -9,15 +9,15 @@ Welcome to QTIS, an app that allows the user to see reviews of cosmetic products
 - User authentication done with Passport.
 - Everything tested with jest.
 
-Step by step 📋
+STEP BY STEP 📋<br/>
 
-Clone the repository:
+CLONE THE REPOSITORY:
 git clone https://github.com/Anpemo/qtis.git
 
-🔧 Go to the frontend file <qits> and install:
+🔧 Go to the file qtis and install:
 expo install
 
-🔧 Go to the backend file: <BACKEND> and install:
+🔧 Go to the BACKEND file and install:
 npm install
 
 🚀 START
