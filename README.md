@@ -16,15 +16,15 @@ Clone the repository:<br/>
 git clone https://github.com/Anpemo/qtis.git
 
 🔧 Go to the file qtis and install:<br/>
-expo install
+```expo install```
 
 🔧 Go to the BACKEND file and install:<br/>
-npm install
+```npm install```
 
 🚀 START<br/>
 On both qtis and BACKEND execute the app. 
-- FRONTEND: expo start
-- BACKEND: npm start
+- FRONTEND: ```expo start```
+- BACKEND: ```npm start```
 <br/>
 There are different ways to run the app, the one I recommend:
 
@@ -32,7 +32,6 @@ There are different ways to run the app, the one I recommend:
 - Scann the QR code that appears when you run expo start. 
 - Then the app will execute on your phone.
 <br/>
-<br/>   
 TEST ⚙️<br/>
 On both qtis and BACKEND execute the test: <br/>
 npm test
