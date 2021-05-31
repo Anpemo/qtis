@@ -13,7 +13,7 @@ Welcome to QTIS, an app that allows the user to see reviews of cosmetic products
 STEP BY STEP 📋<br/>
 
 Clone the repository:<br/>
-git clone https://github.com/Anpemo/qtis.git
+```git clone https://github.com/Anpemo/qtis.git```
 
 🔧 Go to the file qtis and install:<br/>
 ```expo install```
@@ -34,7 +34,7 @@ There are different ways to run the app, the one I recommend:
 <br/>
 TEST ⚙️<br/>
 On both qtis and BACKEND execute the test: <br/>
-npm test
+```npm test```
 <br/>
 <br/>
 📌 You can see an explained demo of the app in the following link:
