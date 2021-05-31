@@ -14,7 +14,7 @@ STEP BY STEP 📋<br/>
 CLONE THE REPOSITORY:
 git clone https://github.com/Anpemo/qtis.git
 
-🔧 Go to the file qtis and install:
+🔧 Go to the file qtis and install:<br/>
 expo install
 
 🔧 Go to the BACKEND file and install:
