@@ -34,7 +34,9 @@ There are different ways to run the app, the one I recommend:
 <br/>
 TEST ⚙️<br/>
 On both qtis and BACKEND execute the test: <br/>
+
 ```npm test```
+
 <br/>
 <br/>
 📌 You can see an explained demo of the app in the following link:
