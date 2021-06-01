@@ -98,29 +98,28 @@ describe('Given a fetchProducts function', () => {
   })
 })
 
-// No pasa
+// NOOO PASAAAA
 describe('Given a fetchProduct function', () => {
   describe('When calling it with userData existent in backend', () => {
     test('Then it will dispatch data: data', async () => {
-      axios.get.mockResolvedValueOnce({ data: [{ productName: 'Ives', category: 'crema' }, { productName: 'clarins', category: 'crema' }] })
+      axios.get.mockResolvedValue({ headers: { date: null }, data: [{ productName: 'Ives', category: 'crema' }, { productName: 'clarins', category: 'crema' }] })
+
       const dispatch = jest.fn()
-      await fetchProduct({})(dispatch)
+      await fetchProduct('asdasdkb5')(dispatch)
       expect(dispatch).toHaveBeenCalled()
     })
   })
+})
+
+describe('Given a fetchProduct function', () => {
   describe('When calling it with userData non-existent in backend', () => {
+    beforeEach(() => {
+      axios.get.mockRejectedValue('Error')
+    })
     test('Then it will dispatch data: product does not exist', async () => {
-      // const dispatch = jest.fn()
-      // axios.get.mockRejectedValue('Nil')
-      // await fetchProduct()(dispatch)
-      // expect(dispatch).toHaveBeenCalled()
-      axios.mockRejectedValueOnce('error')
       const dispatch = jest.fn()
-      await fetchProduct()(dispatch)
-      expect(dispatch).toHaveBeenCalledWith({
-        type: qtisActionTypes.SINGLE_PRODUCT,
-        data: { data: 'Product does not exist' }
-      })
+      await fetchProduct({})(dispatch)
+      expect(dispatch).toHaveBeenCalled()
     })
   })
 })

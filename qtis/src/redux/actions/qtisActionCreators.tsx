@@ -50,8 +50,10 @@ export function fetchProducts (category: Object) {
 
 export function fetchProduct (barCodeData: any) {
   return async function fetchInfo (dispatch: any) {
-    const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
+    let date
     try {
+      const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
+      date = headers.date
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
         data: data[0]
@@ -59,7 +61,7 @@ export function fetchProduct (barCodeData: any) {
     } catch {
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
-        data: { data: 'Product does not exist', date: headers.date }
+        data: { data: 'Product does not exist', date }
       })
     }
   }
