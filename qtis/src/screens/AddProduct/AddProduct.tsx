@@ -55,34 +55,34 @@ function AddProduct ({ navigation, route, actions }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={images.backgroundReview} style={styles.backgroundImage}>
-        <KeyboardAvoidingView behavior={'height'}>
+        <KeyboardAvoidingView behavior="height">
       <TouchableOpacity
       onPress={() => { navigation.goBack() }}
-      testID={'backButton'}>
+      testID="backButton">
         <AntDesign name="doubleleft" size={22}/>
       </TouchableOpacity>
       <View style={styles.pictureBox}>
         {productPicture
           ? <Image source={{ uri: productPicture }} style={styles.productPicture} />
-          : <Button title="Pick an image from camera roll" onPress={pickImage} testID={'pickImage'}/>
+          : <Button title="Pick an image from camera roll" onPress={pickImage} testID="pickImage"/>
       }
       </View>
       <View style={styles.inputsContainer}>
       <TextInput
           onChangeText={(text) => setProductName(text)}
-          placeholder={'Product Name'}
+          placeholder="Product Name"
           style={styles.input}
           value={productName}
         />
         <TextInput
           onChangeText={(text) => setBrandName(text)}
-          placeholder={'Brand Name'}
+          placeholder="Brand Name"
           style={styles.input}
           value={brandName}
         />
         <TextInput
           onChangeText={(text) => setPrice(text)}
-          placeholder={'Average price'}
+          placeholder="Average price"
           style={styles.input}
           value={price}
         />
@@ -93,7 +93,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         }}
         style={styles.categoriesInput}
         activeOpacity={0.5}
-        testID={'openCategoryButton'}
+        testID="openCategoryButton"
         >
             <View>
               <Text style={styles.categoriesTitle}>{productCategory.toUpperCase() || 'CHOOSE A CATEGORY'}</Text>
@@ -104,7 +104,7 @@ function AddProduct ({ navigation, route, actions }: any) {
                   activeOpacity={0.5}
                   style={styles.categoryButton}
                   onPress={() => selectCategory(category.name)}
-                  testID={'categoryButton'}
+                  testID="categoryButton"
                   >
                     <Text style={styles.categoryText}>{category.name.toUpperCase()}</Text>
                   </TouchableOpacity>
@@ -119,7 +119,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         <TouchableOpacity
         onPress={() => shareProduct()}
         style={styles.button}
-        testID={'shareButton'}
+        testID="shareButton"
         >
             <Text style={styles.buttonText}>SHARE</Text>
         </TouchableOpacity>
@@ -127,7 +127,7 @@ function AddProduct ({ navigation, route, actions }: any) {
         <TouchableOpacity
         onPress={() => { navigation.navigate('tabNavigator', { Screen: 'Browser' }) }}
         style={styles.button}
-        testID={'navigatorButton'}
+        testID="navigatorButton"
         >
             <Text style={styles.buttonText}>GO TO BROWSER</Text>
         </TouchableOpacity>
