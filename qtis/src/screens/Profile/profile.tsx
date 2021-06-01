@@ -59,7 +59,7 @@ function Profile ({ user, actions }: any) {
             { userPicture
               ? <Image source={{ uri: userPicture }} style={styles.userPicture} />
               : <Text style={styles.userPictureText}>ADD A PICTURE</Text>}
-            <TouchableOpacity style={styles.cameraButtonContainer} onPress={pickImage} testID={'imagePicker'}>
+            <TouchableOpacity style={styles.cameraButtonContainer} onPress={pickImage} testID="imagePicker">
               <Ionicons name="camera-outline" size={35} color="grey" />
             </TouchableOpacity>
           </View>
@@ -82,7 +82,7 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
-        testID={'openSkinType'}
+        testID="openSkinType"
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>SKIN TYPE: {skinType?.toUpperCase()}</Text>
@@ -92,7 +92,7 @@ function Profile ({ user, actions }: any) {
                   key={skinTypeValue}
                   activeOpacity={0.5}
                   style={styles.skinTypesButton}
-                  testID={'skinTypesMap'}
+                  testID="skinTypesMap"
                   onPress={() => selectSkinType(skinTypeValue)}
                   >
                     <Text style={styles.skinType}>{skinTypeValue.toUpperCase()}</Text>
@@ -109,7 +109,7 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
-        testID={'openReviews'}
+        testID="openReviews"
         >
             <View style={styles.section}>
               <Text style={styles.sectionName}>YOUR REVIEWS</Text>
@@ -127,7 +127,7 @@ function Profile ({ user, actions }: any) {
         }}
         style={styles.sectionContainer}
         activeOpacity={0.5}
-        testID={'openSettings'}
+        testID="openSettings"
 
         >
             <View style={styles.section}>
@@ -138,24 +138,24 @@ function Profile ({ user, actions }: any) {
 
                     <TextInput
                       onChangeText={(event) => setUserName(event)}
-                      placeholder={'What\'s your name?'}
+                      placeholder="What\'s your name?"
                       style={styles.settingInputs}
                       />
                     <TextInput
-                    placeholder={'How old are you?'}
+                    placeholder="How old are you?"
                     onChangeText={(event) => setAge(event.toString())}
                     style={styles.settingInputs}
-                    keyboardType={'decimal-pad'}
+                    keyboardType="decimal-pad"
                     />
 
                       <TextInput
-                      placeholder={'Where are you from?'}
+                      placeholder="Where are you from?"
                       onChangeText={(event) => setCity(event)}
                       style={styles.settingInputs}
                       />
                     <TouchableOpacity
                     style={styles.updateButton}
-                    testID={'updateUserButton'}
+                    testID="updateUserButton"
                     onPress={() => actions.updateUser({ city, age, userName, _id: user._id, userPicture, skinType })}>
 
                       <Text style={styles.updateText} >UPDATE YOUR DATA</Text>
