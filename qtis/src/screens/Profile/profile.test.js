@@ -77,21 +77,31 @@ describe('Given a Profile component', () => {
       const { getByPlaceholderText, getByTestId } = render(component)
 
       const openSettingsButton = getByTestId('openSettings')
-      fireEvent.press(openSettingsButton)
+      act(() => {
+        fireEvent.press(openSettingsButton)
+      })
       // write on userName input:
-      const userNameInput = getByPlaceholderText('What\'s your name?')
+      const userNameInput = getByPlaceholderText("What's your name?")
       const newUserName = 'newValue'
-      fireEvent.changeText(userNameInput, newUserName)
+      act(() => {
+        fireEvent.changeText(userNameInput, newUserName)
+      })
       // write on age input:
       const ageInput = getByPlaceholderText('How old are you?')
       const newAge = 'newAge'
-      fireEvent.changeText(ageInput, newAge)
+      act(() => {
+        fireEvent.changeText(ageInput, newAge)
+      })
       // write on city input:
       const cityInput = getByPlaceholderText('Where are you from?')
       const newCity = 'newCity'
-      fireEvent.changeText(cityInput, newCity)
+      act(() => {
+        fireEvent.changeText(cityInput, newCity)
+      })
       // find function and press it
-      fireEvent.press(getByTestId('updateUserButton'))
+      act(() => {
+        fireEvent.press(getByTestId('updateUserButton'))
+      })
       expect(actions.updateUser).toHaveBeenCalled()
     })
   })
@@ -100,7 +110,9 @@ describe('Given a Profile component', () => {
       const { getByTestId, getAllByTestId } = render(component)
       // Press openSkinType button and making skinType appear
       const button = getByTestId('openSkinType')
-      fireEvent.press(button)
+      act(() => {
+        fireEvent.press(button)
+      })
       // Press skinTypeButton, to choose a skintype
       const skinType = getAllByTestId('skinTypesMap')[0]
       expect(skinType).toBeTruthy()

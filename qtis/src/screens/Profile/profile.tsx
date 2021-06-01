@@ -138,7 +138,7 @@ function Profile ({ user, actions }: any) {
 
                     <TextInput
                       onChangeText={(event) => setUserName(event)}
-                      placeholder="What\'s your name?"
+                      placeholder="What's your name?"
                       style={styles.settingInputs}
                       />
                     <TextInput
