@@ -8,7 +8,7 @@ import * as actions from '../../redux/actions/qtisActionCreators'
 import Reviews from '../Reviews/Reviews'
 import * as ImagePicker from 'expo-image-picker'
 jest.mock('../../redux/actions/qtisActionCreators')
-
+jest.mock('')
 const mockedGoBack = jest.fn()
 const mockedNavigate = jest.fn()
 
@@ -53,8 +53,9 @@ describe('Given a Profile component', () => {
 
       const { getByTestId } = render(component)
       const button = getByTestId('openReviews')
-      fireEvent.press(button)
-
+      act(() => {
+        fireEvent.press(button)
+      })
       const mockReviewsStore = configureStore()
       const reviewComponent = (<Provider store= { mockReviewsStore({
         reviewsReducer: {
@@ -70,7 +71,7 @@ describe('Given a Profile component', () => {
     })
   })
 
-  describe('When oppening account settings, writing on inputs and pressing action.updateUser', () => {
+  describe(' When oppening account settings, writing on inputs and pressing action.updateUser', () => {
     test('Then action.updateUser will be called with { city, age, userName, _id, userPicture, skinType } ', () => {
       jest.spyOn(actions, 'updateUser').mockReturnValue({ type: '' })
       const { getByPlaceholderText, getByTestId } = render(component)
@@ -94,14 +95,20 @@ describe('Given a Profile component', () => {
       expect(actions.updateUser).toHaveBeenCalled()
     })
   })
-  describe('When oppening skin type and pressing on a skintype', () => {
-    test('Then setOpenSkinType will be called with false', () => {
+  describe(' ---->When pressing openSkinType', () => {
+    test('Then skinTypesMap will be in the document', () => {
       const { getByTestId, getAllByTestId } = render(component)
+      // Press openSkinType button and making skinType appear
       const button = getByTestId('openSkinType')
       fireEvent.press(button)
+      // Press skinTypeButton, to choose a skintype
       const skinType = getAllByTestId('skinTypesMap')[0]
-      fireEvent.press(skinType)
-      expect(skinType).toHaveBeenCalled()
+      expect(skinType).toBeTruthy()
+      // Then press on that skintype, making skinTypesMap disappear
+      act(() => {
+        fireEvent.press(skinType)
+      })
+      // Next check setOpenSkinType turned false or selectSkinType call
     })
   })
 
@@ -119,7 +126,7 @@ describe('Given a Profile component', () => {
         fireEvent.press(text)
       })
 
-      expect(text).toMatchSnapshot()
+      expect(text).toBeTruthy()
     })
   })
   describe('When rendering the component and mocking requestMediaLibraryPermissionsAsync ', () => {
@@ -131,8 +138,9 @@ describe('Given a Profile component', () => {
       jest.spyOn(Alert, 'alert')
 
       const { getByTestId } = render(component)
-
-      fireEvent.press(getByTestId('imagePicker'))
+      act(() => {
+        fireEvent.press(getByTestId('imagePicker'))
+      })
       expect(Alert.alert).toBeTruthy()
     })
   })
