@@ -8,7 +8,7 @@ import * as actions from '../../redux/actions/qtisActionCreators'
 import Reviews from '../Reviews/Reviews'
 import * as ImagePicker from 'expo-image-picker'
 jest.mock('../../redux/actions/qtisActionCreators')
-jest.mock('')
+
 const mockedGoBack = jest.fn()
 const mockedNavigate = jest.fn()
 
