@@ -21,11 +21,13 @@ describe('Given a TabBar component', () => {
       const tabBar = render(component)
       expect(tabBar).toMatchSnapshot()
     })
-    test('Then it will render a search', () => {
-      const { getAllByTestId } = render(component)
-      const tabID = getAllByTestId('tabContainer')[0]
-      fireEvent.press(tabID)
-      expect(tabID).toHaveBeenCalled()
+    describe('And pressing at tabId', () => {
+      test('Then it will navigate', () => {
+        const { getAllByTestId } = render(component)
+        const tabID = getAllByTestId('tabContainer')[0]
+        fireEvent.press(tabID)
+        expect(navigate).toHaveBeenCalled()
+      })
     })
   })
 })
