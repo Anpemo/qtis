@@ -16,7 +16,7 @@ export default function Welcome ({ route, navigation }: any) {
         <TouchableOpacity
         style={styles.button} onPress={() =>
           navigation.navigate('tabNavigator', { Screen: 'Profile' })}
-        testID={'test-login'}>
+        testID="test-login">
           <Text style={styles.buttonText}>GO TO YOUR PROFILE</Text>
         </TouchableOpacity>
           <Text style={styles.bodyText}>AND START SHARING</Text>
