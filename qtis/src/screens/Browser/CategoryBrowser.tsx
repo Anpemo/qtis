@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../redux/actions/qtisActionCreators'
 import styles from './CategoryBrowserStyles'
+import currency from '../../../constants/currency'
 
 function CategoryBrowser ({ route, navigation, actions, products }: any) {
   useEffect(() => {
@@ -30,7 +31,7 @@ function CategoryBrowser ({ route, navigation, actions, products }: any) {
     </Text>
     <Text style={styles.productDetailsText}>{item.brandName}
     </Text>
-    <Text style={styles.productDetailsText}>{`${item.price}€`}
+    <Text style={styles.productDetailsText}>{`${item.price}${currency.EURO}`}
     </Text>
     </View>
 </TouchableOpacity>
