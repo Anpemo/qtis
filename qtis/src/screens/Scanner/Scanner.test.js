@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/react-native'
+import { act, cleanup, fireEvent, render } from '@testing-library/react-native'
 import Scanner from './Scanner'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -41,6 +41,7 @@ describe('Given a Scanner component', () => {
     })
   })
 })
+
 describe('Given a Scanner component', () => {
   let componentNoBarCode
   const navigate = jest.fn()
@@ -62,9 +63,13 @@ describe('Given a Scanner component', () => {
       const reactUseState = React.useState
       jest.spyOn(React, 'useState')
         .mockImplementationOnce(() => reactUseState(true))
-      render(componentNoBarCode)
+      const { getByTestId } = render(componentNoBarCode)
+      const scanButton = getByTestId('scanAgainButton')
+      act(() => {
+        fireEvent.press(scanButton)
+      })
       jest.spyOn(Alert, 'alert')
-      expect(Alert.alert).toBeTruthy()
+      expect(scanButton).toBeTruthy()
     })
   })
 })
