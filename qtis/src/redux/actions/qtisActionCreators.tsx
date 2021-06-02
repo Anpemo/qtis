@@ -1,11 +1,11 @@
 import qtisActionTypes from './qtisActionTypes'
 import axios from 'axios'
+import serverUrls from '../../../constants/serverUrls'
 
 export function userRegister (userData: any) {
   return async function fetchInfo (dispatch: any) {
-    // const route = process.env.BACKEND_REGISTER
     try {
-      const { data } = await axios.post('http://192.168.0.15:5000/auth/register', userData)
+      const { data } = await axios.post(serverUrls.BACKEND_REGISTER, userData)
 
       dispatch({
         type: qtisActionTypes.USER_REGISTER,
@@ -22,9 +22,8 @@ export function userRegister (userData: any) {
 
 export function userLogin (userData: any) {
   return async function fetchInfo (dispatch: any) {
-    // const route = process.env.BACKEND_LOGIN
     try {
-      const { data } = await axios.post('http://192.168.0.15:5000/auth/login', userData)
+      const { data } = await axios.post(serverUrls.BACKEND_LOGIN, userData)
       dispatch({
         type: qtisActionTypes.USER_LOGIN,
         data
@@ -40,7 +39,7 @@ export function userLogin (userData: any) {
 
 export function fetchProducts (category: Object) {
   return async function fetchInfo (dispatch: any) {
-    const { data } = await axios.get(`http://192.168.0.15:5000/product/${category}`)
+    const { data } = await axios.get(`${serverUrls.PRODUCTS}${category}`)
     dispatch({
       type: qtisActionTypes.PRODUCTS_LIST,
       data
@@ -52,7 +51,7 @@ export function fetchProduct (barCodeData: any) {
   return async function fetchInfo (dispatch: any) {
     let date
     try {
-      const { data, headers } = await axios.get(`http://192.168.0.15:5000/product/${barCodeData}`)
+      const { data, headers } = await axios.get(`${serverUrls.PRODUCTS}${barCodeData}`)
       date = headers.date
       dispatch({
         type: qtisActionTypes.SINGLE_PRODUCT,
@@ -69,7 +68,7 @@ export function fetchProduct (barCodeData: any) {
 
 export function createProduct (productData: any) {
   return async function fetchInfo (dispatch: any) {
-    const { data } = await axios.post('http://192.168.0.15:5000/product', productData)
+    const { data } = await axios.post(serverUrls.PRODUCTS, productData)
     dispatch({
       type: qtisActionTypes.CREATE_PRODUCT,
       data
@@ -86,7 +85,7 @@ export function cleanProduct () {
 
 export function fetchReviews (parameter: Object) {
   return async function fetchInfo (dispatch: any) {
-    const { data } = await axios.get(`http://192.168.0.15:5000/review/${parameter}`)
+    const { data } = await axios.get(`${serverUrls.REVIEWS}${parameter}`)
 
     dispatch({
       type: qtisActionTypes.REVIEWS_LIST,
@@ -97,7 +96,7 @@ export function fetchReviews (parameter: Object) {
 
 export function createReview (reviewData: Object) {
   return async function fetchInfo (dispatch: any) {
-    const { data } = await axios.post('http://192.168.0.15:5000/review', reviewData)
+    const { data } = await axios.post(serverUrls.REVIEWS, reviewData)
     dispatch({
       type: qtisActionTypes.CREATE_REVIEW,
       data
@@ -107,7 +106,7 @@ export function createReview (reviewData: Object) {
 
 export function updateUser (userData: any) {
   return async function fetchInfo (dispatch: any) {
-    const { data } = await axios.put('http://192.168.0.15:5000/user', userData)
+    const { data } = await axios.put(serverUrls.UPDATE_USER, userData)
     dispatch({
       type: qtisActionTypes.UPDATE_USER,
       data
