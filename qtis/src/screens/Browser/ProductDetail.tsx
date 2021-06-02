@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux'
 import Reviews from '../../../src/screens/Reviews/Reviews'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
+import currency from '../../../constants/currency'
 
 function ProductDetail ({ product, actions, route }: any) {
   const { productBarCode } = route.params
@@ -42,7 +43,7 @@ function ProductDetail ({ product, actions, route }: any) {
           </Text>
           <Text style={styles.productDetailsText}>{product.brandName}
           </Text>
-          <Text style={styles.productDetailsText}>{`${product.price} €`}
+          <Text style={styles.productDetailsText}>{`${product.price} ${currency.EURO}`}
           </Text>
         </View>)
     }
