@@ -23,6 +23,8 @@ Clone the repository:<br/>
 🔧 Go to the BACKEND file and install:<br/>
 ```npm install```
 
+🔧 Change the ip port at constants - serverUrls (frontend) if needed.
+
 🚀 START<br/>
 On both qtis and BACKEND execute the app. 
 - FRONTEND: ```expo start```
