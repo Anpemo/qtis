@@ -53,8 +53,9 @@ describe('Given a Profile component', () => {
 
       const { getByTestId } = render(component)
       const button = getByTestId('openReviews')
-      fireEvent.press(button)
-
+      act(() => {
+        fireEvent.press(button)
+      })
       const mockReviewsStore = configureStore()
       const reviewComponent = (<Provider store= { mockReviewsStore({
         reviewsReducer: {
@@ -70,38 +71,56 @@ describe('Given a Profile component', () => {
     })
   })
 
-  describe('When oppening account settings, writing on inputs and pressing action.updateUser', () => {
+  describe(' When oppening account settings, writing on inputs and pressing action.updateUser', () => {
     test('Then action.updateUser will be called with { city, age, userName, _id, userPicture, skinType } ', () => {
       jest.spyOn(actions, 'updateUser').mockReturnValue({ type: '' })
       const { getByPlaceholderText, getByTestId } = render(component)
 
       const openSettingsButton = getByTestId('openSettings')
-      fireEvent.press(openSettingsButton)
+      act(() => {
+        fireEvent.press(openSettingsButton)
+      })
       // write on userName input:
-      const userNameInput = getByPlaceholderText('What\'s your name?')
+      const userNameInput = getByPlaceholderText("What's your name?")
       const newUserName = 'newValue'
-      fireEvent.changeText(userNameInput, newUserName)
+      act(() => {
+        fireEvent.changeText(userNameInput, newUserName)
+      })
       // write on age input:
       const ageInput = getByPlaceholderText('How old are you?')
       const newAge = 'newAge'
-      fireEvent.changeText(ageInput, newAge)
+      act(() => {
+        fireEvent.changeText(ageInput, newAge)
+      })
       // write on city input:
       const cityInput = getByPlaceholderText('Where are you from?')
       const newCity = 'newCity'
-      fireEvent.changeText(cityInput, newCity)
+      act(() => {
+        fireEvent.changeText(cityInput, newCity)
+      })
       // find function and press it
-      fireEvent.press(getByTestId('updateUserButton'))
+      act(() => {
+        fireEvent.press(getByTestId('updateUserButton'))
+      })
       expect(actions.updateUser).toHaveBeenCalled()
     })
   })
-  describe('When oppening skin type and pressing on a skintype', () => {
-    test('Then setOpenSkinType will be called with false', () => {
+  describe(' ---->When pressing openSkinType', () => {
+    test('Then skinTypesMap will be in the document', () => {
       const { getByTestId, getAllByTestId } = render(component)
+      // Press openSkinType button and making skinType appear
       const button = getByTestId('openSkinType')
-      fireEvent.press(button)
+      act(() => {
+        fireEvent.press(button)
+      })
+      // Press skinTypeButton, to choose a skintype
       const skinType = getAllByTestId('skinTypesMap')[0]
-      fireEvent.press(skinType)
-      expect(skinType).toHaveBeenCalled()
+      expect(skinType).toBeTruthy()
+      // Then press on that skintype, making skinTypesMap disappear
+      act(() => {
+        fireEvent.press(skinType)
+      })
+      // Next check setOpenSkinType turned false or selectSkinType call
     })
   })
 
@@ -119,7 +138,7 @@ describe('Given a Profile component', () => {
         fireEvent.press(text)
       })
 
-      expect(text).toMatchSnapshot()
+      expect(text).toBeTruthy()
     })
   })
   describe('When rendering the component and mocking requestMediaLibraryPermissionsAsync ', () => {
@@ -131,8 +150,9 @@ describe('Given a Profile component', () => {
       jest.spyOn(Alert, 'alert')
 
       const { getByTestId } = render(component)
-
-      fireEvent.press(getByTestId('imagePicker'))
+      act(() => {
+        fireEvent.press(getByTestId('imagePicker'))
+      })
       expect(Alert.alert).toBeTruthy()
     })
   })

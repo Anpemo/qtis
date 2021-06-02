@@ -38,7 +38,9 @@ describe('Given a AddProduct component', () => {
       const { getByPlaceholderText } = render(component)
       const productNameInput = getByPlaceholderText('Product Name')
       const newValue = 'newValue'
-      fireEvent.changeText(productNameInput, newValue)
+      act(() => {
+        fireEvent.changeText(productNameInput, newValue)
+      })
       expect(productNameInput.props.value).toBe(newValue)
     })
     test('Then brandName will change', () => {
@@ -46,7 +48,9 @@ describe('Given a AddProduct component', () => {
 
       const brandNameInput = getByPlaceholderText('Brand Name')
       const newValue = 'newValue'
-      fireEvent.changeText(brandNameInput, newValue)
+      act(() => {
+        fireEvent.changeText(brandNameInput, newValue)
+      })
       expect(brandNameInput.props.value).toBe(newValue)
     })
     test('Then price will change', () => {
@@ -54,7 +58,9 @@ describe('Given a AddProduct component', () => {
 
       const priceInput = getByPlaceholderText('Average price')
       const newValue = 'newValue'
-      fireEvent.changeText(priceInput, newValue)
+      act(() => {
+        fireEvent.changeText(priceInput, newValue)
+      })
       expect(priceInput.props.value).toBe(newValue)
     })
   })
@@ -62,7 +68,9 @@ describe('Given a AddProduct component', () => {
     test('Then it will navigate', () => {
       const { getByTestId } = render(component)
       const backButton = getByTestId('backButton')
-      fireEvent.press(backButton)
+      act(() => {
+        fireEvent.press(backButton)
+      })
       expect(goBack).toHaveBeenCalled()
     })
   })
@@ -71,7 +79,9 @@ describe('Given a AddProduct component', () => {
       jest.spyOn(actions, 'createProduct').mockReturnValue({ type: '' })
       const { getByTestId } = render(component)
       const button = getByTestId('shareButton')
-      fireEvent.press(button)
+      act(() => {
+        fireEvent.press(button)
+      })
       expect(actions.createProduct).toHaveBeenCalled()
     })
   })
@@ -79,7 +89,9 @@ describe('Given a AddProduct component', () => {
     test('Then navigate  will be called', () => {
       const { getByTestId } = render(component)
       const button = getByTestId('navigatorButton')
-      fireEvent.press(button)
+      act(() => {
+        fireEvent.press(button)
+      })
       expect(navigate).toHaveBeenCalled()
     })
   })
@@ -88,9 +100,13 @@ describe('Given a AddProduct component', () => {
       const selectCategory = jest.fn()
       const { getByTestId, getAllByTestId } = render(component)
       const button = getByTestId('openCategoryButton')
-      fireEvent.press(button)
+      act(() => {
+        fireEvent.press(button)
+      })
       const categoryButton = getAllByTestId('categoryButton')[0]
-      fireEvent.press(categoryButton)
+      act(() => {
+        fireEvent.press(categoryButton)
+      })
 
       expect(selectCategory).toMatchSnapshot()
     })
@@ -109,7 +125,7 @@ describe('Given a AddProduct component', () => {
         fireEvent.press(button)
       })
 
-      expect(button).toMatchSnapshot()
+      expect(button).toBeTruthy()
     })
   })
   describe('When rendering the component and mocking requestMediaLibraryPermissionsAsync ', () => {

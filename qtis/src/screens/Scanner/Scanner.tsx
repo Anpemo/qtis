@@ -79,7 +79,7 @@ function Scanner ({ actions, product, navigation }: { actions: AnyAction, produc
         testID={'scanner'}
       />
 
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => resetScanner()} />}
+      {scanned && <Button title={'Tap to Scan Again'} onPress={() => resetScanner()} testID="scanAgainButton"/>}
     </View>
   )
 }
