@@ -98,7 +98,7 @@ describe('Given a fetchProducts function', () => {
   })
 })
 
-// NOOO PASAAAA
+
 describe('Given a fetchProduct function', () => {
   describe('When calling it with userData existent in backend', () => {
     test('Then it will dispatch data: data', async () => {
