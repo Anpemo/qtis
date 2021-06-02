@@ -9,8 +9,8 @@ Welcome to QTIS, an app that allows the user to see reviews of cosmetic products
 - User authentication done with Passport.
 - Everything tested with jest.
 
-📌 You can see an explained demo of the app in the following link:
-https://youtu.be/A-rFkke4iFQ
+📌 You can see an explained demo of the app in the following link:<br/>
+VIDEO: https://youtu.be/A-rFkke4iFQ
 
 STEP BY STEP 📋<br/>
 
