@@ -64,6 +64,7 @@ function Register (this: any, { navigation, actions, user }: any) {
   }, [emailValidated, confirmPasswordValidated])
 
   useEffect(() => {
+    console.log('retorno ' + user)
     if (user?.email) {
       navigation.navigate('Welcome', userName)
     } else if (user === 401) {
