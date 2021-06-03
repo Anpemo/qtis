@@ -6,4 +6,3 @@ export default interface ProductInterface {
     price: number,
     productCategory: string
   }
-}
