@@ -1,8 +1,12 @@
 import qtisActionTypes from './qtisActionTypes'
 import axios from 'axios'
 import serverUrls from '../../../constants/serverUrls'
+import UserInterface from '../../Interfaces/UserInterface'
+import ProductInterface from '../../Interfaces/ProductInterface'
+import ReviewInterface from '../../Interfaces/ReviewInterface'
 
-export function userRegister (userData: any) {
+export function userRegister (userData: UserInterface) {
+  console.log(userData)
   return async function fetchInfo (dispatch: any) {
     try {
       const { data } = await axios.post(serverUrls.BACKEND_REGISTER, userData)
@@ -20,7 +24,7 @@ export function userRegister (userData: any) {
   }
 }
 
-export function userLogin (userData: any) {
+export function userLogin (userData: UserInterface) {
   return async function fetchInfo (dispatch: any) {
     try {
       const { data } = await axios.post(serverUrls.BACKEND_LOGIN, userData)
@@ -48,6 +52,7 @@ export function fetchProducts (category: Object) {
 }
 
 export function fetchProduct (barCodeData: any) {
+  console.log(barCodeData)
   return async function fetchInfo (dispatch: any) {
     let date
     try {
@@ -66,7 +71,7 @@ export function fetchProduct (barCodeData: any) {
   }
 }
 
-export function createProduct (productData: any) {
+export function createProduct (productData: ProductInterface) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.post(serverUrls.PRODUCTS, productData)
     dispatch({
@@ -94,7 +99,7 @@ export function fetchReviews (parameter: Object) {
   }
 }
 
-export function createReview (reviewData: Object) {
+export function createReview (reviewData: ReviewInterface) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.post(serverUrls.REVIEWS, reviewData)
     dispatch({
@@ -104,7 +109,7 @@ export function createReview (reviewData: Object) {
   }
 }
 
-export function updateUser (userData: any) {
+export function updateUser (userData: UserInterface) {
   return async function fetchInfo (dispatch: any) {
     const { data } = await axios.put(serverUrls.UPDATE_USER, userData)
     dispatch({
