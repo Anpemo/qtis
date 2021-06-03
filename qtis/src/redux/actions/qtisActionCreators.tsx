@@ -1,9 +1,14 @@
 import qtisActionTypes from './qtisActionTypes'
 import axios from 'axios'
 import serverUrls from '../../../constants/serverUrls'
+import UserInterface from '../../Interfaces/UserInterface'
+import ProductInterface from '../../Interfaces/ProductInterface'
+import ReviewInterface from '../../Interfaces/ReviewInterface'
+import { Dispatch } from 'react'
+import { userRegisterAction, updateUserAction, createReviewAction, userLoginAction, fetchProductsAction, fetchProductAction, fetchReviewsAction, createProductAction } from '../../models'
 
-export function userRegister (userData: any) {
-  return async function fetchInfo (dispatch: any) {
+export function userRegister (userData: UserInterface) {
+  return async function fetchInfo (dispatch: Dispatch<userRegisterAction>) {
     try {
       const { data } = await axios.post(serverUrls.BACKEND_REGISTER, userData)
 
@@ -20,8 +25,8 @@ export function userRegister (userData: any) {
   }
 }
 
-export function userLogin (userData: any) {
-  return async function fetchInfo (dispatch: any) {
+export function userLogin (userData: UserInterface) {
+  return async function fetchInfo (dispatch: Dispatch<userLoginAction>) {
     try {
       const { data } = await axios.post(serverUrls.BACKEND_LOGIN, userData)
       dispatch({
@@ -38,7 +43,7 @@ export function userLogin (userData: any) {
 }
 
 export function fetchProducts (category: Object) {
-  return async function fetchInfo (dispatch: any) {
+  return async function fetchInfo (dispatch: Dispatch<fetchProductsAction>) {
     const { data } = await axios.get(`${serverUrls.PRODUCTS}${category}`)
     dispatch({
       type: qtisActionTypes.PRODUCTS_LIST,
@@ -47,8 +52,8 @@ export function fetchProducts (category: Object) {
   }
 }
 
-export function fetchProduct (barCodeData: any) {
-  return async function fetchInfo (dispatch: any) {
+export function fetchProduct (barCodeData: String) {
+  return async function fetchInfo (dispatch: Dispatch<fetchProductAction>) {
     let date
     try {
       const { data, headers } = await axios.get(`${serverUrls.PRODUCTS}${barCodeData}`)
@@ -66,8 +71,8 @@ export function fetchProduct (barCodeData: any) {
   }
 }
 
-export function createProduct (productData: any) {
-  return async function fetchInfo (dispatch: any) {
+export function createProduct (productData: ProductInterface) {
+  return async function fetchInfo (dispatch: Dispatch<createProductAction>) {
     const { data } = await axios.post(serverUrls.PRODUCTS, productData)
     dispatch({
       type: qtisActionTypes.CREATE_PRODUCT,
@@ -84,7 +89,7 @@ export function cleanProduct () {
 }
 
 export function fetchReviews (parameter: Object) {
-  return async function fetchInfo (dispatch: any) {
+  return async function fetchInfo (dispatch: Dispatch<fetchReviewsAction>) {
     const { data } = await axios.get(`${serverUrls.REVIEWS}${parameter}`)
 
     dispatch({
@@ -94,8 +99,8 @@ export function fetchReviews (parameter: Object) {
   }
 }
 
-export function createReview (reviewData: Object) {
-  return async function fetchInfo (dispatch: any) {
+export function createReview (reviewData: ReviewInterface) {
+  return async function fetchInfo (dispatch: Dispatch<createReviewAction>) {
     const { data } = await axios.post(serverUrls.REVIEWS, reviewData)
     dispatch({
       type: qtisActionTypes.CREATE_REVIEW,
@@ -104,8 +109,8 @@ export function createReview (reviewData: Object) {
   }
 }
 
-export function updateUser (userData: any) {
-  return async function fetchInfo (dispatch: any) {
+export function updateUser (userData: UserInterface) {
+  return async function fetchInfo (dispatch: Dispatch<updateUserAction>) {
     const { data } = await axios.put(serverUrls.UPDATE_USER, userData)
     dispatch({
       type: qtisActionTypes.UPDATE_USER,

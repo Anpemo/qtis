@@ -1,5 +1,3 @@
-const currency = {
+export default {
   EURO: '€'
 }
-
-export default currency

@@ -1,6 +1,7 @@
 import actionTypes from '../actions/qtisActionTypes'
+import { AnyAction } from 'redux'
 
-export default function productsReducer (state = { product: {}, products: [] }, action: any) {
+export default function productsReducer (state = { product: {}, products: [] }, action: AnyAction) {
   switch (action.type) {
     case actionTypes.PRODUCTS_LIST:
       return { ...state, products: action.data }
