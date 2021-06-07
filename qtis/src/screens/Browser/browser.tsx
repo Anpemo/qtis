@@ -5,8 +5,9 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import categories from '../../../constants/categories'
 import styles from './browserStyles'
+import { Navigation } from '../../models'
 
-export default function Browser ({ navigation }: any) {
+export default function Browser ({ navigation } : {navigation:Navigation}) {
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
     testID={item.id}
