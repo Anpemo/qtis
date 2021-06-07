@@ -1,4 +1,4 @@
-const mainUrl = 'http://192.168.0.77:5000'
+const mainUrl = 'http://192.168.0.100:5000'
 
 const serverUrls = {
   BACKEND_REGISTER: `${mainUrl}/auth/register`,

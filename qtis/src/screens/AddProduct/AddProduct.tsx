@@ -45,8 +45,7 @@ function AddProduct ({ navigation, route, actions }: {navigation:Navigation, act
       setProductPicture(result.uri)
     }
   }
-  function selectCategory (category : string) {
-    console.log(category)
+  function selectCategory (category:string) {
     setProductCategory(category)
     setOpenCategories(false)
   }
