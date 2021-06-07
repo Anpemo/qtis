@@ -37,3 +37,16 @@ export interface updateUserAction{
   type: string,
   data: object
 }
+
+export interface Route {
+  params: string
+}
+
+export interface Navigation {
+  navigate: Function,
+  goBack: Function
+}
+
+export interface Actions{
+  createProduct: Function
+}

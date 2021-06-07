@@ -6,14 +6,15 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../../constants'
 import styles from './styles'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { createProduct } from '../../redux/actions/qtisActionCreators'
 import { AntDesign } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 import categories from '../../../constants/categories'
 import * as ImagePicker from 'expo-image-picker'
+import { Navigation, Route, Actions } from '../../models'
 
-function AddProduct ({ navigation, route, actions }: any) {
+function AddProduct ({ navigation, route, actions }: {navigation:Navigation, actions:Actions, route:Route}) {
   const [productName, setProductName] = useState('')
   const [brandName, setBrandName] = useState('')
   const [price, setPrice] = useState('')
@@ -44,7 +45,8 @@ function AddProduct ({ navigation, route, actions }: any) {
       setProductPicture(result.uri)
     }
   }
-  function selectCategory (category : any) {
+  function selectCategory (category : string) {
+    console.log(category)
     setProductCategory(category)
     setOpenCategories(false)
   }
@@ -138,7 +140,7 @@ function AddProduct ({ navigation, route, actions }: any) {
   )
 }
 
-function mapDispatchToProps (dispatch: any) {
+function mapDispatchToProps (dispatch:Dispatch) {
   return {
     actions: bindActionCreators({
       createProduct
